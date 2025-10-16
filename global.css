@@ -844,7 +844,7 @@ section {
 /* CSS for section section:modules */
 .modules-section {
   background-color: var(--color-background);
-  padding-bottom: 120px;
+  padding-bottom: 0;
   padding-top: 0;
 }
 .modules-section .section-header {
@@ -853,9 +853,9 @@ section {
 .modules-graphic {
   position: relative;
   width: 100%;
-  height: 750px;
+  height: 700px;
   background-image: url(images/modules.png);
-  background-position: center 83%;
+  background-position: center 72%;
   background-size: 104%;
   background-repeat: no-repeat;
 }
@@ -925,12 +925,12 @@ section {
 /* CSS for section section:app-stores */
 .app-stores-section {
     position: relative;
-    padding: 77px 0 0;
-    background: radial-gradient(circle at 50% 50%, #2450be 0%, #191d56 100%);
-    overflow: hidden;
+    padding: 55px 0 0;
+    height: 700px;
+    overflow: visible;
+    
 }
 .app-stores-section .content-wrapper {
-    max-width: 1240px;
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
@@ -944,14 +944,18 @@ section {
     height: 100%;
     z-index: 1;
 }
+
 .bg-svg {
     position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1450px;
-    height: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url(images/app-stores-bg.svg);
+    background-size: cover;
+    height: 1000px;
+    z-index: -1;
 }
+
 .bg-shadow {
     position: absolute;
     bottom: -14px;
@@ -976,73 +980,52 @@ section {
 .light-text { color: var(--color-border-light); }
 .bold-text { font-weight: 600; }
 .main-showcase {
-    display: flex;
-    align-items: center;
-    gap: 56px;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  z-index: 1;
+  flex-direction: row;
+  width: 100%;
+  height: 600px;
 }
-.image-showcase {
-    position: relative;
-    width: 802px;
-    height: 508px;
-    flex-shrink: 0;
+
+.screenshots-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 800px;
+  z-index: 1;
+  overflow: hidden;
 }
-.image-showcase img {
-    position: absolute;
-    box-shadow: 0px 4px 250px 0px #ffffff;
+
+.screenshots-image img {
+  width: auto;
+  height: 880px;
+  max-width: none;
+  position: absolute;
+  top: -25px;
 }
-.img-laptop { width: 722px; height: 508px; top: 0; left: -44px; }
-.img-iphone { width: 447px; height: 443px; top: 7px; left: 155px; }
-.img-android { width: 244px; height: 439px; top: 57px; left: 415px; }
-.stats-and-downloads {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+
+.app-store-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 800px;
+  z-index: 22;
+  overflow: visible;
 }
-.user-stats {
-    position: relative;
-    width: 230px;
-    height: 219px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.app-store-image img {
+  width: auto;
+  height: 53%;
+  max-width: none;
+  position: absolute;
+  right: 13px;
+  top: 18%;
 }
-.user-stats-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-.user-stats-text {
-    font-family: var(--font-main);
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 32px;
-    text-align: center;
-    background: linear-gradient(180deg, #f5f5f5 50.64%, #b6c5e9 112.54%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-}
-.ratings-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border-radius: 27px;
-}
-.star-rating, .download-stats {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.rating-text {
-    color: var(--color-text-light);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 16px;
-}
+
 .separator { color: #92a8de; font-size: 12px; }
 .orange-plus { color: #fd9843; }
 .store-buttons {
