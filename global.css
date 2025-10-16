@@ -514,7 +514,7 @@ section {
 .resources-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: 27px;
   padding: 0 60px;
 }
 .resource-card {
