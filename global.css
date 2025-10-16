@@ -390,7 +390,7 @@ section {
 .section-description {
   color: var(--color-text-muted);
   font-size: 14px;
-  line-height: 24px;
+  line-height: 20px;
   padding: 0 55px;
 }
 .section-description strong {
@@ -405,8 +405,14 @@ section {
 }
 .infographic-card {
   position: relative;
-  height: 422px;
   border-radius: 36px;
+}
+.infographic-card .about-graphic {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 90%;
+  margin: 20px auto 0 auto;
 }
 .card-background {
   position: absolute;
@@ -476,20 +482,20 @@ section {
   box-shadow: 0px 4px 10px 0px rgba(0, 51, 179, 0.16);
 }
 .card-footer {
-  padding: 24px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 .card-footer h3 {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 16px;
   margin: 0;
   color: var(--color-text-dark);
 }
 .card-footer p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 22px;
   margin: 0;
   color: var(--color-text-muted);
