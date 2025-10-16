@@ -957,12 +957,14 @@ section {
 }
 
 .bg-shadow {
-    position: absolute;
-    bottom: -14px;
-    left: 0;
-    width: 100%;
-    height: 481px;
-    background: linear-gradient(0deg, #fdfeff 36.06%, rgba(255, 255, 255, 0) 100%);
+  background-image: url(images/white-shadow.png);
+  position: absolute;
+  bottom: -50%;
+  left: 0;
+  width: 100%;
+  height: 481px;
+  background: linear-gradient(0deg, #fdfeff 36.06%, rgba(255, 255, 255, 0) 100%);
+  z-index: -1;
 }
 .header-content {
     display: flex;
@@ -980,51 +982,24 @@ section {
 .light-text { color: var(--color-border-light); }
 .bold-text { font-weight: 600; }
 .main-showcase {
-  display: flex;
-  align-items: center;
-  gap: 56px;
-  z-index: 1;
-  flex-direction: row;
-  width: 100%;
-  height: 600px;
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    overflow: visible;
+    left: 0;
+    right: 0;
 }
 
-.screenshots-image{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 800px;
-  z-index: 1;
-  overflow: hidden;
+
+.app-stores-image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: visible;
+    top: -40%;
+    max-width: 100%;    
 }
 
-.screenshots-image img {
-  width: auto;
-  height: 880px;
-  max-width: none;
-  position: absolute;
-  top: -25px;
-}
-
-.app-store-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 800px;
-  z-index: 22;
-  overflow: visible;
-}
-
-.app-store-image img {
-  width: auto;
-  height: 53%;
-  max-width: none;
-  position: absolute;
-  right: 13px;
-  top: 18%;
-}
 
 .separator { color: #92a8de; font-size: 12px; }
 .orange-plus { color: #fd9843; }
@@ -1067,7 +1042,7 @@ section {
 
 /* CSS for section section:global-access */
 .global-access-section {
-    padding: 112px 0 0;
+    padding: 60px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1113,10 +1088,11 @@ section {
 
 /* CSS for section section:ai-assistant */
 .ai-assistant-section {
-    padding-top: 172px;
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -110px;
 }
 .ai-assistant-section .header-content {
     margin-bottom: 38px;
@@ -1134,66 +1110,10 @@ section {
     height: 647px;
     margin-top: -120px;
 }
-.background-gradient {
-    position: absolute;
-    top: 115px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1779px;
-    height: 532px;
-    background: linear-gradient(90deg, #0c0e1e 0%, #30397b 151.84%);
-}
-.image-mask {
-    position: absolute;
-    top: 115px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1475px;
-    height: 532px;
-    -webkit-mask-image: linear-gradient(270deg, #0c0e1e 0%, #30397b 151.84%);
-    mask-image: linear-gradient(270deg, #0c0e1e 0%, #30397b 151.84%);
-    overflow: hidden;
-}
-.glare-effect {
-    position: absolute;
-    top: -149px;
-    left: -53px;
-    width: 1581px;
-    height: 268px;
-    opacity: 0.24;
-}
-.glare-effect img {
-    position: absolute;
-}
-.chat-bg {
-    position: absolute;
-    width: 1097px;
-    height: 633px;
-    top: -86px;
-    left: 359px;
-}
-.chat-bubbles {
-    position: absolute;
-    width: 622px;
-    height: 457px;
-    top: 48px;
-    left: 98px;
-}
-.robot-img {
-    position: absolute;
-    width: 361px;
-    height: 465px;
-    top: 38px;
-    left: 50%;
-    transform: translateX(-20%);
-}
-.single-bubble-img {
-    position: absolute;
-    width: 340px;
-    height: 87px;
-    top: 13px;
-    left: 50%;
-    transform: translateX(30%);
+
+.visual-container img{
+    width: 100%;
+    margin-top: 90px;
 }
 
 @media (max-width: 1240px) {
@@ -1221,7 +1141,7 @@ section {
 
 /* CSS for section section:feedback */
 .feedback-section {
-    padding: 86px 0;
+    padding: 0 0;
 }
 .feedback-section .header-content {
     margin-bottom: 24px;
