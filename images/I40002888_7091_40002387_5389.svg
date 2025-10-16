@@ -1,0 +1,20 @@
+<svg width="151" height="203" viewBox="0 0 151 203" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="extrude-group &#60;-&#62; MEBI Modul Grafik">
+<g id="Vector" filter="url(#filter0_d_0_647)">
+<path d="M148.596 0.0959929C154.889 65.5632 85.5309 158.504 7.37201 187.683" stroke="#FFDA6A" stroke-width="2"/>
+</g>
+<circle id="Ellipse" cx="5.20513" cy="186.916" r="4.01211" fill="#FD9843"/>
+</g>
+<defs>
+<filter id="filter0_d_0_647" x="0" y="0" width="151" height="202.665" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-3" dy="10"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_647"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_647" result="shape"/>
+</filter>
+</defs>
+</svg>
