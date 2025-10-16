@@ -256,7 +256,17 @@ section {
   display: block;
   width: 100vw;
   max-width: 100vw;
- 
+  height: auto;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hero-overlay .container {
   display: flex;
   align-items: flex-end;
   justify-content: center;
