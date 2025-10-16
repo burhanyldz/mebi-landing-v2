@@ -153,7 +153,7 @@ section {
   gap: 8px;
 }
 .socials img {
-  height: 10px;
+  height: 11px;
 }
 .main-nav {
     background-color: var(--color-surface);
@@ -163,7 +163,7 @@ section {
     display: flex;
     padding: 0 10px 0 15px;
     margin: 0 60px;
-    height: 64px;
+    height: 62px;
     max-width: 1240px;
     box-sizing: border-box;
     align-items: center;
@@ -180,7 +180,7 @@ section {
 }
 .logo span {
   color: var(--color-primary);
-  font-size: 11px;
+  font-size: 10px;
   line-height: 16px;
   font-weight: 400;
 }
@@ -194,13 +194,13 @@ section {
   border-radius: 8px;
   text-decoration: none;
   color: var(--color-text-dark);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 24px;
   font-weight: 400;
   transition: background-color 0.3s;
 }
 .main-nav-links a:hover {
-  background-color: var(--color-border-light);
+  color: var(--color-primary);
 }
 .btn {
   display: inline-flex;
@@ -216,14 +216,19 @@ section {
   cursor: pointer;
   transition: all 0.3s;
 }
+
+
+
 .btn-primary {
   background: linear-gradient(180deg, #0033b3 0%, #132b93 100%);
   color: var(--color-text-light);
   box-shadow: 0px 0px 0px 1px #132b93, inset 0px 4px 12px 0px #2450be, inset 0px 1px 0.5px 0px rgba(109, 138, 212, 0.64), inset 0px -1px 1px 0px #132b93;
   text-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
 }
-.btn-primary:hover {
-  transform: translateY(-2px);
+
+.nav-login-button:hover {
+  transform: scale(.97);
+  background: linear-gradient(180deg, #132b93 0%, #132b93 100%);;
 }
 
 @media (max-width: 1200px) {
@@ -251,6 +256,7 @@ section {
   align-items: center; /* vertically center content, then shift with padding */
   box-sizing: border-box;
   position: relative;
+  padding-top: unset;
 }
 .hero-content {
   display: flex;
@@ -279,6 +285,7 @@ section {
   font-weight: 500;
   border-radius: 42px;
 }
+
 .btn-hero-secondary {
   border: 1px solid var(--color-text-light);
   color: var(--color-text-light);
