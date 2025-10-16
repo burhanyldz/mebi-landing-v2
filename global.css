@@ -256,17 +256,7 @@ section {
   display: block;
   width: 100vw;
   max-width: 100vw;
-  height: auto;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-.hero-overlay .container {
+ 
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -521,33 +511,94 @@ section {
   background: linear-gradient(180deg, #fdfeff 0%, #f4f9ff 100%);
   border: 1px solid var(--color-border);
   border-radius: 36px;
-  padding: 48px 24px 24px;
+  padding: 36px 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 24px;
+  text-align: left;
 }
 .resource-image-stack {
   position: relative;
   width: 196px;
-  height: 229px;
-  margin-bottom: 24px;
+  height: 210px;
 }
+
+.resource-image-stack:hover img.left{
+  transform: rotate(-6deg);
+  left: 5px;
+}
+.resource-image-stack:hover img.right{
+  transform: rotate(6deg);
+  right: 5px;
+}
+.resource-image-stack:hover img.top{
+  top: -20px;
+}
+
 .resource-image-stack img {
   border-radius: 18px;
   border: 1px solid var(--color-border);
   object-fit: cover;
+  transition: all 0.3s;
+}
+.resource-image-stack img.left,
+.resource-image-stack img.right,
+.resource-image-stack img.top {
+  position: absolute;
+  display: block;
+}
+
+/* Default positions for the three-image stack (adjust here to affect all stacks at once) */
+.resource-image-stack img.left {
+  left: 16px;
+  transform: rotate(-2deg);
+}
+.resource-image-stack img.right {
+  right: 16px;
+  transform: rotate(2deg);
+}
+.resource-image-stack img.right, .resource-image-stack img.left {
+  top: 0;
+  width: 130px;
+  height: auto;
+}
+
+.resource-image-stack img.top {
+  top: -11.5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+  width: 130px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  /* scale stacks down on smaller screens */
+  .resource-image-stack img.left,
+  .resource-image-stack img.right,
+  .resource-image-stack img.top {
+    width: 120px;
+    height: 165px;
+    left: auto;
+    transform: none;
+    top: 0;
+    position: relative;
+  }
+  .resource-image-stack {
+    display: flex;
+    gap: 8px;
+    height: auto;
+    justify-content: center;
+  }
 }
 .resource-info h3 {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 16px;
   margin: 0 0 8px;
   color: var(--color-text-dark);
 }
 .resource-info p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 22px;
   margin: 0;
   color: var(--color-text-muted);
@@ -567,27 +618,22 @@ section {
 /* CSS for section section:statistics */
 .statistics-section {
   position: relative;
-  height: 339px;
-  display: flex;
-  align-items: center;
-  padding: 0;
+  display: block;
+  width: 100%;
+  padding: 0; /* section has no extra vertical padding because image provides height */
+  overflow: hidden; /* prevent any overflowing children from producing horizontal scroll */
 }
 .stats-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw; /* full-bleed across the viewport */
+  margin-left: calc((100% - 100vw) / 2); /* center the full-bleed image when inside a constrained container */
   overflow: hidden;
 }
 .stats-background img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.stats-background img:nth-child(2) {
-  clip-path: url(#wave-clip);
+  display: block;
+  width: 100vw; /* ensure image always fills viewport width */
+  max-width: 100vw;
+  height: auto; /* preserve aspect ratio */
+  object-fit: cover; /* cover for nicer edge-to-edge fill if image is larger */
 }
 .stats-content {
   position: relative;
@@ -597,6 +643,9 @@ section {
   align-items: center;
   text-align: center;
   width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px; /* place stats content centered over the image */
 }
 .stat-item {
   display: flex;
@@ -606,17 +655,7 @@ section {
 }
 .stat-number {
   font-size: 40px;
-  font-weight: 800;
-  line-height: 48px;
-  background: linear-gradient(90deg, #f5f5f5 50.13%, #b6c5e9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0px 4px 200px #000;
-}
-.stat-label {
-  font-size: 24px;
-  font-weight: 600;
+  
   line-height: 32px;
   background: linear-gradient(90deg, #00b3bd 0%, #005257 100%);
   -webkit-background-clip: text;
