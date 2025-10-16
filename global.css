@@ -245,23 +245,38 @@ section {
   }
 }
 
-/* CSS for section section:hero */
 .hero-section {
-  background-image: url('images/slider-1.png');
-  background-size: 100% auto; /* contain the image */
-  background-repeat: no-repeat;
-  background-position: right top; /* favor the right side composition (person image) */
-  width: 100%;
-  display: flex;
-  align-items: center; /* vertically center content, then shift with padding */
-  box-sizing: border-box;
   position: relative;
-  padding: unset;
+  width: 100%;
+  overflow: hidden;
+  padding-top: unset;
+  padding-bottom: unset;
 }
+.hero-bg {
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
+  height: auto;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hero-overlay .container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 60px; /* distance from image bottom */
+}
+
 .hero-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
   width: 100%;
   max-width: 1240px; /* keep content narrower so it aligns with other sections */
@@ -273,27 +288,39 @@ section {
   display: flex;
   gap: 20px;
   justify-content: center; /* center buttons horizontally within the hero-content container */
-  margin-top: 24px; /* lift buttons away from the bottom edge */
+  margin-top: 4px; /* lift buttons away from the bottom edge */
+  position: relative;
+  z-index: 10; /* above the image */
 }
 .btn-hero-primary {
   background-color: var(--color-surface);
   color: var(--color-primary);
   box-shadow: 0px 0px 0px 6px rgba(223, 230, 245, 0.37), 0px 0px 0px 5px rgba(57, 63, 136, 0.5);
   gap: 8px;
-  padding: 14px 26px;
-  font-size: 15px;
+  padding: 8px 16px;
+  font-size: 14px;
   font-weight: 500;
   border-radius: 42px;
+}
+
+.btn-hero-primary:hover{
+  background-color: var(--color-border-light);
 }
 
 .btn-hero-secondary {
   border: 1px solid var(--color-text-light);
   color: var(--color-text-light);
   border-radius: 42px;
-  padding: 14px 26px;
-  font-size: 15px;
+  padding: 8px 16px;
+  font-size: 14px;
   font-weight: 400;
 }
+
+.btn-hero-secondary:hover{
+  background-color: var(--color-border-light);
+  color: var(--color-primary);
+}
+
 @media (max-width: 768px) {
   .hero-section {
     /* keep image-driven height but ensure overlay content sits comfortably */
@@ -341,7 +368,7 @@ section {
   gap: 12px;
   text-align: center;
   max-width: 816px;
-  margin: 0 auto 60px;
+  margin: 0 auto 40px;
 }
 .tag {
   background: linear-gradient(180deg, #fdfeff 0%, #dfe6f5 100%);
@@ -349,22 +376,22 @@ section {
   border-radius: 18px;
   box-shadow: inset 0px 1px 1px 0px #dfe6f5, inset 0px -1px 1px 0px #b6c5e9;
   color: #0284c7;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   display: inline-block;
 }
 .section-title {
   color: var(--color-text-dark);
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 600;
   line-height: 48px;
   margin: 0;
 }
 .section-description {
   color: var(--color-text-muted);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  margin: 0;
+  padding: 0 55px;
 }
 .section-description strong {
   font-weight: 600;
