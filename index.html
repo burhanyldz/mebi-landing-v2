@@ -466,27 +466,162 @@
     </div>
     <div class="faq-container">
         <nav class="faq-nav">
-            <button class="faq-nav-item active">Mezunlar</button>
-            <button class="faq-nav-item">Öğrenciler</button>
-            <button class="faq-nav-item">Öğretmenler</button>
-            <button class="faq-nav-item">Veliler</button>
+            <button class="faq-nav-item active" data-category="mezunlar">Mezunlar</button>
+            <button class="faq-nav-item" data-category="ogrenciler">Öğrenciler</button>
+            <button class="faq-nav-item" data-category="ogretmenler">Öğretmenler</button>
+            <button class="faq-nav-item" data-category="veliler">Veliler</button>
         </nav>
         <div class="faq-accordion">
-            <div class="accordion-item">
-                <span>Mezun olduktan sonra MEBİ'ye erişimim devam ediyor mu?</span>
-                <img src="images/I40002888_7993_40002406_9839_40002406_9787_40000426_9754.svg" alt="chevron down">
+            <!-- Mezunlar Questions -->
+            <div class="accordion-item" data-category="mezunlar">
+                <div class="accordion-question">
+                    <span>Mezun olduktan sonra MEBİ'ye erişimim devam ediyor mu?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Evet. Mezun öğrenciler e-Devlet ile giriş yaparak tüm içeriklere ücretsiz şekilde erişmeye devam edebilir.</p>
+                </div>
             </div>
-            <div class="accordion-item">
-                <span>Mezun öğrenciler için hangi sınav içerikleri mevcut?</span>
-                <img src="images/I40002888_7993_40002406_9839_40002406_9788_40000426_9754.svg" alt="chevron down">
+            <div class="accordion-item" data-category="mezunlar">
+                <div class="accordion-question">
+                    <span>Mezun öğrenciler için hangi sınav içerikleri mevcut?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>TYT ve AYT için konu anlatım videoları, çıkmış sorular, deneme sınavları ve video çözümlü sorular mevcuttur.</p>
+                </div>
             </div>
-            <div class="accordion-item">
-                <span>Mezun öğrenciler çalışma planı oluşturabilir mi?</span>
-                <img src="images/I40002888_7993_40002406_9839_40002406_9789_40000426_9754.svg" alt="chevron down">
+            <div class="accordion-item" data-category="mezunlar">
+                <div class="accordion-question">
+                    <span>Mezun öğrenciler çalışma planı oluşturabilir mi?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Evet. Mezun öğrenciler kendi hedeflerine göre günlük, haftalık veya aylık çalışma planları oluşturabilir ve takip edebilir.</p>
+                </div>
             </div>
-            <div class="accordion-item">
-                <span>Mezun öğrenciler MEBİ'nin rehberlik hizmetlerinden yararlanabilir mi?</span>
-                <img src="images/I40002888_7993_40002406_9839_40002406_9790_40000426_9754.svg" alt="chevron down">
+            <div class="accordion-item" data-category="mezunlar">
+                <div class="accordion-question">
+                    <span>Mezun öğrenciler MEBİ'nin rehberlik hizmetlerinden yararlanabilir mi?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Evet. Rehberlik ve motivasyon içerikleri, KANKA yapay zeka asistanı ile kişiselleştirilmiş öneriler mezun öğrenciler için de mevcuttur.</p>
+                </div>
+            </div>
+
+            <!-- Öğrenciler Questions -->
+            <div class="accordion-item" data-category="ogrenciler" style="display: none;">
+                <div class="accordion-question">
+                    <span>MEBİ hangi sınıf seviyelerine hitap ediyor?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>MEBİ, ortaokul (5, 6, 7, 8. sınıf) ve lise (9, 10, 11, 12. sınıf) öğrencilerine yönelik içerikler sunmaktadır.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="ogrenciler" style="display: none;">
+                <div class="accordion-question">
+                    <span>LGS ve YKS dışında okul derslerim için de destek alabilir miyim?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Evet. MEBİ'de okul müfredatına uygun tüm dersler için konu anlatımları, testler ve pekiştirme içerikleri bulunmaktadır.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="ogrenciler" style="display: none;">
+                <div class="accordion-question">
+                    <span>MEBİ'de hangi derslere ait içerikler var?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler, İngilizce, Fizik, Kimya, Biyoloji, Tarih, Coğrafya ve daha fazlası için içerikler mevcuttur.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="ogrenciler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Videolar çevrimdışı izlenebilir mi?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Şu anda videolar sadece çevrimiçi izlenebilmektedir. Çevrimdışı izleme özelliği gelecek güncellemelerde eklenecektir.</p>
+                </div>
+            </div>
+
+            <!-- Öğretmenler Questions -->
+            <div class="accordion-item" data-category="ogretmenler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Öğretmenler MEBİ'yi nasıl kullanabilir?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Öğretmenler MEBBİS hesaplarıyla giriş yaparak öğrencilerine kaynak önerisi yapabilir, içerikleri takip edebilir ve raporları inceleyebilir.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="ogretmenler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Öğretmenler kendi içeriklerini ekleyebilir mi?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Editör modülü ile yetkili öğretmenler içerik ekleme ve düzenleme işlemleri yapabilmektedir.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="ogretmenler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Öğrenci başarılarını takip edebilir miyim?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Evet. Raporlama modülü ile öğrencilerin çalışma süreleri, test performansları ve ilerleme durumlarını takip edebilirsiniz.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="ogretmenler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Sınıf bazında ödevler verebilir miyim?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Ödev atama özelliği yakında MEBİ'ye eklenecektir. Şu anda içerik önerisi yapabilirsiniz.</p>
+                </div>
+            </div>
+
+            <!-- Veliler Questions -->
+            <div class="accordion-item" data-category="veliler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Veliler çocuklarının ilerlemelerini nasıl takip edebilir?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Veliler kendi hesaplarından çocuklarının çalışma sürelerini, tamamladıkları içerikleri ve test sonuçlarını görebilir.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="veliler" style="display: none;">
+                <div class="accordion-question">
+                    <span>MEBİ'de çocuğumun güvenliği nasıl sağlanıyor?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>MEBİ, Millî Eğitim Bakanlığı güvencesiyle geliştirilmiş olup tüm veriler güvenli sunucularda saklanmaktadır.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="veliler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Birden fazla çocuğum için aynı hesaptan erişim sağlayabilir miyim?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Evet. Veli hesabınıza tüm çocuklarınızı ekleyebilir ve onların ilerlemelerini tek bir hesaptan takip edebilirsiniz.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-category="veliler" style="display: none;">
+                <div class="accordion-question">
+                    <span>Çocuğum için çalışma planı oluşturabilir miyim?</span>
+                    <img src="images/chevron-down.svg" alt="chevron down" class="accordion-icon">
+                </div>
+                <div class="accordion-answer">
+                    <p>Veliler öneriler sunabilir, ancak çalışma planını öğrenci kendisi oluşturur. KANKA yapay zeka asistanı da bu konuda destek sağlar.</p>
+                </div>
             </div>
         </div>
     </div>
