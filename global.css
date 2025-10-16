@@ -743,39 +743,28 @@ section {
 }
 .features-content {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   padding: 0 60px;
 }
 .feature-nav {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
   flex-shrink: 0;
 }
 .feature-nav-item {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border-light);
-  border-radius: 36px;
-  padding: 36px;
+  border-radius: 32px;
+  padding: 28px 30px;
   display: flex;
   align-items: center;
   gap: 12px;
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: flex-end; /* place content near the bottom of the image */
-  justify-content: center;
-  pointer-events: none; /* overlay container non-interactive; inner elements will override */
-}
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text-dark);
   cursor: pointer;
-  width: 318px;
+  width: 275px;
   box-sizing: border-box;
   text-align: left;
 }
@@ -798,24 +787,24 @@ section {
   flex-direction: column;
 }
 .feature-card-image {
-  height: 222px;
+  height: 190px;
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }
 .feature-card-content {
   background-color: var(--color-surface);
-  padding: 24px;
+  padding: 18px 22px;
   border-top: 1px solid var(--color-border);
   flex-grow: 1;
 }
 .feature-card-content h4 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 22px;
   margin: 0 0 4px;
 }
 .feature-card-content p {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 20px;
   color: var(--color-text-muted);
   margin: 0;
