@@ -1,3 +1,13 @@
+// Sticky navbar on scroll
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('.site-header-wrapper');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
 // Feature tabs functionality
 document.addEventListener('DOMContentLoaded', function() {
   const featureNavItems = document.querySelectorAll('.feature-nav-item');
