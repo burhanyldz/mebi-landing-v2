@@ -746,5 +746,625 @@
   </div>
 </div>
 
+<!-- Discover Modal -->
+<div id="discoverModal" class="discover-modal">
+  <div class="discover-modal-overlay"></div>
+  <div class="discover-modal-content">
+    <button class="discover-modal-close" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    
+    <div class="discover-modal-header">
+      <h2>MEBİ'yi Keşfet</h2>
+      <p>MEBİ platformu hakkında tanıtım videolarını izleyerek daha fazla bilgi edinin.</p>
+    </div>
+    
+    <nav class="discover-nav">
+      <button class="discover-nav-item active" data-category="tanitim">Tanıtım Videoları</button>
+      <button class="discover-nav-item" data-category="neler-sunuyor">Mebi Neler Sunuyor?</button>
+      <button class="discover-nav-item" data-category="ders-tanitim">Ders Tanıtım Videoları</button>
+      <button class="discover-nav-item" data-category="kurumsal">Kurumsal Materyaller</button>
+    </nav>
+    
+    <div class="discover-content">
+      <!-- Tanıtım Videoları -->
+      <div class="discover-video-grid" data-category="tanitim">
+  <div class="video-card" data-video-url="https://www.youtube.com/embed/mbZrZ-LN3sg?autoplay=1">
+          <div class="video-thumbnail">
+            <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-3.png" alt="Mebi Tanıtım Videosu">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">9:35</span>
+          </div>
+          <div class="video-info">
+            <h3>Mebi Tanıtım Videosu</h3>
+            <p>Millî Eğitim Bakanlığı Bireysel Öğrenme Platformu "MEBİ"</p>
+          </div>
+        </div>
+        
+  <div class="video-card" data-video-url="https://www.youtube.com/embed/qkL6ErVTNOA?autoplay=1">
+          <div class="video-thumbnail">
+            <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-4.png" alt="Mebi Öğrenci Tanıtımları">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">11:42</span>
+          </div>
+          <div class="video-info">
+            <h3>Mebi Öğrenci Tanıtımları</h3>
+            <p>"MEBİ" Tanıtım Programı Öğrenci Deneyimleri</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mebi Neler Sunuyor? -->
+      <div class="discover-video-grid" data-category="neler-sunuyor" style="display: none;">
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/mebi-nedir.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="MEBİ Nedir?">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:38</span>
+          </div>
+          <div class="video-info">
+            <h3>MEBİ Nedir?</h3>
+            <p>MEBİ platformunun genel tanıtımı</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/mebi-neler-icermektedir.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="MEBİ Neler İçermektedir?">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:54</span>
+          </div>
+          <div class="video-info">
+            <h3>MEBİ Neler İçermektedir?</h3>
+            <p>Platform içeriklerinin detaylı tanıtımı</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/bireysel-ogrenme-algoritmasi.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Bireysel Öğrenme Algoritması">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:45</span>
+          </div>
+          <div class="video-info">
+            <h3>Bireysel Öğrenme Algoritması</h3>
+            <p>Kişiselleştirilmiş öğrenme deneyimi</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/tam-ogrenme-yaklasimi.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Tam Öğrenme Yaklaşımı">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:51</span>
+          </div>
+          <div class="video-info">
+            <h3>Tam Öğrenme Yaklaşımı</h3>
+            <p>Konuları eksiksiz öğrenme yöntemi</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/sanal-asistan-kanka.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Sanal Asistan KANKA">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:29</span>
+          </div>
+          <div class="video-info">
+            <h3>Sanal Asistan KANKA</h3>
+            <p>Yapay zeka destekli öğrenme asistanı</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/calisma-planim.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Çalışma Planım">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:32</span>
+          </div>
+          <div class="video-info">
+            <h3>Çalışma Planım</h3>
+            <p>Kişisel çalışma programı oluşturma</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/hedef-belirle.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Hedef Belirle">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:32</span>
+          </div>
+          <div class="video-info">
+            <h3>Hedef Belirle</h3>
+            <p>Öğrenme hedeflerinizi belirleyin ve takip edin</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/ayrintili-raporlama.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Ayrıntılı Raporlama">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:48</span>
+          </div>
+          <div class="video-info">
+            <h3>Ayrıntılı Raporlama</h3>
+            <p>Performans takibi ve detaylı analizler</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/yaziliya-hazirlaniyorum.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Yazılıya Hazırlanıyorum">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:30</span>
+          </div>
+          <div class="video-info">
+            <h3>Yazılıya Hazırlanıyorum</h3>
+            <p>Okul sınavlarına hazırlık modülü</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/rehberlik.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Rehberlik">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:44</span>
+          </div>
+          <div class="video-info">
+            <h3>Rehberlik</h3>
+            <p>Psikolojik destek ve yönlendirme hizmetleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/cikmis-sorular.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Çıkmış Sorular">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:32</span>
+          </div>
+          <div class="video-info">
+            <h3>Çıkmış Sorular</h3>
+            <p>Geçmiş sınav sorularına erişim</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/yks-hazirlik.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="YKS Hazırlık">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">01:22</span>
+          </div>
+          <div class="video-info">
+            <h3>YKS Hazırlık</h3>
+            <p>Üniversite sınavına özel içerikler</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/tyt-ayt.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="TYT-AYT">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:59</span>
+          </div>
+          <div class="video-info">
+            <h3>TYT-AYT</h3>
+            <p>Temel Yeterlilik ve Alan Yeterlilik testleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/ydt.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="YDT">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">01:10</span>
+          </div>
+          <div class="video-info">
+            <h3>YDT</h3>
+            <p>Yabancı Dil Testi hazırlık içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/adaptif-test-ekrani.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Adaptif Test Ekranı">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:33</span>
+          </div>
+          <div class="video-info">
+            <h3>Adaptif Test Ekranı</h3>
+            <p>Seviyenize göre uyarlanan test sistemi</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ders Tanıtım Videoları -->
+      <div class="discover-video-grid" data-category="ders-tanitim" style="display: none;">
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/matematik.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/matematik-video.png" alt="Matematik Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">01:27</span>
+          </div>
+          <div class="video-info">
+            <h3>Matematik Dersi Tanıtım Videosu</h3>
+            <p>Matematik dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/fizik.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/fizik-video.png" alt="Fizik Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:57</span>
+          </div>
+          <div class="video-info">
+            <h3>Fizik Dersi Tanıtım Videosu</h3>
+            <p>Fizik dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/kimya.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/kimya-video.png" alt="Kimya Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">01:00</span>
+          </div>
+          <div class="video-info">
+            <h3>Kimya Dersi Tanıtım Videosu</h3>
+            <p>Kimya dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/biyoloji.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/biyoloji-video.png" alt="Biyoloji Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:56</span>
+          </div>
+          <div class="video-info">
+            <h3>Biyoloji Dersi Tanıtım Videosu</h3>
+            <p>Biyoloji dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/tde.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tde-video.png" alt="Türk Dili ve Edebiyatı Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:57</span>
+          </div>
+          <div class="video-info">
+            <h3>Türk Dili ve Edebiyatı Dersi Tanıtım Videosu</h3>
+            <p>TDE dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/tarih.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/tarih-video.png" alt="Tarih Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:49</span>
+          </div>
+          <div class="video-info">
+            <h3>Tarih Dersi Tanıtım Videosu</h3>
+            <p>Tarih dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/cografya.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/cografya-video.png" alt="Coğrafya Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:57</span>
+          </div>
+          <div class="video-info">
+            <h3>Coğrafya Dersi Tanıtım Videosu</h3>
+            <p>Coğrafya dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/felsefe.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/felsefe-video.png" alt="Felsefe Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">00:54</span>
+          </div>
+          <div class="video-info">
+            <h3>Felsefe Dersi Tanıtım Videosu</h3>
+            <p>Felsefe dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+        
+        <div class="video-card" data-video-url="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/ingilizce.mp4">
+          <div class="video-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/ingilizce-video.png" alt="İngilizce Dersi">
+            <div class="video-play-overlay">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>
+                <path d="M26 20L44 32L26 44V20Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="video-duration">01:11</span>
+          </div>
+          <div class="video-info">
+            <h3>İngilizce Dersi Tanıtım Videosu</h3>
+            <p>İngilizce dersinin MEBİ'deki içerikleri</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Kurumsal Materyaller -->
+      <div class="discover-video-grid" data-category="kurumsal" style="display: none;">
+        <div class="material-card" data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-dikey.png" data-download-url="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-dikey.pdf">
+          <div class="material-thumbnail">
+            <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-1.png" alt="Mebi Dikey Afiş">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <path d="M14 8V40H34V8H14ZM16 10H32V38H16V10Z" fill="white"/>
+                <path d="M19 14H29V16H19V14ZM19 20H29V22H19V20ZM19 26H29V28H19V26Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>Mebi Dikey Afiş</h3>
+            <p>Kurumsal tanıtım afişi (Dikey)</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-dikey.pdf" target="_blank" rel="noopener">PDF İndir</a>
+              <a class="material-action download-btn" href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-dikey.png" target="_blank" rel="noopener">PNG İndir</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="material-card" data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-yatay.png" data-download-url="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-yatay.pdf">
+          <div class="material-thumbnail">
+            <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-2.png" alt="Mebi Yatay Afiş">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <path d="M8 14V34H40V14H8ZM10 16H38V32H10V16Z" fill="white"/>
+                <path d="M14 19H34V21H14V19ZM14 24H34V26H14V24ZM14 29H34V31H14V29Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>Mebi Yatay Afiş</h3>
+            <p>Kurumsal tanıtım afişi (Yatay)</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-yatay.pdf" target="_blank" rel="noopener">PDF İndir</a>
+              <a class="material-action download-btn" href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-yatay.png" target="_blank" rel="noopener">PNG İndir</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="material-card" data-preview-url="https://mebi.eba.gov.tr/content/img/mebi-rool-up.jpg" data-download-url="https://mebi.eba.gov.tr/files/mebi-rool-up.pdf">
+          <div class="material-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/mebi-rool-up.jpg" alt="MEBİ Roll Up">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <path d="M14 8V40H34V8H14ZM16 10H32V38H16V10Z" fill="white"/>
+                <path d="M19 14H29V16H19V14ZM19 20H29V22H19V20ZM19 26H29V28H19V26Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>MEBİ Roll Up</h3>
+            <p>Kurumsal etkinlik standı materyali</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebi-rool-up.pdf" target="_blank" rel="noopener">PDF İndir</a>
+              <a class="material-action download-btn" href="https://mebi.eba.gov.tr/content/img/mebi-rool-up.png" target="_blank" rel="noopener">PNG İndir</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="material-card" data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-sunum-preview.png" data-download-url="https://ogm-large-cdn.eba.gov.tr/mebi/content/mebi-sunum/mebi-sunum.pptx">
+          <div class="material-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/mebi-sunum.jpg" alt="MEBİ Sunum">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <path d="M8 14V34H40V14H8ZM10 16H38V32H10V16Z" fill="white"/>
+                <path d="M14 19H34V21H14V19ZM14 24H34V26H14V24ZM14 29H34V31H14V29Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>MEBİ Sunum</h3>
+            <p>Kurumsal tanıtım sunumu</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://ogm-large-cdn.eba.gov.tr/mebi/content/mebi-sunum/mebi-sunum.pptx" target="_blank" rel="noopener">PPTX İndir</a>
+              <a class="material-action download-btn" href="https://ogm-large-cdn.eba.gov.tr/mebi/content/mebi-sunum/mebi-sunum.pdf" target="_blank" rel="noopener">PDF İndir</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="material-card" data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-kartvizit.png" data-download-url="https://mebi.eba.gov.tr/files/mebi-kartviziti.pdf">
+          <div class="material-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/mebi-kartviziti.png" alt="MEBİ Kartviziti">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <rect x="10" y="18" width="28" height="16" rx="2" fill="white"/>
+                <path d="M14 22H20V24H14V22ZM14 26H20V28H14V26Z" fill="#0033b3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>MEBİ Kartviziti</h3>
+            <p>Kurumsal kartvizit tasarımı</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebi-kartviziti.pdf" target="_blank" rel="noopener">PDF İndir</a>
+              <a class="material-action download-btn" href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-kartvizit.png" target="_blank" rel="noopener">PNG İndir</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="material-card" data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-kitapcik.png" data-download-url="https://mebi.eba.gov.tr/files/mebi11.pdf">
+          <div class="material-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/mebi11.jpg" alt="MEBİ Kitapçığı">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <path d="M14 8V40H34V8H14ZM16 10H32V38H16V10Z" fill="white"/>
+                <path d="M19 14H29V16H19V14ZM19 20H29V22H19V20ZM19 26H29V28H19V26Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>MEBİ Kitapçığı</h3>
+            <p>Detaylı tanıtım kitapçığı</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebi11.pdf" target="_blank" rel="noopener">PDF İndir</a>
+              <a class="material-action download-btn" href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-kitapcik.png" target="_blank" rel="noopener">PNG İndir</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="material-card" data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-brosur.png" data-download-url="https://mebi.eba.gov.tr/files/mebiBrosur12.pdf">
+          <div class="material-thumbnail">
+            <img src="https://mebi.eba.gov.tr/content/img/mebiBrosur12.jpg" alt="MEBİ Broşürü">
+            <div class="material-overlay">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="white">
+                <path d="M8 14V34H40V14H8ZM10 16H38V32H10V16Z" fill="white"/>
+                <path d="M14 19H34V21H14V19ZM14 24H34V26H14V24Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="material-info">
+            <h3>MEBİ Broşürü</h3>
+            <p>Genel tanıtım broşürü</p>
+            <div class="material-actions">
+              <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebiBrosur12.pdf" target="_blank" rel="noopener">PDF İndir</a>
+              <a class="material-action download-btn" href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-brosur.png" target="_blank" rel="noopener">PNG İndir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
