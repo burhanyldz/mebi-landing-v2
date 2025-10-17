@@ -162,7 +162,7 @@ section {
   box-shadow: 0px 4px 10px 0px rgba(0, 51, 179, 0.16);
   display: flex;
   padding: 0 10px 0 15px;
-  margin: 0 60px;
+  margin: 30px 60px 0 60px;
   height: 62px;
   max-width: 1240px;
   box-sizing: border-box;
@@ -173,13 +173,13 @@ section {
 @media (max-width: 1200px) {
   .main-nav {
     padding-right: 10px;
-    margin: 0 40px;
+    margin: 30px 40px 0 40px;
   }
 }
 
 @media (max-width: 768px) {
   .main-nav {
-    margin: 0 20px;
+    margin: 20px 20px 0 20px;
     height: 56px;
     padding: 0 8px 0 12px;
   }
@@ -187,9 +187,9 @@ section {
 
 @media (max-width: 480px) {
   .main-nav {
-    margin: 0 16px;
+    margin: 30px 16px 0 16px;
     height: 52px;
-    padding: 0 6px 0 10px;
+    padding: 0 10px 0 20px;
   }
 }
 
