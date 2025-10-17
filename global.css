@@ -1248,7 +1248,6 @@ section {
   overflow: visible;
   top: -40%;
   max-width: 100%;
-  margin: auto;
 }
 
 .app-stores-combined {
@@ -1320,7 +1319,7 @@ section {
 
 @media (min-width: 1240px) {
   .global-access-section {
-    padding-top: 100px;
+    padding-top: 150px;
   }
 }
 
