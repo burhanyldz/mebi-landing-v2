@@ -71,4 +71,43 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
+
+  // Login Modal functionality
+  const loginModal = document.getElementById('loginModal');
+  const loginButtons = document.querySelectorAll('.nav-login-button, .btn-hero-primary');
+  const modalClose = document.querySelector('.login-modal-close');
+  const modalOverlay = document.querySelector('.login-modal-overlay');
+  
+  // Open modal
+  loginButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      loginModal.classList.add('active');
+      document.body.classList.add('modal-open');
+    });
+  });
+  
+  // Close modal function
+  function closeModal() {
+    loginModal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+  }
+  
+  // Close on X button click
+  if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+  }
+  
+  // Close on overlay click
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', closeModal);
+  }
+  
+  // Close on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && loginModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
 });
+

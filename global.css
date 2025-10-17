@@ -2110,3 +2110,239 @@ section {
     font-size: 10px;
   }
 }
+
+/* Login Modal */
+.login-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-modal.active {
+  display: flex;
+}
+
+.login-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(4, 3, 8, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+.login-modal-content {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
+  border-radius: 32px;
+  padding: 48px 40px 40px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0, 51, 179, 0.24);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+}
+
+.login-modal-close:hover {
+  background: rgba(0, 51, 179, 0.08);
+  color: var(--color-primary);
+}
+
+.login-modal-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-modal-logo {
+  height: 52px;
+  margin-bottom: 16px;
+}
+
+.login-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 8px;
+  letter-spacing: 0.5px;
+}
+
+.login-modal-subtitle {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  margin: 0;
+  font-weight: 400;
+}
+
+.login-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.login-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--color-border-light);
+  border-radius: 16px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: var(--color-text-dark);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 51, 179, 0.04);
+}
+
+.login-option-btn:hover {
+  background: #ffffff;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 4px 16px rgba(0, 51, 179, 0.12);
+  transform: translateY(-2px);
+}
+
+.login-option-btn:active {
+  transform: translateY(0);
+}
+
+.login-option-icon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  stroke: currentColor;
+}
+
+.login-modal-footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.login-modal-help {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.login-modal-help:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .login-modal {
+    padding: 16px;
+  }
+
+  .login-modal-content {
+    padding: 40px 24px 32px;
+    border-radius: 24px;
+    max-width: 100%;
+  }
+
+  .login-modal-logo {
+    height: 44px;
+  }
+
+  .login-modal-title {
+    font-size: 16px;
+  }
+
+  .login-modal-subtitle {
+    font-size: 14px;
+  }
+
+  .login-option-btn {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-radius: 14px;
+  }
+
+  .login-modal-close {
+    top: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-modal-content {
+    padding: 36px 20px 28px;
+  }
+
+  .login-modal-logo {
+    height: 40px;
+    margin-bottom: 12px;
+  }
+
+  .login-modal-title {
+    font-size: 15px;
+  }
+
+  .login-modal-subtitle {
+    font-size: 13px;
+  }
+
+  .login-modal-buttons {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .login-option-btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .login-option-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
