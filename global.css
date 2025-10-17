@@ -2451,6 +2451,10 @@ body.modal-open {
   border-bottom: 2px solid #e8eeff;
   overflow-x: auto;
   padding-bottom: 12px;
+  /* prevent a vertical scrollbar and any right-side artifact */
+  overflow-y: hidden;
+  border-right: none;
+  box-shadow: none;
 }
 
 .discover-nav::-webkit-scrollbar {
@@ -2480,6 +2484,11 @@ body.modal-open {
   border-radius: 8px;
   white-space: nowrap;
   position: relative;
+}
+
+.discover-nav-item:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .discover-nav-item:hover {
