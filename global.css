@@ -20,6 +20,11 @@
   --color-border-medium: #b6c5e9;
 }
 
+html {
+  overflow-x: hidden; /* prevent horizontal scroll at root level */
+  max-width: 100%;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--color-background);
@@ -27,6 +32,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  max-width: 100%; /* prevent any horizontal overflow */
+  position: relative;
 }
 
 *,
@@ -90,6 +97,26 @@ section {
   transition: all 0.3s ease;
 }
 
+/* Mobil cihazlarda da sticky navigation ama absolute olarak */
+@media (max-width: 768px) {
+  .site-header-wrapper {
+    position: absolute; /* hero'nun üzerine gelsin, aşağı itmesin */
+    top: 0;
+    background-color: transparent; /* başlangıçta transparan */
+    backdrop-filter: none;
+    box-shadow: none;
+    z-index: 100;
+  }
+  
+  /* Scroll edildiğinde sticky ve opak olsun */
+  .site-header-wrapper.scrolled {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 2px 10px rgba(0, 51, 179, 0.08);
+  }
+}
+
 .site-header-wrapper.scrolled {
   position: fixed;
   top: 0;
@@ -132,12 +159,24 @@ section {
     height: 24px;
     margin: 0px auto 0px 0px;
   }
+  
+  /* Mobilde hero üzerinde olduğu için text renklerini beyaz yapalım */
+  .site-header-wrapper:not(.scrolled) .top-bar-nav a,
+  .site-header-wrapper:not(.scrolled) .top-bar-nav span {
+    color: var(--color-text-light);
+  }
+  
+  .site-header-wrapper:not(.scrolled) .top-bar-nav span {
+    color: rgba(255, 255, 255, 0.6);
+  }
 }
 
 @media (max-width: 480px) {
   .top-bar {
     padding: 0 16px;
     height: 20px;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 
@@ -209,8 +248,15 @@ section {
     padding: 0 8px 0 12px;
   }
   
+  /* Hero üzerinde olduğu için yarı-transparan */
+  .site-header-wrapper:not(.scrolled) .main-nav {
+    background-color: rgba(253, 254, 255, 0.85);
+    backdrop-filter: blur(8px);
+  }
+  
   .site-header-wrapper.scrolled .main-nav {
     margin: 0 20px;
+    background-color: var(--color-surface);
   }
 }
 
@@ -218,11 +264,14 @@ section {
   .main-nav {
     margin: 30px 16px 0 16px;
     height: 52px;
-    padding: 0 10px 0 20px;
+    padding: 0 8px 0 10px;
+    max-width: calc(100vw - 32px); /* ekran genişliğini aşmasın */
+    overflow: hidden;
   }
   
   .site-header-wrapper.scrolled .main-nav {
     margin: 0 16px;
+    max-width: calc(100vw - 32px);
   }
 }
 
@@ -231,6 +280,15 @@ section {
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 1; /* mobilde küçülmeye izin ver */
+  min-width: 0; /* içeriğin taşmaması için */
+}
+
+@media (max-width: 480px) {
+  .logo {
+    gap: 8px;
+    max-width: 60%; /* logo'nun çok geniş olmasını engelle */
+  }
 }
 
 .logo img {
@@ -254,12 +312,16 @@ section {
   font-size: 10px;
   line-height: 16px;
   font-weight: 400;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 768px) {
   .logo span {
     font-size: 9px;
     line-height: 14px;
+    max-width: 150px; /* mobilde metni sınırla */
   }
 }
 
@@ -267,6 +329,7 @@ section {
   .logo span {
     font-size: 8px;
     line-height: 12px;
+    max-width: 120px; /* daha küçük ekranlarda daha da sınırla */
   }
 }
 
@@ -359,7 +422,24 @@ section {
 .nav-login-button:hover {
   transform: scale(.97);
   background: linear-gradient(180deg, #132b93 0%, #132b93 100%);
-  ;
+}
+
+@media (max-width: 640px) {
+  .nav-login-button {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+    line-height: 16px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-login-button {
+    padding: 6px 10px !important;
+    font-size: 10px !important;
+    line-height: 14px !important;
+  }
 }
 
 
@@ -370,6 +450,13 @@ section {
   overflow: hidden;
   padding-top: unset;
   padding-bottom: unset;
+  margin-top: 0; /* navigasyonun hemen arkasından başlasın */
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    margin-top: 0; /* mobilde üstten boşluk olmasın */
+  }
 }
 
 .hero-bg {
@@ -2992,9 +3079,10 @@ body.modal-open {
 @media (max-width: 768px) {
   .scroll-to-top {
     bottom: 20px;
-    right: 20px;
+    right: 12px; /* daha içeride konumlandır */
     width: 45px;
     height: 45px;
+    max-width: calc(100vw - 24px); /* viewport genişliğini aşmaması için */
   }
   
   .scroll-to-top svg {
@@ -3006,9 +3094,10 @@ body.modal-open {
 @media (max-width: 480px) {
   .scroll-to-top {
     bottom: 16px;
-    right: 16px;
+    right: 10px; /* daha içeride konumlandır */
     width: 42px;
     height: 42px;
+    max-width: calc(100vw - 20px); /* viewport genişliğini aşmaması için */
   }
   
   .scroll-to-top svg {
