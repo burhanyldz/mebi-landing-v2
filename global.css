@@ -1118,7 +1118,7 @@ section {
 
 @media (max-width: 480px) {
   .app-stores-section {
-    height: 400px;
+    height: 900px;
     padding: 32px 0 0;
   }
 }
@@ -1143,6 +1143,12 @@ section {
 @media (max-width: 768px) {
   .bg-svg {
     height: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bg-svg {
+    height: 800px;
   }
 }
 
@@ -1210,6 +1216,14 @@ section {
   margin: auto;
 }
 
+.app-stores-combined {
+  display: block;
+}
+
+.app-stores-separate {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .app-stores-image {
     top: -40%;
@@ -1231,9 +1245,34 @@ section {
 }
 
 @media (max-width: 480px) {
-  .app-stores-image {
-    top: -35%;
+  .app-stores-combined {
+    display: none;
   }
+  
+  .app-stores-separate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -45%;
+  }
+  
+  .app-stores-separate .store-screenshot {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    transform: scale(1.2) translateX(8%);
+  }
+
+  .app-stores-separate .store-users {
+    width: 100%;
+    height: auto;
+    transform: scale(1) translateX(0%);
+    margin-top: -100px;
+  } 
 }
 
 /* CSS for section section:global-access */
