@@ -2773,6 +2773,52 @@ body.modal-open {
   line-height: 1.5;
 }
 
+/* Video download button */
+.video-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.video-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, #0b57d0, #0033b3);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(3, 27, 85, 0.12);
+  transition: all 0.3s ease;
+}
+
+.video-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(3, 27, 85, 0.18);
+}
+
+.video-download-btn svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .video-download-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-download-btn {
+    font-size: 11px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+}
+
 /* Material Card (for Kurumsal Materyaller) */
 .material-card {
   background: white;
