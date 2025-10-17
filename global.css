@@ -2560,12 +2560,22 @@ body.modal-open {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 1; /* always visible */
+  transition: background 0.18s ease, opacity 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* allow clicks to fall through to card */
+}
+
+.video-card .video-play-overlay {
+  background: rgba(0,0,0,0.55);
+  padding: 8px;
+  border-radius: 50%;
 }
 
 .video-card:hover .video-play-overlay {
-  opacity: 1;
+  background: rgba(0,0,0,0.35); /* lighter on hover */
 }
 
 .video-duration {

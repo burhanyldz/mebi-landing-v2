@@ -110,6 +110,56 @@ document.addEventListener('DOMContentLoaded', function() {
   const discoverModalOverlay = document.querySelector('.discover-modal-overlay');
   const discoverNavItems = document.querySelectorAll('.discover-nav-item');
   const discoverVideoGrids = document.querySelectorAll('.discover-video-grid');
+
+  // Video card click handlers - Play video in place (supports MP4 and embed URLs)
+  function cleanupPlayingCard() {
+    const prev = document.querySelector('.video-card.playing');
+    if (!prev) return;
+    const prevThumb = prev.querySelector('.video-thumbnail');
+    if (prevThumb) {
+      // If there's a playing HTML5 video, pause it first
+      const playingVideo = prevThumb.querySelector('video');
+      if (playingVideo && !playingVideo.paused) {
+        try { playingVideo.pause(); } catch (e) {}
+      }
+      // If there's an iframe (YouTube), send pause command if possible
+      const iframeEl = prevThumb.querySelector('iframe');
+      if (iframeEl && iframeEl.src && iframeEl.src.includes('youtube.com/embed')) {
+        try {
+          iframeEl.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+        } catch (e) {}
+        prev.removeAttribute('data-yt-paused');
+      }
+
+      // Restore the exact original thumbnail HTML if we saved it earlier
+      const originalHtml = prev.getAttribute('data-original-html');
+      if (originalHtml) {
+        prevThumb.innerHTML = originalHtml;
+        // clean saved attributes
+        prev.removeAttribute('data-original-html');
+        prev.removeAttribute('data-original-src');
+        prev.removeAttribute('data-original-alt');
+      } else {
+        // fallback: try to restore original img if present on markup
+        const originalImg = prevThumb.getAttribute('data-original-src');
+        const originalAlt = prevThumb.getAttribute('data-original-alt') || prev.querySelector('.video-info h3')?.innerText || 'thumbnail';
+        prevThumb.innerHTML = '';
+        if (originalImg) {
+          const img = document.createElement('img');
+          img.src = originalImg;
+          img.alt = originalAlt;
+          prevThumb.appendChild(img);
+        } else {
+          // fallback image used in markup
+          const img = document.createElement('img');
+          img.src = 'https://mebi.eba.gov.tr/content/img/tanitim.jpg';
+          img.alt = originalAlt;
+          prevThumb.appendChild(img);
+        }
+      }
+    }
+    prev.classList.remove('playing');
+  }
   
   // Open discover modal
   discoverButtons.forEach(button => {
@@ -122,6 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Close discover modal function
   function closeDiscoverModal() {
+    // stop any playing video
+    if (typeof cleanupPlayingCard === 'function') {
+      try { cleanupPlayingCard(); } catch (e) { console.warn('cleanupPlayingCard failed', e); }
+    }
     discoverModal.classList.remove('active');
     document.body.classList.remove('modal-open');
   }
@@ -160,6 +214,8 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('active');
       
       // Hide all video grids
+      // When switching tabs, stop any playing video
+      cleanupPlayingCard();
       discoverVideoGrids.forEach(grid => {
         grid.style.display = 'none';
       });
@@ -171,44 +227,64 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-  // Video card click handlers - Play video in place (supports MP4 and embed URLs)
-  function cleanupPlayingCard() {
-    const prev = document.querySelector('.video-card.playing');
-    if (!prev) return;
-    const prevThumb = prev.querySelector('.video-thumbnail');
-    if (prevThumb) {
-      // try to restore original img if present on markup
-      const originalImg = prevThumb.getAttribute('data-original-src');
-      prevThumb.innerHTML = '';
-      if (originalImg) {
-        const img = document.createElement('img');
-        img.src = originalImg;
-        img.alt = prev.querySelector('.video-info h3')?.innerText || 'thumbnail';
-        prevThumb.appendChild(img);
-      } else {
-        // fallback image used in markup
-        const img = document.createElement('img');
-        img.src = 'https://mebi.eba.gov.tr/content/img/tanitim.jpg';
-        img.alt = prev.querySelector('.video-info h3')?.innerText || 'thumbnail';
-        prevThumb.appendChild(img);
-      }
-    }
-    prev.classList.remove('playing');
-  }
+  // end discoverNavItems.forEach
 
-  function handleVideoCardClick(card) {
+  function handleVideoCardClick(card, e) {
     if (!card) return;
     const url = card.getAttribute('data-video-url');
     if (!url) return;
+    const thumb = card.querySelector('.video-thumbnail');
+    if (!thumb) return;
 
-    // if this card is already playing, do nothing
-    if (card.classList.contains('playing')) return;
+    // If there's already a player in this card, toggle play/pause for video
+    if (card.classList.contains('playing')) {
+      const videoEl = thumb.querySelector('video');
+      if (videoEl) {
+        if (videoEl.paused) {
+          videoEl.play().catch(() => {});
+        } else {
+          videoEl.pause();
+        }
+        return;
+      }
+
+      // For youtube iframe, attempt JS API control via postMessage toggle
+      const iframeEl = thumb.querySelector('iframe');
+      if (iframeEl && iframeEl.src && iframeEl.src.includes('youtube.com/embed')) {
+        // Use a simple data attribute to track paused state
+        const wasPaused = card.getAttribute('data-yt-paused') === 'true';
+        try {
+          if (wasPaused) {
+            iframeEl.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+            card.setAttribute('data-yt-paused', 'false');
+          } else {
+            iframeEl.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+            card.setAttribute('data-yt-paused', 'true');
+          }
+        } catch (e) {}
+        // toggle overlay visibility for iframe players
+        const overlay = thumb.querySelector('.video-play-overlay');
+        if (overlay) {
+          overlay.style.opacity = (card.getAttribute('data-yt-paused') === 'true') ? '0' : '1';
+        }
+      }
+      return;
+    }
 
     // cleanup any other playing card
     cleanupPlayingCard();
 
-    const thumb = card.querySelector('.video-thumbnail');
-    if (!thumb) return;
+    // Preserve the full original thumbnail HTML for exact restoration
+    thumb.setAttribute('data-original-html-temp', thumb.innerHTML);
+    card.setAttribute('data-original-html', thumb.innerHTML);
+    // Also keep the src/alt for legacy fallback
+    const imgEl = thumb.querySelector('img');
+    if (imgEl) {
+      thumb.setAttribute('data-original-src', imgEl.src);
+      thumb.setAttribute('data-original-alt', imgEl.alt || 'thumbnail');
+    }
+
+    // clear the thumbnail area and insert the player
     thumb.innerHTML = '';
 
     if (/\.mp4(\?|$)/i.test(url)) {
@@ -219,23 +295,70 @@ document.addEventListener('DOMContentLoaded', function() {
       video.playsInline = true;
       video.className = 'video-player-iframe';
 
-      // add basic cleanup when ended or paused
-      const removePlaying = () => card.classList.remove('playing');
-      video.addEventListener('ended', removePlaying);
-      video.addEventListener('pause', removePlaying);
+      // keep 'playing' class even when paused so the player remains in place
+      // create a visible overlay so the play icon shows while paused
+      const overlay = document.createElement('div');
+      overlay.className = 'video-play-overlay';
+      overlay.style.pointerEvents = 'none';
+      overlay.innerHTML = '<svg width="64" height="64" viewBox="0 0 64 64" fill="white">\n                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>\n                <path d="M26 20L44 32L26 44V20Z" fill="white"/>\n              </svg>';
+
+      video.addEventListener('play', () => {
+        try { overlay.style.opacity = '0'; } catch (e) {}
+      });
+      video.addEventListener('pause', () => {
+        try { overlay.style.opacity = '1'; } catch (e) {}
+      });
+      video.addEventListener('ended', () => cleanupPlayingCard());
 
       thumb.appendChild(video);
-      // try play (may be blocked by browser)
+      thumb.appendChild(overlay);
+
+      // try play (may be blocked by browser). If blocked, try muted autoplay as a fallback.
       const p = video.play();
-      if (p && typeof p.then === 'function') p.catch(() => {});
+      if (p && typeof p.then === 'function') {
+        p.catch(() => {
+          try {
+            video.muted = true;
+            const p2 = video.play();
+            if (p2 && typeof p2.then === 'function') {
+              p2.then(() => {
+                // once playing muted, unmute after a short delay to avoid autoplay blocks
+                setTimeout(() => { try { video.muted = false; } catch (e) {} }, 300);
+              }).catch(() => {});
+            }
+          } catch (e) {}
+        });
+      }
+
     } else {
       // embed via iframe for youtube/vimeo
+      let src = url;
+      // ensure YouTube embeds allow JS API control
+      if (src.includes('youtube.com/embed') && !src.includes('enablejsapi=1')) {
+        const sep = src.includes('?') ? '&' : '?';
+        src = src + sep + 'enablejsapi=1&origin=' + encodeURIComponent(window.location.origin);
+      }
       const iframe = document.createElement('iframe');
-      iframe.setAttribute('src', url);
+      iframe.setAttribute('src', src);
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       iframe.className = 'video-player-iframe';
+      // create overlay for iframe players as well
+      const overlayEl = document.createElement('div');
+      overlayEl.className = 'video-play-overlay';
+      overlayEl.style.pointerEvents = 'none';
+      overlayEl.innerHTML = '<svg width="64" height="64" viewBox="0 0 64 64" fill="white">\n                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>\n                <path d="M26 20L44 32L26 44V20Z" fill="white"/>\n              </svg>';
       thumb.appendChild(iframe);
+      thumb.appendChild(overlayEl);
+      // mark iframe as playing state (we clicked to start) and hide overlay immediately
+      card.setAttribute('data-yt-paused', 'false');
+      try { overlayEl.style.opacity = '0'; } catch (e) {}
+      // Try to send a play command after load — some embeds only accept commands after the iframe is ready
+      iframe.addEventListener('load', function () {
+        try {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        } catch (e) {}
+      });
     }
 
     card.classList.add('playing');
@@ -243,9 +366,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Attach click listeners to video cards (delegation safe for dynamic grids)
   document.body.addEventListener('click', function (e) {
+    // Don't interfere with native video controls or iframe content
+    if (e.target.tagName === 'VIDEO' || e.target.tagName === 'IFRAME') {
+      return;
+    }
+    
     const card = e.target.closest && e.target.closest('.video-card');
     if (card && card.closest('.discover-video-grid')) {
-      handleVideoCardClick(card);
+      e.preventDefault();
+      e.stopPropagation();
+      handleVideoCardClick(card, e);
     }
   });
 
