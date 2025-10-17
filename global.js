@@ -8,6 +8,52 @@ window.addEventListener('scroll', function() {
   }
 });
 
+// Scroll to top button
+window.addEventListener('scroll', function() {
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+  if (window.scrollY > 300) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+  
+  scrollToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Smooth scroll for navigation links
+document.addEventListener('DOMContentLoaded', function() {
+  const navLinks = document.querySelectorAll('.main-nav-links a[href^="#"]');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        const header = document.querySelector('.site-header-wrapper');
+        const headerHeight = header.offsetHeight;
+        const targetPosition = targetSection.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+
 // Feature tabs functionality
 document.addEventListener('DOMContentLoaded', function() {
   const featureNavItems = document.querySelectorAll('.feature-nav-item');
