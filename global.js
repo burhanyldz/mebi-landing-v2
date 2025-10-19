@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if click is on thumbnail or its children (but not on download button)
     const thumbnail = e.target.closest && e.target.closest('.video-thumbnail');
-    const isDownloadBtn = e.target.closest && e.target.closest('.video-download-btn');
+    const isDownloadBtn = e.target.closest && e.target.closest('.download-btn');
     
     if (thumbnail && !isDownloadBtn) {
       const card = thumbnail.closest('.video-card');
@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   videoCards.forEach(card => {
     // Check if download button already exists
-    const existingBtn = card.querySelector('.video-download-btn');
+    const existingBtn = card.querySelector('.download-btn');
     if (existingBtn) {
       // Add download handler to existing button
       const downloadUrl = existingBtn.href;
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Create download button
       const downloadBtn = document.createElement('a');
-      downloadBtn.className = 'video-download-btn';
+      downloadBtn.className = 'download-btn';
       downloadBtn.href = downloadUrl;
       downloadBtn.rel = 'noopener';
       
@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <path d="M8 12L3 7h3V1h4v6h3l-5 5z"/>
           <path d="M1 14h14v2H1z"/>
         </svg>
-        Videoyu İndir
+        İndir
       `;
       
       // Add download handler

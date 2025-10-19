@@ -651,10 +651,11 @@ section {
   color: var(--color-primary);
   box-shadow: 0px 0px 0px 6px rgba(223, 230, 245, 0.37), 0px 0px 0px 5px rgba(57, 63, 136, 0.5);
   gap: 8px;
-  padding: 8px 16px;
+  padding: 11px 16px;
   font-size: 14px;
   font-weight: 500;
   border-radius: 42px;
+  min-width: 147px;
 }
 
 .btn-hero-primary:hover {
@@ -665,9 +666,10 @@ section {
   border: 1px solid var(--color-text-light);
   color: var(--color-text-light);
   border-radius: 42px;
-  padding: 8px 16px;
+  padding: 11px 16px;
   font-size: 14px;
   font-weight: 400;
+  min-width: 147px;
 }
 
 .btn-hero-secondary:hover {
@@ -2838,39 +2840,15 @@ body.modal-open {
   gap: 8px;
 }
 
-.video-download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background: linear-gradient(180deg, #0b57d0, #0033b3);
-  color: #fff;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(3, 27, 85, 0.12);
-  transition: all 0.3s ease;
-}
-
-.video-download-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(3, 27, 85, 0.18);
-}
-
-.video-download-btn svg {
-  flex-shrink: 0;
-}
-
 @media (max-width: 768px) {
-  .video-download-btn {
+  .download-btn {
     font-size: 12px;
     padding: 6px 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .video-download-btn {
+  .download-btn {
     font-size: 11px;
     padding: 5px 8px;
     gap: 4px;
@@ -2920,29 +2898,29 @@ body.modal-open {
   display: flex;
   gap: 8px;
 }
-.material-action.download-btn {
+.download-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 8px 12px;
-  background: linear-gradient(180deg,#0b57d0,#0033b3);
+  background: linear-gradient(180deg, #0b57d0, #0033b3);
   color: #fff;
   border-radius: 8px;
   text-decoration: none;
+  font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 6px 18px rgba(3,27,85,0.12);
+  box-shadow: 0 4px 12px rgba(3, 27, 85, 0.12);
+  transition: all 0.3s ease;
 }
-.material-action.download-btn::before {
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23FFFFFF' d='M19 15v4H5v-4H3v4a2 2 0 002 2h14a2 2 0 002-2v-4h-2z'/><path fill='%23FFFFFF' d='M13 5h-2v6H8l4 4 4-4h-3z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: center;
+
+.download-btn:hover {
+  box-shadow: 0 6px 16px rgba(3, 27, 8, 0.5);
+  background: linear-gradient(180deg, #0033b3, #0b57d0);
+
 }
-.material-action.download-btn:hover {
-  transform: translateY(-1px);
+
+.download-btn svg {
+  flex-shrink: 0;
 }
 
 .material-placeholder {
@@ -3098,19 +3076,6 @@ body.modal-open {
 
 .material-action-btn svg {
   flex-shrink: 0;
-}
-
-.download-btn {
-  background: #002a95;
-  color: var(--color-primary);
-  border: 1px solid #d0deff;
-}
-
-.download-btn:hover {
-  background: #002a95;
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 51, 179, 0.15);
 }
 
 /* Material card hover state adjustment */
