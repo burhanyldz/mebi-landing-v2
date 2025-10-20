@@ -2100,6 +2100,14 @@ section {
   margin: 0;
 }
 
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .submit-btn {
   background-color: #f6f3f2;
   color: #b7bec6;
@@ -2111,14 +2119,86 @@ section {
   cursor: not-allowed;
   width: 160px;
   height: 48px;
-  align-self: center;
-  /* keep the button centered inside the form */
+  transition: all 0.3s ease;
 }
 
 .submit-btn:not(:disabled) {
   background-color: var(--color-primary-dark);
   color: var(--color-white);
   cursor: pointer;
+}
+
+.submit-btn:not(:disabled):hover {
+  background-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(19, 43, 147, 0.3);
+}
+
+.clear-btn {
+  background-color: transparent;
+  color: var(--color-text-muted);
+  border: 2px solid var(--color-border);
+  border-radius: 100px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  width: 160px;
+  height: 48px;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.form-group.error input,
+.form-group.error textarea {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.form-group .error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-group.error .error-message {
+  display: block;
+}
+
+.contact-success-alert {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-32px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
+  padding: 1.25rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  opacity: 0;
+  z-index: 9999;
+  transition: opacity 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+  min-width: 300px;
+  max-width: 500px;
+}
+.contact-success-alert.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.contact-success-alert svg {
+  flex-shrink: 0;
 }
 
 /* CSS for section section:footer */
