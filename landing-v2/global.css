@@ -2332,6 +2332,8 @@ section {
 
 .social-links a {
   display: inline-block;
+  margin-right: 20px;
+
 }
 
 .footer-right {
