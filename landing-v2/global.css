@@ -1330,6 +1330,27 @@ section {
   overflow: visible;
 }
 
+@media (min-width: 2120px) {
+  .app-stores-section {
+    padding-top: 150px;
+    height: 1400px;
+  }
+}
+
+@media (min-width: 1840px) and (max-width: 2119px) {
+  .app-stores-section {
+    padding-top: 150px;
+    height: 1100px;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1839px) {
+  .app-stores-section {
+    padding-top: 150px;
+    height: 950px;
+  }
+}
+
 @media (max-width: 1024px) {
   .app-stores-section {
     height: 600px;
@@ -1360,6 +1381,24 @@ section {
   background-size: cover;
   height: 1000px;
   z-index: -1;
+}
+
+@media (min-width: 2120px) {
+  .bg-svg {
+    height: 2150px;
+  }
+}
+
+@media (min-width: 1840px) and (max-width: 2119px) {
+  .bg-svg {
+    height: 1650px;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1839px) {
+  .bg-svg {
+    height: 1450px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -1478,7 +1517,7 @@ section {
   
   .app-stores-separate {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 0px;
     position: absolute;
@@ -1492,13 +1531,14 @@ section {
     height: auto;
     margin-top: 30px;
     transform: scale(1.2) translateX(8%);
+    margin-top: -30px;
   }
 
   .app-stores-separate .store-users {
     width: 100%;
     height: auto;
     transform: scale(1) translateX(0%);
-    margin-top: -100px;
+    margin-top: 20px;
   } 
 }
 
