@@ -813,4 +813,37 @@ document.addEventListener('DOMContentLoaded', function() {
   updateClearButton();
 });
 
+// Testimonials slider horizontal scroll on mouse wheel
+document.addEventListener('DOMContentLoaded', function() {
+  const testimonialsSlider = document.querySelector('.testimonials-slider');
+  
+  if (testimonialsSlider) {
+    testimonialsSlider.addEventListener('wheel', function(e) {
+      // Check if scrolling vertically
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const scrollLeft = this.scrollLeft;
+        const maxScrollLeft = this.scrollWidth - this.clientWidth;
+        
+        // Check if at the beginning and trying to scroll left (up)
+        const atStart = scrollLeft <= 0 && e.deltaY < 0;
+        
+        // Check if at the end and trying to scroll right (down)
+        const atEnd = scrollLeft >= maxScrollLeft && e.deltaY > 0;
+        
+        // Only prevent default scroll if not at the edges
+        if (!atStart && !atEnd) {
+          e.preventDefault();
+          
+          // Scroll horizontally based on vertical scroll direction
+          // deltaY > 0 means scrolling down, so scroll right
+          // deltaY < 0 means scrolling up, so scroll left
+          this.scrollLeft += e.deltaY;
+        }
+        // If at edges, allow normal page scroll (don't prevent default)
+      }
+    }, { passive: false });
+  }
+});
+
+
 
