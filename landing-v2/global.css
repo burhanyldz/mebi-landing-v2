@@ -1871,8 +1871,10 @@ section {
   gap: 0;
   border-bottom: 1px solid #dfe6f5;
   width: 100%;
-  overflow-x: auto;
+  overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
+  padding-left: 210px;
+  padding-right: 30px;
 }
 
 .faq-nav::-webkit-scrollbar {
