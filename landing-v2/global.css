@@ -1873,8 +1873,12 @@ section {
   width: 100%;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  padding-left: 210px;
-  padding-right: 30px;
+}
+
+@media (max-width: 566px) {
+  .faq-nav {
+    justify-content: flex-start;
+  }
 }
 
 .faq-nav::-webkit-scrollbar {
