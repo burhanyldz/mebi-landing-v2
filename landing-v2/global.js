@@ -200,6 +200,32 @@ document.addEventListener('DOMContentLoaded', function() {
   const discoverNavItems = document.querySelectorAll('.discover-nav-item');
   const discoverVideoGrids = document.querySelectorAll('.discover-video-grid');
 
+  // Check for URL parameter redirectTo=kurumsalmateryaller
+  const urlParams = new URLSearchParams(window.location.search);
+  const redirectTo = urlParams.get('redirectTo');
+  
+  if (redirectTo === 'kurumsalmateryaller' && discoverModal) {
+    // Open the discover modal
+    discoverModal.classList.add('active');
+    document.body.classList.add('modal-open');
+    
+    // Switch to Kurumsal Materyaller tab
+    discoverNavItems.forEach(item => item.classList.remove('active'));
+    const kurumsalNavItem = document.querySelector('.discover-nav-item[data-category="kurumsal"]');
+    if (kurumsalNavItem) {
+      kurumsalNavItem.classList.add('active');
+    }
+    
+    // Hide all video grids and show kurumsal
+    discoverVideoGrids.forEach(grid => {
+      grid.style.display = 'none';
+    });
+    const kurumsalGrid = document.querySelector('.discover-video-grid[data-category="kurumsal"]');
+    if (kurumsalGrid) {
+      kurumsalGrid.style.display = 'grid';
+    }
+  }
+
   // Video card click handlers - Play video in place (supports MP4 and embed URLs)
   function cleanupPlayingCard() {
     const prev = document.querySelector('.video-card.playing');
