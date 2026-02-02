@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEBİ - Deneme Sınavları</title>
+  <meta name="description" content="LGS, YKS ve okul derslerine yönelik hazırlanmış olup, sınava hazırlık sürecinde size destek sağlayacak ve okul derslerinizi pekiştirmenizde, konuları daha kalıcı hale getirmenize yarayacak deneme sınavları." />
+  <meta name="keywords" content="yks, lgs, okul dersleri, sınava hazırlık, bireysel öğrenme, deneme sınavı, yazılı soruları" />
+  <meta name="author" content="T.C. Millî Eğitim Bakanlığı Ortaöğretim Genel Müdürlüğü Öğretim Materyalleri ve İçerik Geliştirme Daire Başkanlığı" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
+  <link href="https://ogm-small-cdn.eba.gov.tr/mebi/content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="landing-v2/global.css">
+  <link href="./MEBİ - Deneme Sınavları_files/jquery.fancybox.min.css" rel="stylesheet">
+  <script src="landing-v2/global.js" defer></script>
+  <style type="text/css">
+    .fancybox-content {
+      padding: 1px;
+      overflow-y: hidden !important;
+    }
+
+    table thead th:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background-color: inherit;
+    }
+
+    table tbody td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background: white;
+      border-right: 1px solid #f0f0f0;
+    }
+
+    canvas {
+      background: white;
+      width: 100%;
+    }
+
+    #navButtons button {
+      min-width: 120px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    #navButtons button:hover:not(:disabled) {
+      transform: scale(1.05);
+    }
+
+    #navButtons button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .qr-details {
+      padding: 120px 0 40px 0;
+      background-color: #f9fbfd;
+      min-height: calc(100vh - 200px);
+    }
+
+    @media (max-width: 768px) {
+      .qr-details {
+        padding: 140px 0 40px 0;
+      }
+    }
+
+    .card-modern {
+      border: none;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-bottom: 24px;
+    }
+    
+    .card-modern:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .card-header-modern {
+      background: white;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem 1.5rem;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .card-title-modern {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 1.25rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .card-subtitle-modern {
+      color: #64748b;
+      font-size: 0.875rem;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .form-select-modern {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.95rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .form-select-modern:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Table Modernization */
+    .table-responsive {
+      border-radius: 0 0 16px 16px;
+    }
+    
+    .table-modern {
+      margin-bottom: 0;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .table-modern thead th {
+      background-color: #f8fafc;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .table-modern tbody td {
+      vertical-align: middle;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      font-size: 0.95rem;
+      background: white;
+    }
+
+    .table-modern tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .table-modern tbody tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* Badges & Buttons */
+    .badge-circle {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .btn-action-modern {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      border: none;
+    }
+    
+    .btn-action-view {
+      background-color: #e0f2fe;
+      color: #0284c7;
+    }
+    .btn-action-view:hover {
+      background-color: #bae6fd;
+      color: #0369a1;
+    }
+
+    .btn-action-video {
+      background-color: #fce7f3;
+      color: #db2777;
+    }
+    .btn-action-video:hover {
+      background-color: #fbcfe8;
+      color: #be185d;
+    }
+
+    .stats-badge {
+      background: #eff6ff;
+      color: #3b82f6;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .icon-title {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+<header id="section-header" class="site-header-wrapper">
+  <div class="container">
+    <div class="main-nav">
+      <a href="index.html" class="logo">
+        <img src="landing-v2/images/mebi-logo.svg" alt="MEBI Logo">
+        <span>Millî Eğitim Bakanlığı<br>Bireysel Öğrenme Platformu</span>
+      </a>
+      <nav class="main-nav-links">
+        <a href="index.html#about">MEBİ Nedir?</a>
+        <a href="index.html#features">Neler Sunuyor?</a>
+        <a href="index.html#modules">Yer Alan Modüller</a>
+        <a href="index.html#kanka">Kanka</a>
+        <a href="index.html#faq">SSS</a>
+      </nav>
+      <a href="#" class="btn btn-primary nav-login-button">Giriş Yap</a>
+    </div>
+  </div>
+</header>
+
+<section class="qr-details">
+  <div class="container-md">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card-modern">
+          <div class="card-body p-4">
+            <div class="row g-3 align-items-center">
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small text-uppercase mb-1">Sınav Seçiniz</label>
+                <select class="form-select form-select-modern" id="examId" name="examId">
+                  <option value="0a31978d-dde5-43cf-0e93-08dcd714efbc" selected>TYT Deneme Sınavı - 1</option>
+                  <option value="418d3a0a-1445-4aef-bf20-08de51e028be">AYT Deneme Sınavı - 1</option>
+                    <option value="0256c1fc-28df-4835-6228-08dcd89af112">YDT Deneme Sınavı - 1</option>
+                    <option value="af531f05-d304-43fc-5b95-08dcf46fbc6c">TYT Deneme Sınavı - 2</option>
+                    <option value="7c26fad7-e687-4d73-bf21-08de51e028be">AYT Deneme Sınavı - 2</option>
+                    <option value="17f1b4d2-7910-40eb-5b96-08dcf46fbc6c">YDT Deneme Sınavı - 2</option>
+                    <option value="77e99f47-6eb8-4884-e508-08dcf4722400">TYT Deneme Sınavı - 3</option>
+                    <option value="9fcee872-54ce-4214-e509-08dcf4722400">AYT Deneme Sınavı - 3</option>
+                    <option value="7ffbce26-fe32-4cb3-e50a-08dcf4722400">YDT Deneme Sınavı - 3</option>
+                    <option value="81d23a55-1b9a-442f-e50b-08dcf4722400">TYT Deneme Sınavı - 4</option>
+                    <option value="3a208036-0f57-4792-e50c-08dcf4722400">AYT Deneme Sınavı - 4</option>
+                    <option value="550a505e-4493-46bc-e50d-08dcf4722400">YDT Deneme Sınavı - 4</option>
+                    <option value="24b233eb-d350-4d6a-e50e-08dcf4722400">TYT Deneme Sınavı - 5</option>
+                    <option value="52e7f78b-3a27-492f-e50f-08dcf4722400">AYT Deneme Sınavı - 5</option>
+                    <option value="cedd03b9-a4be-49c8-e510-08dcf4722400">YDT Deneme Sınavı - 5</option>
+                    <option value="d20c69bd-f67f-4d80-e511-08dcf4722400">TYT Deneme Sınavı - 6</option>
+                    <option value="336ff128-8f38-42e2-e512-08dcf4722400">AYT Deneme Sınavı - 6</option>
+                    <option value="fe02953c-173c-4aff-e513-08dcf4722400">YDT Deneme Sınavı - 6</option>
+                    <option value="fc239371-e7df-45b0-e514-08dcf4722400">TYT Deneme Sınavı - 7</option>
+                    <option value="4af894cd-63d4-49bd-e515-08dcf4722400">AYT Deneme Sınavı - 7</option>
+                    <option value="9b8a3f25-9c5e-4671-e516-08dcf4722400">YDT Deneme Sınavı - 7</option>
+                    <option value="6d719a49-f9de-42d3-e517-08dcf4722400">TYT Deneme Sınavı - 8</option>
+                    <option value="137dc2d9-711e-47ce-e518-08dcf4722400">AYT Deneme Sınavı - 8</option>
+                    <option value="513cf968-3de3-4524-e519-08dcf4722400">YDT Deneme Sınavı - 8</option>
+                    <option value="06df9ef5-9908-484b-e51a-08dcf4722400">TYT Deneme Sınavı - 9</option>
+                    <option value="bcea32b4-042f-42ee-e51b-08dcf4722400">AYT Deneme Sınavı - 9</option>
+                    <option value="c3cf83a1-1a18-489d-e51c-08dcf4722400">YDT Deneme Sınavı - 9</option>
+                    <option value="95f4b5a0-bd97-4952-e51d-08dcf4722400">TYT Deneme Sınavı - 10</option>
+                    <option value="d0b6ebe5-9f7a-40f2-e51e-08dcf4722400">AYT Deneme Sınavı - 10</option>
+                    <option value="c0c12420-4e3a-4f27-e51f-08dcf4722400">YDT Deneme Sınavı - 10</option>
+                    <option value="9d635162-7720-4706-a303-08ddf2ad4862">TYT Deneme Sınavı - 11</option>
+                    <option value="e1a20364-fff7-4d62-a306-08ddf2ad4862">AYT Deneme Sınavı - 11</option>
+                    <option value="9224b4ea-a345-4754-a305-08ddf2ad4862">YDT Deneme Sınavı - 11</option>
+                    <option value="a2980690-d38d-4593-a307-08ddf2ad4862">TYT Deneme Sınavı - 12</option>
+                    <option value="d443e523-1e62-4c5f-a308-08ddf2ad4862">AYT Deneme Sınavı - 12</option>
+                    <option value="4913662f-26da-427b-a309-08ddf2ad4862">YDT Deneme Sınavı - 12</option>
+                    <option value="b597e209-e27b-4a41-a30a-08ddf2ad4862">TYT Deneme Sınavı - 13</option>
+                    <option value="44a536b4-8953-4ec1-a30b-08ddf2ad4862">AYT Deneme Sınavı - 13</option>
+                    <option value="02fca657-20b0-4875-a30c-08ddf2ad4862">YDT Deneme Sınavı - 13</option>
+                    <option value="2e7f7a08-fbef-42b6-a30d-08ddf2ad4862">TYT Deneme Sınavı - 14</option>
+                    <option value="ba629265-7f67-4ae2-a30e-08ddf2ad4862">AYT Deneme Sınavı - 14</option>
+                    <option value="5de1e77b-1fc6-4860-a30f-08ddf2ad4862">YDT Deneme Sınavı - 14</option>
+                    <option value="38db279a-b677-47aa-a310-08ddf2ad4862">TYT Deneme Sınavı - 15</option>
+                    <option value="dfeae697-3d9d-47c7-a311-08ddf2ad4862">AYT Deneme Sınavı - 15</option>
+                    <option value="7c74347b-5196-4bac-a312-08ddf2ad4862">YDT Deneme Sınavı - 15</option>
+                  </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small text-uppercase mb-1">Ders Seçiniz</label>
+                <select id="lessonId" class="form-select form-select-modern">
+                  <option value="">Yükleniyor...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Question List -->
+      <div class="col-12">
+        <div class="card-modern">
+          <div class="card-header-modern">
+            <h3 class="card-title-modern">
+              <svg class="icon-title" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+              </svg>
+              Soru Listesi
+            </h3>
+            <div class="card-subtitle-modern">Seçilen derse ait sorular ve cevap anahtarı</div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-modern">
+              <thead>
+                <tr>
+                  <th class="ps-4" style="width: 120px;">S.N.</th>
+                  <th class="text-center" style="width: 120px;">Doğru Cevap</th>
+                  <th class="text-center">Soru Görseli</th>
+                  <th class="text-center">Cevap Videosu</th>
+                </tr>
+              </thead>
+              <tbody id="resultContent">
+                <tr>
+                  <td colspan="4" class="text-center text-muted py-4">Veriler yükleniyor...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Progress -->
+      <div class="col-12">
+        <div class="card-modern">
+          <div class="card-header-modern">
+            <h3 class="card-title-modern">
+              <svg class="icon-title" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10"></path>
+                <path d="M12 20V4"></path>
+                <path d="M6 20v-6"></path>
+              </svg>
+              Konu Bazlı Analiz
+            </h3>
+            <div class="card-subtitle-modern">Konu bazlı soru dağılımı ve istatistikler</div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-modern">
+              <thead>
+                <tr>
+                  <th class="ps-4">Sınıf</th>
+                  <th>Ders</th>
+                  <th>Konu</th>
+                  <th class="text-center">Soru Sayısı</th>
+                </tr>
+              </thead>
+              <tbody id="subjectContent">
+                <tr>
+                  <td colspan="4" class="text-center text-muted py-4">Veriler yükleniyor...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outcome Progress -->
+      <div class="col-12">
+        <div class="card-modern">
+          <div class="card-header-modern">
+            <h3 class="card-title-modern">
+              <svg class="icon-title" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              Kazanım Bazlı Analiz
+            </h3>
+            <div class="card-subtitle-modern">Kazanım bazlı soru detayları</div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-modern">
+              <thead>
+                <tr>
+                  <th class="ps-4">Sınıf</th>
+                  <th>Ders</th>
+                  <th>Kazanım</th>
+                  <th class="text-center">Soru Sayısı</th>
+                </tr>
+              </thead>
+              <tbody id="outcomeContent">
+                <tr>
+                  <td colspan="4" class="text-center text-muted py-4">Veriler yükleniyor...</td>
+                </tr>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modals for Question Image and Video -->
+<div class="modal fade" tabindex="-1" id="kt_modal_question">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header pt-2 pb-2">
+        <h5 class="modal-title" style="margin-top:15px; font-weight: 900;" id="modal-question-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="modal-question-body" class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="kt_modal_answer_video">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header pt-0 pb-0">
+        <h5 id="modal-answer-video-title" class="modal-title" style="margin-top:15px; font-weight: 900;"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="modal-answer-video-body" style="padding:0px;" class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="login-modal">
+  <div class="login-modal-overlay"></div>
+  <div class="login-modal-content">
+    <button class="login-modal-close" aria-label="Close modal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <div class="login-modal-header">
+      <img src="landing-v2/images/mebi-logo.svg" alt="MEBİ Logo" class="login-modal-logo" loading="lazy">
+      <h2 class="login-modal-title">MİLLÎ EĞİTİM BAKANLIĞI</h2>
+      <p class="login-modal-subtitle">Bireysel Öğrenme Platformu</p>
+    </div>
+    
+    <div class="login-modal-buttons">
+      <a href="https://giris.eba.gov.tr/EBA_GIRIS/Giris?uygulamaKodu=mebi&login=student" class="login-option-btn">
+        <img src="landing-v2/images/user.svg" alt="" loading="lazy"> 
+        Öğrenci Girişi
+      </a>
+      
+      <a href="https://giris.eba.gov.tr/EBA_GIRIS/Giris?uygulamaKodu=mebiEdevlet&login=edevlet" class="login-option-btn">
+        <img src="landing-v2/images/graduate.svg" alt="" loading="lazy">
+        Mezun Girişi
+      </a>
+      
+      <a href="https://giris.eba.gov.tr/EBA_GIRIS/Giris?uygulamaKodu=mebi&login=teacher" class="login-option-btn">
+        <img src="landing-v2/images/support-gray.svg" alt="" loading="lazy">
+        Öğretmen Girişi
+      </a>
+
+      <a href="https://mebi.eba.gov.tr/login/login-guardian" class="login-option-btn">
+        <img src="landing-v2/images/people.svg" alt="" loading="lazy">
+        Veli Girişi
+      </a>
+    </div>
+    
+    <div class="login-modal-footer">
+      <a href="#" class="login-modal-help">Yardıma mı ihtiyacınız var?</a>
+    </div>
+  </div>
+</div>
+
+<footer id="footer" class="site-footer">
+  <div class="footer-container">
+    <img src="landing-v2/images/footer-dots.svg" alt="background decoration" class="footer-bg-vector" loading="lazy">
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="index.html" class="footer-logo">
+          <img src="landing-v2/images/mebi-logo-white.svg" alt="MEBI Logo" loading="lazy">
+          <span>Millî Eğitim Bakanlığı<br>Bireysel Öğrenme Platformu</span>
+        </a>
+        <img src="landing-v2/images/ogm-logo.png" alt="OGM Logo" class="ogm-logo" loading="lazy">
+        <div class="social-links" style="display: flex; gap: 16px; align-items: center;">
+          <a href="https://x.com/meb_mebi" target="_blank" rel="noopener" aria-label="X">
+            <img src="landing-v2/images/x.svg" alt="X" loading="lazy" style="width:32px;height:32px;">
+          </a>
+          <a href="https://www.instagram.com/meb_mebi/" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="landing-v2/images/instagram.svg" alt="Instagram" loading="lazy" style="width:32px;height:32px;">
+          </a>
+          <a href="https://www.youtube.com/channel/UC87lL-rSKX2iW2ZcgVKK--g" target="_blank" rel="noopener" aria-label="YouTube">
+            <img src="landing-v2/images/youtube.svg" alt="YouTube" loading="lazy" style="width:40px;height:40px;">
+          </a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-column">
+          <h3 class="footer-heading">Giriş Yapın</h3>
+          <ul class="footer-links">
+            <li><a href="https://giris.eba.gov.tr/EBA_GIRIS/Giris?uygulamaKodu=mebiEdevlet&login=edevlet"><img src="landing-v2/images/graduate.svg" alt="" loading="lazy"> Mezunlar</a></li>
+            <li><a href="https://giris.eba.gov.tr/EBA_GIRIS/Giris?uygulamaKodu=mebi&login=student"><img src="landing-v2/images/user.svg" alt="" loading="lazy"> Öğrenciler</a></li>
+            <li><a href="https://giris.eba.gov.tr/EBA_GIRIS/Giris?uygulamaKodu=mebi&login=teacher"><img src="landing-v2/images/support-gray.svg" alt="" loading="lazy"> Öğretmenler</a></li>
+            <li><a href="https://mebi.eba.gov.tr/login/login-guardian"><img src="landing-v2/images/people.svg" alt="" loading="lazy"> Veliler</a></li>
+            <li><a href="https://mebi.eba.gov.tr/login"><img src="landing-v2/images/editor.svg" alt="" loading="lazy"> Editör</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-heading">İletişim</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:mebi@meb.gov.tr"><img src="landing-v2/images/at.svg" alt="" loading="lazy"> mebi@meb.gov.tr</a></li>
+            <li><a href="tel:03124131576"><img src="landing-v2/images/phone.svg" alt="" loading="lazy"> 0 312 413 15 76</a></li>
+            <li><a href="tel:03124133719"><img src="landing-v2/images/phone.svg" alt="" loading="lazy"> 0 312 413 37 19</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+                    <h3 class="footer-heading">Mobil Uygulama</h3>
+                    <div class="footer-store-buttons">
+                        <a href="https://apps.apple.com/us/app/mebi/id6736946513" target="_blank" class="store-button-footer">
+                            <img src="landing-v2/images/app-store-download-label.png" alt="Apple Store icon" loading="lazy">
+                            
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=tr.gov.eba.mebi&hl=tr" target="_blank" class="store-button-footer">
+                            <img src="landing-v2/images/google-play-download-label.png" alt="Google Play icon" loading="lazy">
+                        </a>
+                    </div>
+                </div>
+      </div>
+    </div>
+    <p class="copyright">© 2026, Millî Eğitim Bakanlığı Ortaöğretim Genel Müdürlüğü tarafından geliştirilmiştir.</p>
+  </div>
+</footer>
+
+<!-- Scroll to top button -->
+<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="qr-exams.js"></script>
+
+</body>
+</html>
