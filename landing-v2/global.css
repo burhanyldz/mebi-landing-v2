@@ -1279,7 +1279,7 @@ section {
   position: relative;
   width: 100%;
   height: 700px;
-  background-image: url(images/modules.png);
+  background-image: url(images/modules.webp);
   background-position: center 72%;
   background-size: 104%;
   background-repeat: no-repeat;
@@ -1420,7 +1420,7 @@ section {
 }
 
 .bg-shadow {
-  background-image: url(images/white-shadow.png);
+  background-image: url(images/white-shadow.webp);
   position: absolute;
   bottom: -50%;
   left: 0;
