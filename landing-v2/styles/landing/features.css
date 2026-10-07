@@ -1,0 +1,234 @@
+/* CSS for section section:features */
+.features-section .section-header {
+  margin-bottom: 40px;
+}
+
+.features-section .section-title .highlight {
+  color: #0033b3;
+}
+
+.features-content {
+  display: flex;
+  gap: 22px;
+  padding: 0 60px;
+  align-items: flex-start;
+}
+
+@media (max-width: 1200px) {
+  .features-content {
+    flex-direction: column;
+    padding: 0 40px;
+    gap: 32px;
+    align-items: center;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .features-content {
+    padding: 0 20px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-content {
+    padding: 0 16px;
+    gap: 20px;
+  }
+}
+
+.feature-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1200px) {
+  .feature-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    width: 100%;
+    gap: 12px;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .feature-nav::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .feature-nav::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 3px;
+  }
+}
+
+.feature-nav-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 20px;
+  padding: 28px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  width: 275px;
+  box-sizing: border-box;
+  text-align: left;
+  box-shadow: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.feature-nav-item img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  object-fit: contain;
+}
+
+@media (max-width: 1200px) {
+  .feature-nav-item {
+    width: auto;
+    min-width: fit-content;
+    white-space: nowrap;
+    padding: 16px 24px;
+    border-radius: 18px;
+  }
+  
+  .feature-nav-item img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-nav-item {
+    padding: 12px 20px;
+    border-radius: 16px;
+    font-size: 13px;
+  }
+}
+
+.feature-nav-item:hover:not(.active) {
+  border-color: #b6c5e9;
+  background: linear-gradient(180deg, #fdfeff 0%, #f8fbff 100%);
+  box-shadow: none;
+}
+
+.feature-nav-item.active {
+  border-color: #92a8de;
+  background: linear-gradient(180deg, #fdfeff 0%, #f4f9ff 100%);
+  box-shadow: none;
+}
+
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .feature-cards-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-cards-grid {
+    gap: 16px;
+  }
+}
+
+.feature-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .feature-card {
+    border-radius: 18px;
+  }
+}
+
+.feature-card-image {
+  height: 190px;
+  background-size: cover;
+  background-position: top;
+}
+
+.feature-card-video {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .feature-card-image {
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-card-image {
+    height: 140px;
+  }
+}
+
+.feature-card-content {
+  background-color: var(--color-surface);
+  padding: 20px 22px 22px;
+  border-top: 1px solid var(--color-border-light);
+  flex-grow: 1;
+}
+
+.feature-card-content h4 {
+  color: var(--color-text-dark);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 21px;
+  margin: 0 0 6px;
+}
+
+.feature-card-content p {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .feature-card-content {
+    padding: 16px 18px 18px;
+  }
+
+  .feature-card-content h4 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .feature-card-content p {
+    font-size: 12px;
+    line-height: 19px;
+  }
+}

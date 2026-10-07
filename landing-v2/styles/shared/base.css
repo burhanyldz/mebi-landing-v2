@@ -1,0 +1,214 @@
+:root {
+  --color-primary: #0033b3;
+  --color-primary-dark: #132b93;
+  --color-primary-light: #2450be;
+  --color-secondary: #fd9843;
+  --color-text-dark: #040308;
+  --color-text-light: #f5f5f5;
+  --color-text-muted: #3b3d3f;
+  --color-background: #ffffff;
+  --color-surface: #fdfeff;
+  --color-border: #b6c5e9;
+  --color-border-light: #dfe6f5;
+  --font-main: 'Rubik', sans-serif;
+  /* Additional colors from mebi-landing-2 */
+  --color-white: #ffffff;
+  --color-text-primary: #040308;
+  --color-text-secondary: #3b3d3f;
+  --color-text-subtle: #868b91;
+  --color-accent: #0284c7;
+  --color-border-medium: #b6c5e9;
+}
+
+html {
+  overflow-x: hidden; /* prevent horizontal scroll at root level */
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100%; /* prevent any horizontal overflow */
+  position: relative;
+}
+
+button,
+input,
+select,
+textarea,
+a {
+  font-family: var(--font-main);
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Scroll Animation Styles */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation for child elements */
+.scroll-animate-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate-stagger.animate-in > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.scroll-animate-stagger.animate-in > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.scroll-animate-stagger.animate-in > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.scroll-animate-stagger.animate-in > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.scroll-animate-stagger.animate-in > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.scroll-animate-stagger.animate-in > *:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+.scroll-animate-stagger.animate-in > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Remove default focus outline and tap highlights */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+[tabindex] {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Keep text selectable in inputs and textareas */
+input,
+textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Optional: Add custom focus styles for accessibility (keyboard navigation) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+}
+
+section {
+  width: 100%;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  section {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 32px 0;
+  }
+}
+
+/* Visually hidden but available to screen readers & search engines */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

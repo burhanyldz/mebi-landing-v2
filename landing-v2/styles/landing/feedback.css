@@ -1,0 +1,120 @@
+/* CSS for section section:feedback */
+.feedback-section {
+  padding: 0 0;
+}
+
+.testimonials-slider {
+  display: flex;
+  gap: 24px;
+  padding: 0 100px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.testimonials-slider::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .testimonials-slider {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .testimonials-slider {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-slider {
+    padding: 0 20px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-slider {
+    padding: 0 16px;
+    gap: 12px;
+  }
+}
+
+.testimonial-card {
+  flex: 0 0 400px;
+  background: linear-gradient(180deg, #fdfeff 0%, #f4f9ff 100%);
+  border: 1px solid var(--color-border-medium);
+  border-radius: 36px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+@media (max-width: 992px) {
+  .testimonial-card {
+    flex: 0 0 340px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    flex: 0 0 300px;
+    border-radius: 24px;
+    padding: 16px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-card {
+    flex: 0 0 280px;
+    padding: 14px;
+  }
+}
+
+.testimonial-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stars {
+  display: flex;
+  gap: 0;
+}
+
+.testimonial-card-body {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.testimonial-card .testimonial-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.testimonial-card .testimonial-card-footer .separator {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.user-role {
+  font-size: 14px;
+  color: var(--color-text-subtle);
+}
+

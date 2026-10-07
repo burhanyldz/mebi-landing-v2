@@ -1,0 +1,136 @@
+/* CSS for section section:global-access */
+.global-access-section {
+  padding: 60px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 1240px) {
+  .global-access-section {
+    padding-top: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .global-access-section {
+    padding: 40px 0 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-access-section {
+    padding: 32px 0 0;
+  }
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+}
+
+.location-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.location-dots img {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  animation: pulse 6s infinite;
+}
+
+.location-dots img:nth-child(1) {
+  top: 20.9%;
+  left: 21.3%;
+}
+
+.location-dots img:nth-child(2) {
+  top: 13.1%;
+  left: 30.7%;
+}
+
+.location-dots img:nth-child(3) {
+  top: 27.2%;
+  left: 49.3%;
+}
+
+.location-dots img:nth-child(4) {
+  top: 20.1%;
+  left: 57.5%;
+}
+
+.location-dots img:nth-child(5) {
+  top: 15.6%;
+  left: 67.3%;
+}
+
+.location-dots img:nth-child(6) {
+  top: 41.1%;
+  left: 72.4%;
+}
+
+.location-dots img:nth-child(7) {
+  top: 27.1%;
+  left: 89.4%;
+}
+
+.location-dots img:nth-child(8) {
+  top: 28.4%;
+  left: 80.8%;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+.location-dots img:nth-child(2) {
+  animation-delay: 1.3s;
+}
+
+.location-dots img:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.location-dots img:nth-child(4) {
+  animation-delay: 6.9s;
+}
+
+.location-dots img:nth-child(5) {
+  animation-delay: 0s;
+}
+
+.location-dots img:nth-child(6) {
+  animation-delay: 1.5s;
+}
+
+.location-dots img:nth-child(7) {
+  animation-delay: 0.8s;
+}
+
+.location-dots img:nth-child(8) {
+  animation-delay: 2.1s;
+}
