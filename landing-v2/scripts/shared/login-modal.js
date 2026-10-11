@@ -4,7 +4,7 @@ onReady(() => {
   const loginModal = document.getElementById('loginModal');
   if (!loginModal) return;
 
-  const loginButtons = document.querySelectorAll('.nav-login-button, .btn-hero-primary, .mobile-login-btn');
+  const loginButtons = document.querySelectorAll('.nav-login-button, .btn-hero-primary');
   const modalClose = document.querySelector('.login-modal-close');
   const modalOverlay = document.querySelector('.login-modal-overlay');
   const helpLink = loginModal.querySelector('.login-modal-help');

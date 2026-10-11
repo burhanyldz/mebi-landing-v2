@@ -22,14 +22,4 @@ onReady(() => {
     });
   });
 
-  // Mobile menu links — also smooth scroll
-  const mobileLinks = document.querySelectorAll('.mobile-menu-link[href^="#"]');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const href = this.getAttribute('href');
-      // Small delay to let the menu close animation finish
-      setTimeout(() => smoothScrollTo(href), 60);
-    });
-  });
 });

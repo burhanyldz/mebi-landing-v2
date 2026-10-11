@@ -41,43 +41,10 @@
       <!-- Right actions -->
       <div class="nav-right">
         <a href="#" class="btn btn-primary nav-login-button">Giriş Yap</a>
-        <!-- Hamburger -->
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menüyü Aç" aria-expanded="false" aria-controls="mobileMenu">
-          <span class="hamburger-icon">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
       </div>
     </div>
   </div>
 </header>
-
-<!-- Mobile Menu -->
-<div id="mobileMenuBackdrop" class="mobile-menu-backdrop" aria-hidden="true"></div>
-<div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobil Menü">
-  <div class="mobile-menu-header">
-    <a href="#" class="logo">
-      <img src="landing-v2/images/mebi-logo.svg" alt="MEBİ Logo">
-      <div class="logo-text">
-        <span class="logo-title">Millî Eğitim Bakanlığı</span>
-        <span class="logo-subtitle">Bireysel Öğrenme Platformu</span>
-      </div>
-    </a>
-    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Menüyü Kapat">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-  <nav class="mobile-menu-links" aria-label="Mobil Navigasyon">
-    <a href="#about" class="mobile-menu-link">MEBİ Nedir?</a>
-    <a href="#features" class="mobile-menu-link">Neler Sunuyor?</a>
-    <a href="#modules" class="mobile-menu-link">Yer Alan Modüller</a>
-    <a href="#kanka" class="mobile-menu-link">Kanka</a>
-    <a href="#faq" class="mobile-menu-link">SSS</a>
-  </nav>
-  <div class="mobile-menu-footer">
-    <a href="#" class="btn btn-primary mobile-login-btn">Giriş Yap</a>
-  </div>
-</div>
 <section id="hero" class="hero-section">
   <!-- hero image placed as an <img> so its intrinsic aspect ratio sets the section height -->
   <img src="landing-v2/images/hero-section.webp" alt="Hero background" class="hero-bg" fetchpriority="high">
@@ -101,7 +68,7 @@
   <div class="container">
     <div class="section-header">
       <div class="tag">MEBİ Nedir?</div>
-      <h2 class="section-title">MEBİ: Bireysel Öğrenme Platformu</h2>
+      <h2 class="section-title"><span class="text-gradient-emphasis">MEBİ</span>: Bireysel Öğrenme Platformu</h2>
       <p class="section-description">
         MEBİ; Millî Eğitim Bakanlığı Ortaöğretim Genel Müdürlüğü tarafından geliştirilen, ortaokul ve lise öğrencileri ile mezunların LGS ve YKS hazırlık sürecini ve okul derslerini desteklemek için tasarlanmış <strong>ücretsiz</strong> bireysel öğrenme platformudur. Konu anlatım videoları, konu özetleri, video çözümlü sorular, sesli özetler, çalışma planı, rehberlik ve yapay zekâ desteğiyle öğrenmeyi daha verimli ve erişilebilir hâle getirir.
       </p>
@@ -189,9 +156,32 @@
   </div>
 </section>
 
-<section id="statistics" class="statistics-section scroll-animate">
-  <div class="stats-background">
-    <img src="landing-v2/images/statistics.webp" alt="background wave" loading="lazy">
+<section id="statistics" class="statistics-section scroll-animate" aria-label="MEBİ platform istatistikleri">
+  <div class="stats-background" aria-hidden="true"></div>
+  <div class="stats-container container">
+    <div class="stat-card">
+      <strong class="stat-number">2.303</strong>
+      <span class="stat-label">Ders Anlatım Videosu</span>
+    </div>
+    <div class="stat-card">
+      <strong class="stat-number">1.320</strong>
+      <span class="stat-label">Konu Özeti</span>
+    </div>
+    <div class="stat-card stat-card-featured">
+      <strong class="stat-number">+6 Milyon</strong>
+      <div class="stat-featured-badge">
+        <img src="landing-v2/images/statistics-laurel-branches.webp" class="stat-laurel-branches" alt="" aria-hidden="true" width="652" height="198">
+        <span class="stat-label-featured">Kullanıcı</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <strong class="stat-number">103.509</strong>
+      <span class="stat-label">Soru</span>
+    </div>
+    <div class="stat-card">
+      <strong class="stat-number">10.894</strong>
+      <span class="stat-label">Etkileşimli İçerik</span>
+    </div>
   </div>
 </section>
 
@@ -199,7 +189,7 @@
   <div class="container">
     <div class="section-header">
       <div class="tag">MEBİ Neler Sunuyor?</div>
-      <h2 class="section-title">Sınav Yolculuğunda<br>İhtiyacın Olan <span class="highlight">Her Şey</span></h2>
+      <h2 class="section-title">Sınav Yolculuğunda<br>İhtiyacın Olan <span class="text-gradient-emphasis">Her Şey</span></h2>
       <p class="section-description">MEBİ; sınav hazırlığından okul derslerine, kişisel planlamadan etkileşimli içeriklere kadar öğrenme sürecinin tüm adımlarını tek platformda sunar.</p>
     </div>
     <div class="features-content">
@@ -384,7 +374,7 @@
   <div class="container">
     <div class="section-header">
       <div class="tag">Yer Alan Modüller</div>
-      <h2 class="section-title">Tüm Öğrenme Deneyimi Tek Platformda</h2>
+      <h2 class="section-title">Tüm Öğrenme Deneyimi <span class="text-gradient-emphasis">Tek Platformda</span></h2>
       <p class="section-description">MEBİ; LGS ve YKS hazırlığı, okul dersleri, deneme/tarama, çalışma planı, raporlama, rehberlik ve zinde kal modüllerini tek platformda birleştirir.</p>
     </div>
     <!--merged image-->
@@ -400,14 +390,51 @@
     <div class="section-header">
       <div class="tag">Uygulama Mağazaları</div>
       <h2 class="section-title heading-gradient-text">Her Cihazda, Her An Yanınızda</h2>
-      <p class="section-description light-text">MEBİ; App Store, Google Play ve web üzerinden tüm öğrenci, öğretmen ve velilerin kullanımına <span class="bold-text">ücretsiz olarak</span> sunulmaktadır. Mobil cihazınızdan veya bilgisayarınızdan dilediğiniz an erişebilirsiniz.</p>
+      <p class="section-description light-text">MEBİ; App Store, Google Play, Huawei AppGallery ve web üzerinden tüm öğrenci, öğretmen ve velilerin kullanımına <span class="bold-text">ücretsiz olarak</span> sunulmaktadır. Mobil cihazınızdan veya bilgisayarınızdan dilediğiniz an erişebilirsiniz.</p>
     </div>
     <div class="main-showcase">
-      <img src="landing-v2/images/app-stores.webp" alt="App Store and Google Play badges" class="app-stores-image app-stores-combined" loading="lazy" />
-      <div class="app-stores-separate">
-        <img src="landing-v2/images/screenshots.webp" alt="MEBİ uygulama ekran görüntüleri" class="store-badge store-screenshot" loading="lazy" />
-        <img src="landing-v2/images/store-users.webp" alt="MEBİ kullanıcı sayıları" class="store-badge store-users" loading="lazy" />
-      </div>
+      <figure class="app-store-visual app-store-visual-devices">
+        <img src="landing-v2/images/app-device-showcase.webp" alt="MEBİ uygulamasının bilgisayar, tablet ve telefon ekranlarındaki görünümü" width="2880" height="2016" loading="lazy" />
+      </figure>
+      <figure class="app-store-visual app-store-visual-stats">
+        <img class="app-store-user-wreath" src="landing-v2/images/app-store-user-wreath.webp" alt="" aria-hidden="true" width="463" height="442" />
+        <div class="app-store-user-count" aria-label="+6 Milyon Kullanıcı">
+          <strong>+6 Milyon</strong>
+          <span>Kullanıcı</span>
+        </div>
+        <div class="app-store-proof" aria-label="5 üzerinden 4,7 puan ve 4 milyondan fazla indirme">
+          <span class="app-store-rating-stars" aria-hidden="true">
+            <img src="landing-v2/images/star.svg" alt="" width="24" height="24" loading="lazy">
+            <img src="landing-v2/images/star.svg" alt="" width="24" height="24" loading="lazy">
+            <img src="landing-v2/images/star.svg" alt="" width="24" height="24" loading="lazy">
+            <img src="landing-v2/images/star.svg" alt="" width="24" height="24" loading="lazy">
+            <span class="app-store-rating-star-half">
+              <img class="app-store-rating-star-empty" src="landing-v2/images/star.svg" alt="" width="24" height="24" loading="lazy">
+              <img class="app-store-rating-star-filled" src="landing-v2/images/star.svg" alt="" width="24" height="24" loading="lazy">
+            </span>
+          </span>
+          <strong class="app-store-rating-value">4.7</strong>
+          <span class="app-store-proof-separator" aria-hidden="true">·</span>
+          <span class="app-store-download-count"><strong>+</strong>4 Milyon İndirme</span>
+        </div>
+        <div class="app-store-downloads" aria-label="MEBİ uygulamasını mağazadan indir">
+          <a href="https://play.google.com/store/apps/details?id=tr.gov.eba.mebi&amp;hl=tr" target="_blank" rel="noopener noreferrer" class="store-button-footer" aria-label="MEBİ'yi Google Play'den indir">
+            <img src="landing-v2/images/google-play-download-label.webp" alt="Google Play'den indir" loading="lazy">
+          </a>
+          <a href="https://apps.apple.com/us/app/mebi/id6736946513" target="_blank" rel="noopener noreferrer" class="store-button-footer" aria-label="MEBİ'yi App Store'dan indir">
+            <img src="landing-v2/images/app-store-download-label.webp" alt="App Store'dan indir" loading="lazy">
+          </a>
+          <a href="https://appgallery.huawei.com/app/C116045471" target="_blank" rel="noopener noreferrer" class="store-button-footer store-button-appgallery" aria-label="MEBİ'yi Huawei AppGallery'de aç">
+            <span class="appgallery-badge" aria-hidden="true">
+              <span class="appgallery-icon"></span>
+              <span class="appgallery-copy">
+                <strong>AppGallery</strong>
+                <small>ile KEŞFEDİN</small>
+              </span>
+            </span>
+          </a>
+        </div>
+      </figure>
     </div>
   </div>
 </section>
@@ -416,12 +443,12 @@
   <div class="container">
     <div class="section-header">
       <div class="tag">Küresel Erişim</div>
-      <h2 class="section-title">MEBİ Dünyanın Her Yerinde<br>Seninle</h2>
+      <h2 class="section-title">MEBİ Dünyanın Her Yerinde<br><span class="text-gradient-emphasis">Seninle</span></h2>
       <p class="section-description">MEBİ, yalnızca Türkiye'de değil, yurt dışında yaşayan öğrencilerimiz tarafından da kullanılabilmektedir. Her cihazdan erişilebilir yapısıyla, öğrenciler, öğretmenler ve veliler için sınırları aşan bir öğrenme ortamı sunar.</p>
     </div>
   </div>
   <div class="map-container">
-    <img src="landing-v2/images/world-map.png" alt="Dünya haritası – MEBİ'ye her yerden erişim" class="map-image" width="2718" height="800" loading="lazy" decoding="async">
+    <img src="landing-v2/images/global-access-map.webp" alt="Dünya haritası – MEBİ'ye her yerden erişim" class="map-image" width="2718" height="800" loading="lazy" decoding="async">
     <div class="location-dots">
       <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
       <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
@@ -439,7 +466,7 @@
   <div class="container">
     <div class="section-header">
       <div class="tag">Her Adımda Yanında</div>
-      <h2 class="section-title">Yapay Zekâ Destekli<br>Kişisel Asistanın <span class="kanka-text">KANKA</span></h2>
+      <h2 class="section-title">Yapay Zekâ Destekli<br>Kişisel Asistanın <span class="text-gradient-emphasis">KANKA</span></h2>
       <p class="section-description">KANKA, çalışma planlarını hatırlatır, mola vermen gerektiğinde seni uyarır, çözdüğün soruları analiz eder, hangi konularda eksik olduğunu belirler ve sana özel tekrar programları önerir. Yapay zekâ desteğiyle sınav yolculuğuna rehberlik eder.</p>
     </div>
   </div>
@@ -516,7 +543,7 @@
   <div class="container">
     <div class="section-header">
       <div class="tag">Sıkça Sorulan Sorular</div>
-      <h2 class="section-title">MEBİ Hakkında Merak Ettiklerin</h2>
+      <h2 class="section-title"><span class="text-gradient-emphasis">MEBİ</span> Hakkında Merak Ettiklerin</h2>
       <p class="section-description">MEBİ hakkında en çok sorulan soruları ve cevaplarını bu bölümde bulabilirsiniz. Giriş yöntemlerinden içerik kullanımına kadar merak ettiğiniz her şey burada.</p>
     </div>
     <div class="faq-container">
@@ -695,7 +722,7 @@
 </section>
 <footer id="footer" class="site-footer">
     <div class="footer-container">
-        <img src="landing-v2/images/footer-dots.png" alt="" aria-hidden="true" class="footer-bg-vector" width="2812" height="960" loading="lazy" decoding="async">
+        <img src="landing-v2/images/footer-dot-pattern.webp" alt="" aria-hidden="true" class="footer-bg-vector" width="2812" height="960" loading="lazy" decoding="async">
         <div class="footer-content">
             <div class="footer-left">
         <div class="footer-brand-group">

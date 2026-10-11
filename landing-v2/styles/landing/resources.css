@@ -5,12 +5,30 @@
 }
 
 .resources-grid {
-  /* mobile-first: single column under 640px */
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   padding: 0 16px;
   overflow: visible;
+}
+
+@media (max-width: 639px) {
+  .resources-grid {
+    grid-auto-columns: clamp(220px, 72vw, 280px);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    touch-action: pan-y;
+    padding-bottom: 12px;
+  }
+
+  .resource-card {
+    scroll-snap-align: start;
+  }
 }
 
 @media (min-width: 640px) {

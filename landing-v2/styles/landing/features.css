@@ -3,10 +3,6 @@
   margin-bottom: 40px;
 }
 
-.features-section .section-title .highlight {
-  color: #0033b3;
-}
-
 .features-content {
   display: flex;
   gap: 22px;

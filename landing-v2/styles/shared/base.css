@@ -36,6 +36,13 @@ body {
   position: relative;
 }
 
+.text-gradient-emphasis {
+  background: linear-gradient(180deg, #b6c5e9 0%, #0033b3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 button,
 input,
 select,

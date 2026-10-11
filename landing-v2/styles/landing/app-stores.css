@@ -1,219 +1,382 @@
-/* CSS for section section:app-stores */
+/* Application stores */
 .app-stores-section {
   position: relative;
-  padding: 55px 0 0;
-  height: 700px;
-  overflow: visible;
+  isolation: isolate;
+  padding: clamp(48px, 3.2vw, 60px) 0 clamp(110px, 9vw, 160px);
+  overflow: hidden;
 }
 
-@media (min-width: 2120px) {
-  .app-stores-section {
-    padding-top: 150px;
-    height: 1400px;
-  }
+.app-stores-section > .container {
+  position: relative;
+  z-index: 1;
 }
 
-@media (min-width: 1840px) and (max-width: 2119px) {
-  .app-stores-section {
-    padding-top: 150px;
-    height: 1100px;
-  }
-}
-
-@media (min-width: 1440px) and (max-width: 1839px) {
-  .app-stores-section {
-    padding-top: 150px;
-    height: 950px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .app-stores-section {
-    height: 600px;
-    padding: 50px 0 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .app-stores-section {
-    height: 500px;
-    padding: 40px 0 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .app-stores-section {
-    height: 900px;
-    padding: 32px 0 0;
-  }
-}
-
-.bg-svg {
+.app-stores-section .bg-svg {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  z-index: -2;
   width: 100%;
-  background-image: url(../../images/app-stores-bg.png);
-  background-size: cover;
-  height: 1000px;
-  z-index: -1;
+  min-height: 100%;
+  background: url("../../images/app-stores-background.webp") center top / 100% 100% no-repeat;
+  pointer-events: none;
 }
 
-@media (min-width: 2120px) {
-  .bg-svg {
-    height: 2150px;
-  }
-}
-
-@media (min-width: 1840px) and (max-width: 2119px) {
-  .bg-svg {
-    height: 1650px;
-  }
-}
-
-@media (min-width: 1440px) and (max-width: 1839px) {
-  .bg-svg {
-    height: 1450px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .bg-svg {
-    height: 750px;
-  }
-}
-
-@media (max-width: 768px) {
-  .bg-svg {
-    height: 600px;
-  }
-}
-
-@media (max-width: 480px) {
-  .bg-svg {
-    height: 800px;
-  }
-}
-
-.bg-shadow {
-  background-image: url(../../images/white-shadow.webp);
+.app-stores-section .bg-shadow {
   position: absolute;
-  bottom: -50%;
-  left: 0;
-  width: 100%;
-  height: 481px;
-  background: linear-gradient(0deg, #fdfeff 36.06%, rgba(255, 255, 255, 0) 100%);
   z-index: -1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: clamp(220px, 30vw, 360px);
+  background:
+    radial-gradient(ellipse 45% 72% at 34% 100%, rgba(112, 145, 255, 0.76), transparent 100%),
+    radial-gradient(ellipse 34% 58% at 83% 100%, rgba(112, 75, 210, 0.48), transparent 100%);
+  pointer-events: none;
 }
 
-.heading-gradient-text {
-  background: linear-gradient(90deg, #f5f5f5 50.13%, #b6c5e9 100%);
+.app-stores-section::after {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: clamp(120px, 16vw, 220px);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.app-stores-section .heading-gradient-text {
+  background: linear-gradient(270deg, #f5f5f5 0%, #dce4f5 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.light-text {
-  color: var(--color-border-light);
+.app-stores-section .light-text {
+  color: rgba(239, 244, 255, 0.9);
 }
 
-.bold-text {
+.app-stores-section .bold-text {
   font-weight: 600;
 }
 
+.app-stores-section .section-header {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.app-stores-section .section-description {
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .main-showcase {
-  width: 100%;
-  height: 600px;
-  position: absolute;
-  overflow: visible;
-  left: 0;
-  right: 0;
+  position: relative;
+  left: 50%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: start;
+  gap: clamp(24px, 3vw, 56px);
+  width: min(calc(100vw - 96px), 1740px);
+  margin: 0;
+  transform: translateX(-50%);
 }
 
-@media (max-width: 1024px) {
-  .main-showcase {
-    height: 500px;
-  }
-}
-
-@media (max-width: 768px) {
-  .main-showcase {
-    height: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-showcase {
-    height: 320px;
-  }
-}
-
-
-.app-stores-image {
-  position: absolute;
-  left: 0;
-  right: 0;
-  overflow: visible;
-  top: -40%;
-  max-width: 100%;
-}
-
-.app-stores-combined {
+.app-store-visual {
+  position: relative;
   display: block;
+  min-width: 0;
+  margin: 0;
 }
 
-.app-stores-separate {
-  display: none;
+.app-store-visual-devices > img:first-child {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transform: translate(24px, 100px) scale(1.82);
+  transform-origin: center;
 }
 
-@media (max-width: 1024px) {
-  .app-stores-image {
-    top: -40%;
-    max-width: 100%;
+.app-store-visual-stats {
+  min-height: clamp(480px, 30.5vw, 576px);
+}
+
+.app-store-user-wreath {
+  position: absolute;
+  z-index: 1;
+  top: 45%;
+  left: 50%;
+  width: clamp(220px, 16vw, 300px);
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.app-store-user-count {
+  position: absolute;
+  z-index: 2;
+  top: 43.5%;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  max-width: 72%;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  color: #f8f9fd;
+  font-family: var(--font-main);
+  font-weight: 800;
+  line-height: 1.02;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.app-store-user-count strong,
+.app-store-user-count span {
+  display: block;
+  font: inherit;
+  background-image: linear-gradient(270deg, #e8edf9 0%, #fff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-store-user-count strong {
+  font-size: clamp(32px, 2.1vw, 40px);
+  letter-spacing: -0.045em;
+}
+
+.app-store-user-count span {
+  margin-top: 5px;
+  font-size: clamp(30px, 2vw, 38px);
+  letter-spacing: -0.035em;
+}
+
+.app-store-proof {
+  position: absolute;
+  z-index: 2;
+  top: 79.5%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.8vw, 12px);
+  width: max-content;
+  max-width: 100%;
+  transform: translateX(-50%);
+  color: #f8f9fd;
+  font-family: var(--font-main);
+  font-size: clamp(18px, 1.2vw, 22px);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.app-store-rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.app-store-rating-stars img {
+  display: block;
+  width: clamp(17px, 1.2vw, 22px);
+  height: auto;
+}
+
+.app-store-rating-star-half {
+  position: relative;
+  display: block;
+  flex: 0 0 clamp(17px, 1.2vw, 22px);
+  width: clamp(17px, 1.2vw, 22px);
+  aspect-ratio: 1;
+}
+
+.app-store-rating-star-half img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.app-store-rating-star-empty {
+  opacity: 0.3;
+}
+
+.app-store-rating-star-filled {
+  clip-path: inset(0 50% 0 0);
+}
+
+.app-store-rating-value {
+  font-size: inherit;
+}
+
+.app-store-proof-separator {
+  color: rgba(239, 244, 255, 0.52);
+}
+
+.app-store-download-count strong {
+  color: #ff9147;
+  font-weight: 800;
+}
+
+.app-store-downloads {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+.app-store-downloads .store-button-footer {
+  flex: 0 0 160px;
+  width: 160px;
+  height: 48px;
+}
+
+.app-store-downloads .appgallery-badge {
+  width: 134px;
+  height: 40px;
+  transform: scale(1.194);
+  transform-origin: center;
+}
+
+.app-store-downloads .store-button-footer:focus-visible {
+  outline: 3px solid #55cbd1;
+  outline-offset: 3px;
+}
+
+@media (min-width: 1024px) and (max-width: 1600px) {
+  .app-store-proof {
+    top: 70%;
   }
 }
 
-@media (max-width: 768px) {
-  .app-stores-image {
-    top: -40%;
+@media (max-width: 1023px) {
+  .app-stores-section .bg-svg {
+    background-size: cover;
+  }
 
+  .app-stores-section {
+    padding: 48px 0 56px;
   }
-}
 
-@media (max-width: 640px) {
-  .app-stores-image {
-    top: -25%;
+  .app-stores-section .section-header {
+    margin-bottom: 4px;
   }
-}
 
-@media (max-width: 480px) {
-  .app-stores-combined {
-    display: none;
+  .main-showcase {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    width: min(calc(100vw - 40px), 640px);
   }
-  
-  .app-stores-separate {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 0px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -45%;
+
+  .app-store-visual-stats {
+    order: 1;
+    min-height: clamp(350px, 82vw, 390px);
   }
-  
-  .app-stores-separate .store-screenshot {
-    width: 100%;
+
+  .app-store-visual-devices {
+    order: 2;
     height: auto;
-    margin-top: 30px;
-    transform: scale(1.2) translateX(8%);
-    margin-top: -30px;
+    overflow: visible;
   }
 
-  .app-stores-separate .store-users {
-    width: 100%;
+  .app-store-visual-devices > img:first-child {
+    max-width: 560px;
     height: auto;
-    transform: scale(1) translateX(0%);
-    margin-top: 20px;
-  } 
+    margin: 0 auto;
+    object-fit: contain;
+    transform: scale(1.35);
+    transform-origin: center;
+  }
+
+  .app-store-user-wreath {
+    top: 27%;
+    width: clamp(170px, 46vw, 230px);
+  }
+
+  .app-store-user-count {
+    top: 26%;
+  }
+
+  .app-store-user-count strong {
+    font-size: clamp(27px, 6.5vw, 36px);
+  }
+
+  .app-store-user-count span {
+    margin-top: 2px;
+    font-size: clamp(25px, 6vw, 34px);
+  }
+
+  .app-store-proof {
+    top: 62%;
+    gap: 6px;
+    font-size: clamp(14px, 3.7vw, 16px);
+  }
+
+  .app-store-downloads {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .main-showcase {
+    width: min(calc(100vw - 32px), 640px);
+  }
+
+  .app-store-visual-stats {
+    min-height: 350px;
+  }
+
+  .app-store-user-wreath {
+    top: 27%;
+    width: clamp(165px, 48vw, 185px);
+  }
+
+  .app-store-user-count {
+    top: 26%;
+  }
+
+  .app-store-user-count strong {
+    font-size: 27px;
+  }
+
+  .app-store-user-count span {
+    font-size: 25px;
+  }
+
+  .app-store-proof {
+    top: 63%;
+    gap: 5px;
+    font-size: 14px;
+  }
+
+  .app-store-downloads {
+    gap: 5px;
+  }
+
+  .app-store-downloads .store-button-footer {
+    flex-basis: 136px;
+    width: 136px;
+    height: 42px;
+  }
+
+  .app-store-downloads .appgallery-badge {
+    transform: none;
+  }
 }
