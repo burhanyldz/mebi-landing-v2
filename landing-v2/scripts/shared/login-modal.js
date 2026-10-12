@@ -8,10 +8,12 @@ onReady(() => {
   const modalClose = document.querySelector('.login-modal-close');
   const modalOverlay = document.querySelector('.login-modal-overlay');
   const helpLink = loginModal.querySelector('.login-modal-help');
+  let previousScrollY = 0;
   
   // Open modal
   function openModal(e) {
     if (e) e.preventDefault();
+    previousScrollY = window.scrollY;
     loginModal.classList.add('active');
     document.body.classList.add('modal-open');
     document.documentElement.classList.add('modal-open');
@@ -22,6 +24,7 @@ onReady(() => {
     loginModal.classList.remove('active');
     document.body.classList.remove('modal-open');
     document.documentElement.classList.remove('modal-open');
+    window.scrollTo(0, previousScrollY);
   }
 
   loginButtons.forEach(button => {
