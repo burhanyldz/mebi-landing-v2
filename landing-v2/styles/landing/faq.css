@@ -157,7 +157,6 @@
   border: 1px solid var(--color-border-light);
   border-radius: 36px;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -219,14 +218,15 @@
 }
 
 .accordion-answer {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
+  transition: grid-template-rows 0.3s ease, padding 0.3s ease;
   padding: 0 32px;
 }
 
 .accordion-item.active .accordion-answer {
-  max-height: 500px;
+  grid-template-rows: 1fr;
   padding: 0 32px 24px 32px;
 }
 
@@ -251,11 +251,20 @@
 }
 
 .accordion-answer p {
+  min-height: 0;
+  overflow: hidden;
   margin: 0;
   color: #0033b3;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-icon,
+  .accordion-answer {
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {
