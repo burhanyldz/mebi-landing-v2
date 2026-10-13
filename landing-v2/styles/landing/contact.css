@@ -105,52 +105,19 @@
 }
 
 .submit-btn {
-  font-family: var(--font-main);
-  background-color: #f6f3f2;
-  color: #b7bec6;
-  border: none;
-  border-radius: 100px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 400;
-  cursor: not-allowed;
   width: 160px;
-  height: 48px;
-  transition: all 0.3s ease;
 }
 
-.submit-btn:not(:disabled) {
-  background-color: var(--color-primary-dark);
-  color: var(--color-white);
-  cursor: pointer;
-}
-
-.submit-btn:not(:disabled):hover {
-  background-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(19, 43, 147, 0.3);
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  box-shadow: none;
 }
 
 .clear-btn {
-  font-family: var(--font-main);
   display: none;
-  background-color: transparent;
-  color: var(--color-text-muted);
-  border: 2px solid var(--color-border);
-  border-radius: 100px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 400;
-  cursor: pointer;
   width: 160px;
-  height: 48px;
-  transition: all 0.3s ease;
-}
-
-.clear-btn:hover {
-  background-color: #fef2f2;
-  border-color: #ef4444;
-  color: #ef4444;
 }
 
 .form-group.error input,

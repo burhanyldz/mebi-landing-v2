@@ -1,4 +1,5 @@
 import { onReady } from '../shared/ready.js';
+import { lockScroll, unlockScroll } from '../shared/scroll-lock.js';
 
 onReady(() => {
   // Discover Modal functionality
@@ -66,8 +67,11 @@ onReady(() => {
 
     discoverModal.classList.toggle('active', isOpen);
     discoverModal.setAttribute('aria-hidden', String(!isOpen));
-    document.body.classList.toggle('modal-open', isOpen);
-    document.documentElement.classList.toggle('modal-open', isOpen);
+    if (isOpen) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
   }
 
   function openDiscoverModal(trigger = null) {

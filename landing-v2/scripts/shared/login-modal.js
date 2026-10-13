@@ -1,4 +1,5 @@
 import { onReady } from './ready.js';
+import { lockScroll, unlockScroll } from './scroll-lock.js';
 
 onReady(() => {
   const loginModal = document.getElementById('loginModal');
@@ -15,15 +16,13 @@ onReady(() => {
     if (e) e.preventDefault();
     previousScrollY = window.scrollY;
     loginModal.classList.add('active');
-    document.body.classList.add('modal-open');
-    document.documentElement.classList.add('modal-open');
+    lockScroll();
   }
 
   // Close modal function
   function closeModal() {
     loginModal.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    document.documentElement.classList.remove('modal-open');
+    unlockScroll();
     window.scrollTo(0, previousScrollY);
   }
 

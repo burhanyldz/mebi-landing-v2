@@ -5,6 +5,7 @@
  * Landing-only sections are collected in landing.css.
  */
 @import url('./styles/shared/base.css');
+@import url('./styles/shared/buttons.css');
 @import url('./styles/shared/header.css');
 @import url('./styles/shared/footer.css');
 @import url('./styles/shared/login-modal.css');

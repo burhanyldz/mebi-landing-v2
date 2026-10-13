@@ -18,11 +18,13 @@
   --color-text-subtle: #868b91;
   --color-accent: #0284c7;
   --color-border-medium: #b6c5e9;
+  --scrollbar-width: 0px;
 }
 
 html {
   overflow-x: hidden; /* prevent horizontal scroll at root level */
   max-width: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {

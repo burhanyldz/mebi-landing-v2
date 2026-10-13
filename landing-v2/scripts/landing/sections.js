@@ -77,7 +77,13 @@ onReady(() => {
       const canLoadMore = shouldLimitStudents;
       faqLoadMore.hidden = !canLoadMore;
       faqLoadMore.setAttribute('aria-expanded', String(canLoadMore && isFaqExpanded));
-      faqLoadMore.textContent = isFaqExpanded ? 'Daha az göster' : 'Daha fazla göster';
+      const textSpan = faqLoadMore.querySelector('.btn-text');
+      const label = isFaqExpanded ? 'Daha az göster' : 'Daha fazla göster';
+      if (textSpan) {
+        textSpan.textContent = label;
+      } else {
+        faqLoadMore.textContent = label;
+      }
     }
 
     refreshFaqIndicator();

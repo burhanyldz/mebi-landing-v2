@@ -40,25 +40,30 @@
 
       <!-- Right actions -->
       <div class="nav-right">
-        <a href="#" class="btn btn-primary nav-login-button">Giriş Yap</a>
+        <a href="#" class="btn btn-primary btn-sm nav-login-button">
+          <span class="btn-cursor-glow" aria-hidden="true"></span>
+          <span class="btn-text">Giriş Yap</span>
+        </a>
       </div>
     </div>
   </div>
 </header>
 <section id="hero" class="hero-section">
   <!-- hero image placed as an <img> so its intrinsic aspect ratio sets the section height -->
-  <img src="landing-v2/images/hero-section.webp" alt="Hero background" class="hero-bg" fetchpriority="high">
+  <img src="landing-v2/images/hero-final.png" alt="Hero background" class="hero-bg" fetchpriority="high">
   <img src="landing-v2/images/hero-section-mobile.webp" alt="Hero background mobile" class="hero-bg-mobile" fetchpriority="high">
   <div class="hero-overlay">
     <div class="container">
       <div class="hero-content">
         <h1 class="sr-only">MEBİ – Millî Eğitim Bakanlığı Bireysel Öğrenme Platformu</h1>
         <div class="hero-buttons">
-          <a href="#" class="btn btn-hero-primary">
-            <img src="landing-v2/images/arrow-right.svg" alt="">
-            Giriş Yap
+          <a href="#" class="btn btn-secondary btn-lg btn-hero-primary">
+            <span class="btn-cursor-glow" aria-hidden="true"></span>
+            <span class="btn-text">Giriş Yap</span>
           </a>
-          <a href="#" class="btn btn-hero-secondary">Keşfet</a>
+          <a href="#about" class="btn btn-lg btn-hero-secondary">
+            <span class="btn-text">Keşfet</span>
+          </a>
         </div>
       </div>
     </div>
@@ -298,7 +303,7 @@
           </div>
         </div>
         <div class="feature-card" data-category="soru-test" style="display: none;">
-          <div class="feature-card-image" style="background-image: url('landing-v2/images/soru-test-4.webp');"></div>
+          <div class="feature-card-image" style="background-image: url('landing-v2/images/adaptif-soru.webp');"></div>
           <div class="feature-card-content">
             <h4>Adaptif Test Ekranı</h4>
             <p>Öğrenci seviyesine göre uyum sağlayan akıllı test sistemi.</p>
@@ -330,21 +335,21 @@
         
         <!-- Planlama ve Raporlama Cards -->
         <div class="feature-card" data-category="planlama-raporlama" style="display: none;">
-          <div class="feature-card-image" style="background-image: url('landing-v2/images/planlama-raporlama-1.webp');"></div>
+          <div class="feature-card-image" style="background-image: url('landing-v2/images/hedef-belirleme.webp');"></div>
           <div class="feature-card-content">
             <h4>Hedef Belirleme</h4>
             <p> Öğrencinin kısa ve uzun vadeli akademik hedeflerini planlama imkânı.</p>
           </div>
         </div>
         <div class="feature-card" data-category="planlama-raporlama" style="display: none;">
-          <div class="feature-card-image" style="background-image: url('landing-v2/images/planlama-raporlama-2.webp');"></div>
+          <div class="feature-card-image" style="background-image: url('landing-v2/images/calisma-planim.webp');"></div>
           <div class="feature-card-content">
             <h4>Çalışma Planı</h4>
             <p>Günlük, haftalık veya aylık çalışma takvimleri oluşturma.</p>
           </div>
         </div>
         <div class="feature-card" data-category="planlama-raporlama" style="display: none;">
-          <div class="feature-card-image" style="background-image: url('landing-v2/images/planlama-raporlama-3.webp');"></div>
+          <div class="feature-card-image" style="background-image: url('landing-v2/images/raporlama.webp');"></div>
           <div class="feature-card-content">
             <h4>Ayrıntılı Raporlama</h4>
             <p>İlerlemeyi görselleştiren detaylı başarı raporları.</p>
@@ -394,7 +399,7 @@
     </div>
     <div class="main-showcase">
       <figure class="app-store-visual app-store-visual-devices">
-        <img src="landing-v2/images/app-device-showcase.webp" alt="MEBİ uygulamasının bilgisayar, tablet ve telefon ekranlarındaki görünümü" width="2880" height="2016" loading="lazy" />
+        <img src="landing-v2/images/app-device-showcase.webp" alt="MEBİ uygulamasının bilgisayar, tablet ve telefon ekranlarındaki görünümü" width="2236" height="2016" loading="lazy" />
       </figure>
       <figure class="app-store-visual app-store-visual-stats">
         <img class="app-store-user-wreath" src="landing-v2/images/app-store-user-wreath.webp" alt="" aria-hidden="true" width="463" height="442" />
@@ -686,8 +691,12 @@
         <div class="accordion-question"><span>Çocuğumun ders çalışma programını nasıl destekleyebilirim konusunda velilere yönelik ipuçları var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
         <div class="accordion-answer"><p>Veliler, çocuklarını MEBİ platformu üzerinden takip ederek sınava hazırlık ve okul derslerinin pekiştirilmesi sürecinde onlara destek verebilirler.</p></div>
       </div>
-      <button type="button" class="faq-load-more" aria-controls="faqAccordionItems" aria-expanded="false" hidden>
-        Daha fazla göster
+      <button type="button" class="btn btn-secondary btn-md faq-load-more" aria-controls="faqAccordionItems" aria-expanded="false" hidden>
+        <span class="btn-cursor-glow" aria-hidden="true"></span>
+        <span class="btn-text">Daha fazla göster</span>
+        <svg class="btn-icon-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
       </button>
         </div>
     </div>
@@ -714,8 +723,11 @@
         </div>
         <p class="required-notice">*Zorunlu alanlar</p>
         <div class="form-buttons">
-          <button type="button" class="clear-btn">Temizle</button>
-          <button type="submit" class="submit-btn">Gönder</button>
+          <button type="button" class="btn btn-tertiary btn-md clear-btn">Temizle</button>
+          <button type="submit" class="btn btn-primary btn-md submit-btn">
+            <span class="btn-cursor-glow" aria-hidden="true"></span>
+            <span class="btn-text">Gönder</span>
+          </button>
         </div>
     </form>
   </div>

@@ -91,6 +91,29 @@
   margin: 0;
 }
 
+.app-stores-section .app-store-visual-devices,
+.app-stores-section .app-store-visual-stats {
+  opacity: 0;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.app-stores-section .app-store-visual-devices {
+  transform: translateX(-56px);
+}
+
+.app-stores-section .app-store-visual-stats {
+  transform: translateX(56px);
+  transition-delay: 0.12s;
+}
+
+.app-stores-section.animate-in .app-store-visual-devices,
+.app-stores-section.animate-in .app-store-visual-stats {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .app-store-visual-devices > img:first-child {
   display: block;
   width: 100%;
@@ -244,6 +267,15 @@
   flex: 0 0 160px;
   width: 160px;
   height: 48px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.app-store-downloads .store-button-footer:hover,
+.app-store-downloads .store-button-footer:focus-visible {
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(17, 24, 39, 0.22);
 }
 
 .app-store-downloads .appgallery-badge {
@@ -290,17 +322,21 @@
 
   .app-store-visual-devices {
     order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: auto;
     overflow: visible;
   }
 
   .app-store-visual-devices > img:first-child {
-    max-width: 560px;
+    width: 100%;
+    max-width: 480px;
     height: auto;
     margin: 0 auto;
     object-fit: contain;
-    transform: scale(1.35);
-    transform-origin: center;
+    transform: translateX(10%) scale(1.35);
   }
 
   .app-store-user-wreath {
@@ -378,5 +414,21 @@
 
   .app-store-downloads .appgallery-badge {
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-stores-section .app-store-visual-devices,
+  .app-stores-section .app-store-visual-stats {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .app-store-downloads .store-button-footer,
+  .app-store-downloads .store-button-footer:hover,
+  .app-store-downloads .store-button-footer:focus-visible {
+    transform: none;
+    transition: none;
   }
 }

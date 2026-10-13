@@ -1,5 +1,5 @@
 /* =====================================================
-   HEADER — OGM floating-pill style
+   HEADER — Floating Pill Navigation
    ===================================================== */
 
 :root {
@@ -183,6 +183,7 @@
 
 /* Desktop nav links */
 .main-nav-links {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -239,54 +240,11 @@
   flex-shrink: 0;
 }
 
-/* ── Shared button base ── */
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 42px;
-  text-decoration: none;
-  font-size: 15px;
-  line-height: 24px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s ease;
-}
-
-.btn-primary {
-  background-color: #0033b3;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(0, 0, 0, 0.14) 100%);
-  color: #ffffff;
-  box-shadow:
-    0 0 0 1px #132b93,
-    0 2px 6px rgba(0, 51, 179, 0.22);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
-}
-
+/* ── Nav Login Button specific sizing ── */
 .nav-login-button {
-  padding: 10px 22px;
-  font-size: var(--header-button-font-size);
-  min-height: 44px;
-  white-space: nowrap;
-}
-
-.nav-login-button:hover {
-  background-color: #132b93;
-  box-shadow:
-    0 0 0 1px #0d1f73,
-    0 6px 18px rgba(0, 51, 179, 0.38);
-  transform: translateY(-1px);
-}
-
-.nav-login-button:active {
-  transform: translateY(0) scale(0.97);
-  box-shadow:
-    0 0 0 1px #0d1f73,
-    0 2px 6px rgba(0, 51, 179, 0.25);
+  padding: 9px 20px;
+  font-size: 14.5px;
+  min-height: 40px;
 }
 
 /* ── Responsive tweaks ── */

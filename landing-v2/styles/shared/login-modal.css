@@ -234,9 +234,22 @@
   }
 }
 
-/* Prevent body/html scroll when modal is open */
+/* ── Modal Open: Scroll Lock & Anti-Layout-Shift ── */
 html.modal-open,
 body.modal-open {
   overflow: hidden !important;
   overscroll-behavior: contain;
+}
+
+/* Compensate scrollbar width so navbar, body and fixed elements never jump */
+html.modal-open body {
+  padding-right: var(--scrollbar-width, 0px) !important;
+}
+
+html.modal-open .site-header-wrapper {
+  right: var(--scrollbar-width, 0px) !important;
+}
+
+html.modal-open .scroll-to-top {
+  right: calc(30px + var(--scrollbar-width, 0px)) !important;
 }

@@ -1,0 +1,299 @@
+/**
+ * MEBİ Button System
+ * Variants: primary, secondary, tertiary, outline, ghost
+ * Sizes: sm, md, lg
+ */
+
+/* ── Base Button Styles ── */
+.btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  font-family: var(--font-main, 'Rubik', sans-serif);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  outline-offset: 4px;
+  transition:
+    background-color 0.2s ease-out,
+    border-color 0.2s ease-out,
+    color 0.2s ease-out,
+    box-shadow 0.2s ease-out,
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out,
+    filter 0.2s ease-out;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ── Sizes: sm, md, lg ── */
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 8px;
+  min-height: 38px;
+}
+
+.btn-md {
+  padding: 10px 22px;
+  font-size: 15px;
+  line-height: 22px;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.btn-lg {
+  padding: 14px 30px;
+  font-size: 16px;
+  line-height: 24px;
+  gap: 10px;
+  min-height: 52px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ── Variant: PRIMARY ── */
+.btn-primary {
+  border-color: #2563eb;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 48%, #1d4ed8 100%);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(10, 30, 90, 0.25);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 10px 0 rgba(191, 219, 254, 0.42),
+    0 10px 24px -10px rgba(29, 78, 216, 0.5);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  border-color: #3b82f6;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    inset 0 -3px 12px 0 rgba(191, 219, 254, 0.55),
+    0 14px 28px -8px rgba(37, 99, 235, 0.55);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  filter: brightness(1);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 -2px 6px 0 rgba(191, 219, 254, 0.3),
+    0 4px 12px -4px rgba(29, 78, 216, 0.45);
+}
+
+/* ── Variant: SECONDARY ── */
+.btn-secondary {
+  border-color: color-mix(in srgb, #2563eb 24%, white);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, color-mix(in srgb, #dbeafe 56%, white) 100%);
+  color: #1d4ed8;
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 99, 235, 0.07),
+    inset 0 -3px 8px 0 rgba(191, 219, 254, 0.28),
+    0 8px 18px -12px rgba(29, 78, 216, 0.28);
+}
+
+.btn-secondary:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, #2563eb 40%, white);
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 99, 235, 0.12),
+    inset 0 -3px 10px 0 rgba(191, 219, 254, 0.42),
+    0 12px 22px -8px rgba(29, 78, 216, 0.35);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 99, 235, 0.07),
+    inset 0 -2px 6px 0 rgba(191, 219, 254, 0.2),
+    0 4px 10px -6px rgba(29, 78, 216, 0.2);
+}
+
+/* ── Fancy Overlays (Primary & Secondary) ── */
+/* Layer 1: Diagonal sheen with radial bottom mask */
+.btn-primary::before,
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: 1;
+  width: 140%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-50deg, transparent, rgba(191, 219, 254, 0.48), transparent);
+  -webkit-mask-image: radial-gradient(circle at bottom, transparent 38%, black);
+  mask-image: radial-gradient(circle at bottom, transparent 38%, black);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-secondary::before {
+  background: linear-gradient(-50deg, transparent, rgba(191, 219, 254, 0.54), transparent);
+}
+
+/* Layer 2: Bottom inner glow ring */
+.btn-primary::after,
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% + 1rem);
+  height: calc(100% + 1rem);
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  box-shadow: inset 0 -1ex 1.5rem 2px rgba(191, 219, 254, 0.34);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-secondary::after {
+  box-shadow: inset 0 -1ex 1.5rem 2px rgba(191, 219, 254, 0.38);
+}
+
+.btn-primary:hover::before,
+.btn-primary:hover::after,
+.btn-secondary:hover::before,
+.btn-secondary:hover::after {
+  opacity: 1;
+}
+
+/* ── Variant: TERTIARY ── */
+.btn-tertiary {
+  background: #f4f4f5;
+  border-color: transparent;
+  color: #52525b;
+}
+
+.btn-tertiary:hover {
+  background: #e4e4e7;
+  color: #18181b;
+  transform: translateY(-1px);
+}
+
+.btn-tertiary:active {
+  transform: scale(0.98);
+}
+
+/* ── Variant: OUTLINE ── */
+.btn-outline {
+  background: transparent;
+  border: 2px solid #e4e4e7;
+  color: #52525b;
+}
+
+.btn-outline:hover {
+  border-color: #d4d4d8;
+  background: #fafafa;
+  color: #18181b;
+  transform: translateY(-1px);
+}
+
+.btn-outline:active {
+  transform: scale(0.98);
+}
+
+/* ── Variant: GHOST ── */
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: #52525b;
+}
+
+.btn-ghost:hover {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+.btn-ghost:active {
+  transform: scale(0.98);
+}
+
+/* ── Interactive Cursor Glow (mouse tracking span) ── */
+.btn .btn-cursor-glow {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  filter: blur(16px);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  z-index: 1;
+}
+
+.btn-secondary .btn-cursor-glow {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.btn:hover .btn-cursor-glow {
+  opacity: 1;
+}
+
+/* ── Content Container (Text & Icons above overlays) ── */
+.btn .btn-text,
+.btn .btn-content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Icon micro-animations */
+.btn svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: transform 0.2s ease-out;
+}
+
+.btn:hover svg.btn-icon-right,
+.btn:hover .btn-text > svg:last-child:not(:first-child) {
+  transform: translateX(3px);
+}
+
+.btn:hover svg.btn-icon-left,
+.btn:hover .btn-text > svg:first-child:not(:last-child) {
+  transform: translateX(-3px);
+}

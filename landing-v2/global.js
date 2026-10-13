@@ -18,6 +18,7 @@ document.addEventListener('dragstart', (event) => {
 }, { capture: true });
 
 const sharedModules = [
+  './scripts/shared/scroll-lock.js',
   './scripts/shared/header.js',
   './scripts/shared/scroll-to-top.js',
   './scripts/shared/login-modal.js'
