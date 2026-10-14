@@ -27,6 +27,8 @@
   position: absolute;
   inset: 0;
   background: rgba(7, 15, 39, 0.58);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
   transition: opacity 320ms ease;
 }
@@ -533,6 +535,8 @@
 @media (prefers-reduced-transparency: reduce) {
   .discover-modal-overlay {
     background: rgba(7, 15, 39, 0.72);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .discover-modal-content {

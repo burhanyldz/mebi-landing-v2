@@ -63,7 +63,7 @@ onReady(() => {
   let lastTrigger = null;
 
   function setModalState(isOpen) {
-    if (!discoverModal) return;
+    if (!discoverModal || discoverModal.classList.contains('active') === isOpen) return;
 
     discoverModal.classList.toggle('active', isOpen);
     discoverModal.setAttribute('aria-hidden', String(!isOpen));

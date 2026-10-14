@@ -25,9 +25,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(4, 3, 8, 0.6);
+  background: rgba(7, 15, 39, 0.58);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 1;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .login-modal-overlay {
+    background: rgba(7, 15, 39, 0.72);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 .login-modal-content {
@@ -232,24 +241,4 @@
     width: 18px;
     height: 18px;
   }
-}
-
-/* ── Modal Open: Scroll Lock & Anti-Layout-Shift ── */
-html.modal-open,
-body.modal-open {
-  overflow: hidden !important;
-  overscroll-behavior: contain;
-}
-
-/* Compensate scrollbar width so navbar, body and fixed elements never jump */
-html.modal-open body {
-  padding-right: var(--scrollbar-width, 0px) !important;
-}
-
-html.modal-open .site-header-wrapper {
-  right: var(--scrollbar-width, 0px) !important;
-}
-
-html.modal-open .scroll-to-top {
-  right: calc(30px + var(--scrollbar-width, 0px)) !important;
 }

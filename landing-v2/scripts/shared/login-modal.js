@@ -9,21 +9,20 @@ onReady(() => {
   const modalClose = document.querySelector('.login-modal-close');
   const modalOverlay = document.querySelector('.login-modal-overlay');
   const helpLink = loginModal.querySelector('.login-modal-help');
-  let previousScrollY = 0;
   
   // Open modal
   function openModal(e) {
     if (e) e.preventDefault();
-    previousScrollY = window.scrollY;
+    if (loginModal.classList.contains('active')) return;
     loginModal.classList.add('active');
     lockScroll();
   }
 
   // Close modal function
   function closeModal() {
+    if (!loginModal.classList.contains('active')) return;
     loginModal.classList.remove('active');
     unlockScroll();
-    window.scrollTo(0, previousScrollY);
   }
 
   loginButtons.forEach(button => {
