@@ -126,12 +126,135 @@
   }
 }
 
-.infographic-card .about-graphic {
+.about-diagram {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 604 / 330;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.diagram-art {
+  position: absolute;
+  display: block;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-diagram--audience .diagram-art--audience-nodes {
+  left: 5.132%;
+  top: 7.879%;
+  width: 89.901%;
+}
+
+.about-diagram--audience .diagram-art--audience-connectors {
+  left: 35.392%;
+  top: 21.215%;
+  width: 26.49%;
+}
+
+.about-diagram--login .diagram-art--login {
+  left: 5.96%;
+  top: 15.152%;
+  width: 88.245%;
+}
+
+.diagram-motion {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  max-width: 90%;
-  margin: 20px auto 0 auto;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Short brand-colored signal traveling the full path toward MEBİ */
+.diagram-motion .connection-pulse {
+  fill: none;
+  stroke: #0033B3;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 12 88;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  filter: none;
+  animation: clean-connection-pulse 3.8s linear infinite;
+}
+
+/* Staggering delays for Audience (4 nodes) */
+.about-diagram--audience .connection-pulse--1 { animation-delay: 0s; }
+.about-diagram--audience .connection-pulse--2 { animation-delay: 0.8s; }
+.about-diagram--audience .connection-pulse--3 { animation-delay: 1.6s; }
+.about-diagram--audience .connection-pulse--4 { animation-delay: 2.4s; }
+
+/* Staggering delays for Login (3 nodes) */
+.about-diagram--login .connection-pulse--1 { animation-delay: 0s; }
+.about-diagram--login .connection-pulse--2 { animation-delay: 1.05s; }
+.about-diagram--login .connection-pulse--3 { animation-delay: 2.1s; }
+.about-diagram--login .connection-pulse--reverse { animation-name: clean-connection-pulse-reverse; }
+
+@keyframes clean-connection-pulse {
+  0%, 18% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  22% {
+    stroke-dashoffset: 0;
+    opacity: 0.84;
+  }
+  70% {
+    stroke-dashoffset: -88;
+    opacity: 0.84;
+  }
+  82% {
+    stroke-dashoffset: -88;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes clean-connection-pulse-reverse {
+  0%, 18% {
+    stroke-dashoffset: -88;
+    opacity: 0;
+  }
+  22% {
+    stroke-dashoffset: -88;
+    opacity: 0.84;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    opacity: 0.84;
+  }
+  82% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: -88;
+    opacity: 0;
+  }
+}
+
+/* Card hover */
+.infographic-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.infographic-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(19, 43, 147, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram-motion { display: none; }
 }
 
 .card-background {
@@ -152,7 +275,7 @@
 }
 
 .card-footer {
-  padding: 16px 24px;
+  padding: 0 24px 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -160,13 +283,13 @@
 
 @media (max-width: 768px) {
   .card-footer {
-    padding: 14px 20px;
+    padding: 0 20px 12px;
   }
 }
 
 @media (max-width: 480px) {
   .card-footer {
-    padding: 12px 16px;
+    padding: 0 16px 12px;
   }
 }
 

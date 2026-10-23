@@ -2,7 +2,7 @@
 @import url('./global.css');
 
 @import url('./styles/landing/hero.css');
-@import url('./styles/landing/about.css');
+@import url('./styles/landing/about.css?v=20261023-svg-diagrams-v7');
 @import url('./styles/landing/resources.css');
 @import url('./styles/landing/statistics.css');
 @import url('./styles/landing/features.css');

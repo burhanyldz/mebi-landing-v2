@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="landing-v2/landing.css">
+  <link rel="stylesheet" href="landing-v2/landing.css?v=20261023-presence-v39">
   <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
   <script src="landing-v2/global.js" defer></script>
 </head>
@@ -79,24 +79,44 @@
       </p>
     </div>
     <div class="infographics-grid scroll-animate-stagger">
-      <!--merged image-->
+      <!-- Audience infographic -->
       <div class="infographic-card">
         <div class="card-background"></div>
         <div class="card-content">
-          <!-- Replaced complex image stack + button group with optimized SVG -->
-          <img src="landing-v2/images/about-1.svg" alt="About graphic 1" class="about-graphic">
+          <div class="about-diagram about-diagram--audience" role="img" aria-label="MEBİ; mezunlar, veliler, öğrenciler ve öğretmenler için ortak bir öğrenme platformudur.">
+            <img class="diagram-art diagram-art--audience-nodes" src="landing-v2/images/about-audience-nodes.svg" width="543" height="283" alt="" aria-hidden="true">
+            <img class="diagram-art diagram-art--audience-connectors" src="landing-v2/images/about-audience-connectors.svg?v=20261023-line-color-1" width="160" height="193" alt="" aria-hidden="true">
+            <svg class="diagram-motion" viewBox="0 0 604 330" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(213.772 70.01)">
+                <!-- Clean, minimal progressing pulses connecting to MEBİ -->
+                <path class="connection-pulse connection-pulse--1" pathLength="100" d="M159.976 1C138.266 1 157.279 96.069 135.569 96.069"/>
+                <path class="connection-pulse connection-pulse--2" pathLength="100" d="M0.47998 1C22.1907 1 3.17694 96.069 24.8877 96.069"/>
+                <path class="connection-pulse connection-pulse--3" pathLength="100" d="M159.976 191.214C138.258 191.214 157.287 96.0691 135.569 96.0691"/>
+                <path class="connection-pulse connection-pulse--4" pathLength="100" d="M0 191.214C21.9584 191.214 2.92934 96.0691 24.8877 96.0691"/>
+              </g>
+            </svg>
+          </div>
           <div class="card-footer">
             <h3>Kimler Kullanabilir?</h3>
             <p>Ortaokul ve lise öğrencileri, mezunlar, öğretmenler ve veliler MEBİ’den ücretsiz yararlanabilir.</p>
           </div>
         </div>
       </div>
-      <!--merged image-->
+      <!-- Sign-in methods infographic -->
       <div class="infographic-card">
         <div class="card-background"></div>
         <div class="card-content">
-          <!-- Replaced complex image stack + login methods with optimized SVG -->
-          <img src="landing-v2/images/about-2.svg" alt="About graphic 2" class="about-graphic">
+          <div class="about-diagram about-diagram--login" role="img" aria-label="MEBİ’ye EBA, e-Devlet veya MEBBİS hesabınızla giriş yapabilirsiniz.">
+            <img class="diagram-art diagram-art--login" src="landing-v2/images/about-login-methods.svg?v=20261023-line-color-1" width="533" height="233" alt="" aria-hidden="true">
+            <svg class="diagram-motion" viewBox="0 0 604 330" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(35.9984 50.0016)">
+                <!-- Clean, minimal progressing pulses connecting to MEBİ -->
+                <path class="connection-pulse connection-pulse--1" pathLength="100" d="M146.744 196.977C200.469 196.977 170.807 48.6713 224.532 48.6713"/>
+                <path class="connection-pulse connection-pulse--2 connection-pulse--reverse" pathLength="100" d="M279.872 90.9774C279.872 131.977 279.872 131.977 279.872 172.977"/>
+                <path class="connection-pulse connection-pulse--3" pathLength="100" d="M413 196.977C359.276 196.977 388.937 48.6713 335.213 48.6713"/>
+              </g>
+            </svg>
+          </div>
           <div class="card-footer">
             <h3>Giriş Yöntemleri</h3>
             <p>EBA, e-Devlet veya MEBBİS hesabınızla giriş yaparak tüm içeriklere anında erişebilirsiniz.</p>
