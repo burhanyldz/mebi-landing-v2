@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="landing-v2/landing.css?v=20261023-presence-v39">
   <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
-  <script src="landing-v2/global.js" defer></script>
+  <script src="landing-v2/global.js?v=20261023-presence-v34" defer></script>
 </head>
 <body oncontextmenu="return false;">
 <header id="section-header" class="site-header-wrapper">
@@ -67,6 +67,22 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+<section id="active-users" class="presence-section" aria-labelledby="presence-title">
+  <div class="container">
+    <div class="section-header presence-header">
+      <div class="tag">MEBİ Topluluğu</div>
+      <h2 id="presence-title" class="section-title">Birlikte <span class="text-gradient-emphasis">öğreniyoruz</span></h2>
+      <p class="section-description presence-description">Dünya’nın dört bir yanından binlerce kişi, MEBİ’de aynı öğrenme yolculuğunu paylaşıyor.</p>
+    </div>
+  </div>
+  <div class="presence-counter" role="group" aria-label="MEBİ’de şu anda aktif kişi sayısı">
+    <span class="presence-count" data-presence-count>—</span>
+    <span class="presence-status">kişi şu anda MEBİ’de</span>
+  </div>
+  <div class="presence-field-wrap" aria-hidden="true">
+    <canvas class="presence-field" data-presence-field></canvas>
   </div>
 </section>
 <section id="about" class="about-section scroll-animate">

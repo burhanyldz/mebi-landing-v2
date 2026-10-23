@@ -26,6 +26,7 @@ const sharedModules = [
 
 const landingModules = [
   './scripts/landing/animations.js',
+  './scripts/landing/presence-counter.js?v=20261023-presence-v34',
   './scripts/landing/navigation.js',
   './scripts/landing/sections.js',
   './scripts/landing/discover-modal.js',
