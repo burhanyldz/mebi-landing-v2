@@ -3,15 +3,15 @@
 
 @import url('./styles/landing/hero.css');
 @import url('./styles/landing/presence-counter.css?v=20261023-presence-v34');
-@import url('./styles/landing/about.css?v=20261023-svg-diagrams-v7');
+@import url('./styles/landing/about.css?v=20261024-no-card-hover');
 @import url('./styles/landing/resources.css');
 @import url('./styles/landing/statistics.css');
 @import url('./styles/landing/features.css');
-@import url('./styles/landing/modules.css?v=20261024-scale-v2');
+@import url('./styles/landing/modules.css?v=20261024-modules-space-release-v1');
 @import url('./styles/landing/app-stores.css');
 @import url('./styles/landing/global-access.css?v=20261024-overlap-v3');
 @import url('./styles/landing/ai-assistant.css');
-@import url('./styles/landing/feedback.css');
+@import url('./styles/landing/feedback.css?v=20261024-testimonials-marquee-v1');
 @import url('./styles/landing/faq.css');
 @import url('./styles/landing/contact.css');
 @import url('./styles/landing/discover-modal.css');

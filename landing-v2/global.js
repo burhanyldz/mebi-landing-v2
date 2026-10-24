@@ -26,13 +26,14 @@ const sharedModules = [
 
 const landingModules = [
   './scripts/landing/animations.js',
+  './scripts/landing/modules-motion.js?v=20261024-module-scroll-return-v3',
   './scripts/landing/presence-counter.js?v=20261023-presence-v34',
   './scripts/landing/navigation.js',
   './scripts/landing/sections.js',
   './scripts/landing/discover-modal.js',
   './scripts/landing/video-downloads.js',
   './scripts/landing/contact-form.js',
-  './scripts/landing/testimonials.js'
+  './scripts/landing/testimonials.js?v=20261024-testimonials-marquee-v1'
 ];
 
 const modules = [...sharedModules, ...landingModules];
