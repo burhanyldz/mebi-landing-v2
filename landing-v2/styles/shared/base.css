@@ -11,6 +11,7 @@
   --color-border: #b6c5e9;
   --color-border-light: #dfe6f5;
   --font-main: 'Rubik', sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   /* Additional colors from mebi-landing-2 */
   --color-white: #ffffff;
   --color-text-primary: #040308;

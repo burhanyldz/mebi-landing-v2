@@ -268,14 +268,25 @@
   width: 160px;
   height: 48px;
   transition:
-    transform 0.2s ease,
+    transform 140ms var(--ease-out),
     box-shadow 0.2s ease;
 }
 
-.app-store-downloads .store-button-footer:hover,
 .app-store-downloads .store-button-footer:focus-visible {
   transform: scale(1.06);
   box-shadow: 0 10px 22px rgba(17, 24, 39, 0.22);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .app-store-downloads .store-button-footer:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 22px rgba(17, 24, 39, 0.22);
+  }
+}
+
+.app-store-downloads .store-button-footer:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 10px rgba(17, 24, 39, 0.16);
 }
 
 .app-store-downloads .appgallery-badge {
@@ -430,5 +441,13 @@
   .app-store-downloads .store-button-footer:focus-visible {
     transform: none;
     transition: none;
+  }
+
+  .app-store-downloads .store-button-footer {
+    transition: opacity 100ms var(--ease-out);
+  }
+
+  .app-store-downloads .store-button-footer:active {
+    opacity: 0.88;
   }
 }

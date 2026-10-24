@@ -47,6 +47,24 @@
   margin-top: 90px;
 }
 
+.ai-assistant-section .ai-assistant-image {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  transition: opacity 500ms var(--ease-out) 80ms, transform 500ms var(--ease-out) 80ms;
+}
+
+.ai-assistant-section.animate-in .ai-assistant-image {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-assistant-section .ai-assistant-image {
+    transform: none;
+    transition: opacity 180ms var(--ease-out);
+  }
+}
+
 @media (max-width: 1240px) {
   .visual-container {
     margin-top: -150px;

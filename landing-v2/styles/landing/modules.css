@@ -1,57 +1,51 @@
 /* CSS for section section:modules */
 .modules-section {
   background-color: var(--color-background);
-  padding-bottom: 0;
-  padding-top: 0;
+  padding: 0 0 40px;
 }
 
 .modules-section .section-header {
-  margin-bottom: 60px;
+  margin-bottom: 28px;
 }
 
 .modules-graphic {
   position: relative;
+  left: 50%;
+  width: min(1460px, calc(100vw - 32px));
+  max-width: none;
+  margin: 0;
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+.modules-graphic img {
+  display: block;
   width: 100%;
-  height: 700px;
-  background-image: url(../../images/modules.webp);
-  background-position: center 72%;
-  background-size: 104%;
-  background-repeat: no-repeat;
-}
-
-@media (max-width: 1200px) {
-  .modules-graphic {
-    transform: scale(1.1);
-    margin-top: -100px;
-    height: 600px;
-  }
-}
-
-@media (max-width: 992px) {
-  .modules-graphic {
-    transform: scale(1);
-    margin-top: -50px;
-    height: 450px;
-  }
+  height: auto;
 }
 
 @media (max-width: 768px) {
-  .modules-graphic {
-    margin-top: -70px;
-    height: 400px;
+  .modules-section .section-header {
+    margin-bottom: 10px;
   }
-}
 
-@media (max-width: 640px) {
   .modules-graphic {
-    transform: scale(1.2);
-    margin-top: -50px;
-    height: 350px;
+    left: auto;
+    width: 100%;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .modules-graphic img {
+    width: 150%;
+    max-width: none;
+    margin-left: -25%;
   }
 }
 
 @media (max-width: 480px) {
-  .modules-graphic {
-    height: 300px;
+  .modules-graphic img {
+    width: 190%;
+    margin-left: -45%;
   }
 }

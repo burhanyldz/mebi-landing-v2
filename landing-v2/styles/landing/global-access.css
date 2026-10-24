@@ -6,9 +6,19 @@
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .global-access-section {
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(-190px, -11vw, -110px);
+    margin-bottom: clamp(125px, 8vw, 145px);
+    padding-top: 35px;
+  }
+}
+
 @media (min-width: 1240px) {
   .global-access-section {
-    padding-top: 60px;
+    padding-top: 35px;
   }
 }
 

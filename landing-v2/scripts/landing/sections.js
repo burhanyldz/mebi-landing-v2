@@ -4,6 +4,8 @@ import { onReady } from '../shared/ready.js';
 onReady(() => {
   const featureNavItems = document.querySelectorAll('.feature-nav-item');
   const featureCards = document.querySelectorAll('.feature-card');
+  let featureSwitchVersion = 0;
+  let featureSwitchTimeout;
   
   featureNavItems.forEach(navItem => {
     navItem.addEventListener('click', function() {
@@ -16,11 +18,21 @@ onReady(() => {
       
       // Add active class to clicked item
       this.classList.add('active');
+
+      featureSwitchVersion += 1;
+      const currentSwitch = featureSwitchVersion;
+      clearTimeout(featureSwitchTimeout);
+      const enteringCards = [];
       
       // Update all cards in one pass so there is no empty intermediate layout.
       featureCards.forEach(card => {
         const isVisible = card.getAttribute('data-category') === category;
+        card.classList.remove('is-switching', 'is-switching-in');
         card.style.display = isVisible ? 'flex' : 'none';
+        if (isVisible) {
+          card.classList.add('is-switching', 'is-switching-in');
+          enteringCards.push(card);
+        }
         card.querySelectorAll('video').forEach(video => {
           if (isVisible) {
             video.play().catch(() => {});
@@ -29,6 +41,15 @@ onReady(() => {
           }
         });
       });
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (currentSwitch !== featureSwitchVersion) return;
+        enteringCards.forEach(card => card.classList.remove('is-switching-in'));
+        featureSwitchTimeout = window.setTimeout(() => {
+          if (currentSwitch !== featureSwitchVersion) return;
+          enteringCards.forEach(card => card.classList.remove('is-switching'));
+        }, 220);
+      }));
     });
   });
 
