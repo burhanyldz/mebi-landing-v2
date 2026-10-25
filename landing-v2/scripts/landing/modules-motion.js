@@ -4,9 +4,9 @@ onReady(async () => {
   const graphic = document.querySelector('.modules-graphic');
   const track = graphic?.closest('.modules-scroll-track');
   const fallback = graphic?.querySelector('img');
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!track || !fallback || (prefersReducedMotion && !isMobile)) return;
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!track || !fallback) return;
 
   try {
     const response = await fetch(fallback.src);
@@ -19,17 +19,7 @@ onReady(async () => {
     const pulses = [...svg.querySelectorAll('.module-route-pulse')];
     if (svg.localName !== 'svg' || pulses.length !== 8) return;
 
-    if (isMobile) {
-      svg.setAttribute('viewBox', '900 480 950 620');
-      svg.setAttribute('width', '950');
-      svg.setAttribute('height', '620');
-      fallback.replaceWith(svg);
-      return;
-    }
-
-    if (prefersReducedMotion) return;
-
-    svg.classList.add('module-scroll-controlled');
+    const desktopView = ['viewBox', 'width', 'height'].map(name => [name, svg.getAttribute(name)]);
     const startOrder = pulses.map((_, index) => index);
     for (let index = startOrder.length - 1; index > 0; index -= 1) {
       const randomIndex = Math.floor(Math.random() * (index + 1));
@@ -79,121 +69,158 @@ onReady(async () => {
       svg.classList.add('module-motion-visible');
     }
 
-    const section = graphic.closest('.modules-section');
-    let frame = 0;
     let routesComplete = false;
-    let hasReachedCenter = false;
-    let spacerReleased = false;
-    let completionOffsetReleased = false;
-    let lastScrollY = window.scrollY;
-    let stickyTop = 0;
-    let pinDistance = 1;
-    const measure = () => {
-      const wasPinned = graphic.classList.contains('is-pinned');
-      graphic.classList.remove('is-pinned');
-      graphic.style.setProperty('--module-pin-offset', '0px');
-      track.style.height = 'auto';
+    let disposeDesktop = () => {};
 
-      const trackRect = track.getBoundingClientRect();
-      const graphicWidth = graphic.offsetWidth;
-      const graphicHeight = graphic.offsetHeight;
-      const graphicLeft = window.innerWidth <= 768
-        ? trackRect.left
-        : trackRect.left + (trackRect.width - graphicWidth) / 2;
-      stickyTop = (window.innerHeight - graphicHeight) / 2;
-      const reservedDistance = parseFloat(getComputedStyle(track).paddingBottom) || 0;
-      pinDistance = spacerReleased ? 0 : reservedDistance || 1;
-      track.style.height = `${graphicHeight + pinDistance}px`;
-      graphic.style.setProperty('--module-sticky-top', `${stickyTop}px`);
-      graphic.style.setProperty('--module-fixed-left', `${graphicLeft}px`);
-      graphic.style.setProperty('--module-fixed-width', `${graphicWidth}px`);
-      if (wasPinned) graphic.classList.add('is-pinned');
-    };
-    const update = () => {
-      frame = 0;
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
-      const trackTop = track.getBoundingClientRect().top;
-      if (routesComplete) {
+    const configureMotion = () => {
+      disposeDesktop();
+      svg.classList.remove('module-scroll-controlled');
+      svg.style.removeProperty('--module-entry-scale');
+      const isMobile = mobileQuery.matches;
+      const view = isMobile
+        ? [['viewBox', '900 480 950 620'], ['width', '950'], ['height', '620']]
+        : desktopView;
+      view.forEach(([name, value]) => svg.setAttribute(name, value));
+      if (isMobile || reducedMotionQuery.matches) return;
+
+      svg.classList.add('module-scroll-controlled');
+      // A completed illustration stays in normal flow, including after resize.
+      if (routesComplete) return;
+
+      track.classList.add('modules-scroll-active');
+      let frame = 0;
+      let releaseTimer = 0;
+      let releaseRequested = false;
+      let disposed = false;
+      let hasReachedCenter = false;
+      let lastScrollY = window.scrollY;
+      let stickyTop = 0;
+      let pinDistance = 1;
+      let measuredWidth = 0;
+      let measuredHeight = 0;
+
+      const measure = () => {
         graphic.classList.remove('is-pinned');
-        if (scrollDelta < 0 && !completionOffsetReleased) {
-          completionOffsetReleased = true;
-          spacerReleased = true;
-          pinDistance = 0;
-          track.style.paddingBottom = '0px';
-          track.style.height = `${graphic.offsetHeight}px`;
-          section?.classList.add('modules-completion-released');
-          window.removeEventListener('scroll', schedule);
+        graphic.style.setProperty('--module-pin-offset', '0px');
+        track.style.removeProperty('height');
+
+        const trackRect = track.getBoundingClientRect();
+        measuredWidth = graphic.offsetWidth;
+        measuredHeight = graphic.offsetHeight;
+        stickyTop = (window.innerHeight - measuredHeight) / 2;
+        pinDistance = parseFloat(getComputedStyle(track).paddingBottom) || 1;
+        track.style.height = `${measuredHeight + pinDistance}px`;
+        graphic.style.setProperty('--module-sticky-top', `${stickyTop}px`);
+        graphic.style.setProperty('--module-fixed-left', `${trackRect.left + (trackRect.width - measuredWidth) / 2}px`);
+        graphic.style.setProperty('--module-fixed-width', `${measuredWidth}px`);
+      };
+
+      const releaseSpace = () => {
+        const previousScrollY = window.scrollY;
+        const releasedDistance = pinDistance;
+        disposeDesktop();
+
+        // Removing both the spacer and the graphic's offset moves everything
+        // below the track by the same distance. Move the viewport with it so
+        // reversing the scroll never makes the illustration or next section jump.
+        const root = document.documentElement;
+        const previousScrollBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, Math.max(0, previousScrollY - releasedDistance));
+        root.style.scrollBehavior = previousScrollBehavior;
+      };
+
+      const queueRelease = () => {
+        releaseRequested = true;
+        clearTimeout(releaseTimer);
+        // Let smooth anchor navigation and trackpad momentum finish before
+        // compensating the scroll position; scrollTo would interrupt them.
+        releaseTimer = window.setTimeout(releaseSpace, 160);
+      };
+
+      const update = () => {
+        frame = 0;
+        if (disposed) return;
+        const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
+        lastScrollY = currentScrollY;
+        const trackTop = track.getBoundingClientRect().top;
+        if (routesComplete) {
+          graphic.classList.remove('is-pinned');
+          graphic.style.setProperty('--module-pin-offset', `${pinDistance}px`);
+          const graphicBottom = trackTop + pinDistance + measuredHeight;
+          if (releaseRequested || scrollDelta < 0 || graphicBottom <= 0) queueRelease();
+          return;
         }
-        const graphicOffset = completionOffsetReleased ? 0 : pinDistance;
-        graphic.style.setProperty('--module-pin-offset', `${graphicOffset}px`);
 
-        // After the first completed pass, let the graphic follow normal page
-        // scrolling. Release the reserved animation space only after it has
-        // fully left the viewport while moving down, so scrolling back up
-        // never pins it at the center again.
-        const graphicBottom = trackTop + graphicOffset + graphic.offsetHeight;
-        if (!spacerReleased && scrollDelta > 0 && graphicBottom <= 0) {
-          const releasedDistance = pinDistance;
-          spacerReleased = true;
-          pinDistance = 0;
-          track.style.paddingBottom = '0px';
-          track.style.height = `${graphic.offsetHeight}px`;
-          graphic.style.setProperty('--module-pin-offset', '0px');
-          window.removeEventListener('scroll', schedule);
+        const approach = Math.max(0, Math.min(1, (window.innerHeight - trackTop) / (window.innerHeight - stickyTop)));
+        if (approach >= 1) hasReachedCenter = true;
+        svg.style.setProperty('--module-entry-scale', `${hasReachedCenter ? 1 : 0.88 + approach * 0.12}`);
 
-          // The track shrinks below the viewport. Compensate the same amount
-          // so the next section stays in place without a visible scroll jump.
-          const previousScrollBehavior = document.documentElement.style.scrollBehavior;
-          document.documentElement.style.scrollBehavior = 'auto';
-          window.scrollTo(0, Math.max(0, window.scrollY - releasedDistance));
-          document.documentElement.style.scrollBehavior = previousScrollBehavior;
+        const pinOffset = Math.max(0, Math.min(pinDistance, stickyTop - trackTop));
+        graphic.classList.toggle('is-pinned', trackTop <= stickyTop && pinOffset < pinDistance);
+        graphic.style.setProperty('--module-pin-offset', `${pinOffset >= pinDistance ? pinDistance : 0}px`);
+        const progress = pinOffset / pinDistance;
+
+        routes.forEach(({ guide, point, hubPoints, direction, start }) => {
+          const routeProgress = Math.max(0, Math.min(1, (progress - start) / 0.72));
+          guide.style.strokeDashoffset = `${direction * 100 * (1 - routeProgress)}`;
+          point.classList.toggle('is-visible', routeProgress >= 1);
+          hubPoints.forEach(hubPoint => hubPoint?.classList.toggle('is-visible', routeProgress > 0));
+        });
+        if (progress >= 1) {
+          routesComplete = true;
+          svg.classList.add('module-routes-complete');
+          graphic.classList.remove('is-pinned');
+          graphic.style.setProperty('--module-pin-offset', `${pinDistance}px`);
+          // Anchor links and restored scroll positions can skip the whole track.
+          if (trackTop + pinDistance + measuredHeight <= 0) queueRelease();
         }
-        return;
-      }
+      };
 
-      const approach = Math.max(0, Math.min(1, (window.innerHeight - trackTop) / (window.innerHeight - stickyTop)));
-      if (approach >= 1) hasReachedCenter = true;
-      svg.style.setProperty('--module-entry-scale', `${hasReachedCenter ? 1 : 0.88 + approach * 0.12}`);
-
-      const pinOffset = Math.max(0, Math.min(pinDistance, stickyTop - trackTop));
-      const isPinned = trackTop <= stickyTop && pinOffset < pinDistance;
-      graphic.classList.toggle('is-pinned', isPinned);
-      graphic.style.setProperty('--module-pin-offset', `${pinOffset >= pinDistance ? pinDistance : 0}px`);
-      const progress = pinOffset / pinDistance;
-
-      routes.forEach(({ guide, point, hubPoints, direction, start }) => {
-        const routeProgress = Math.max(0, Math.min(1, (progress - start) / 0.72));
-        guide.style.strokeDashoffset = `${direction * 100 * (1 - routeProgress)}`;
-        point.classList.toggle('is-visible', routeProgress >= 1);
-        hubPoints.forEach(hubPoint => hubPoint?.classList.toggle('is-visible', routeProgress > 0));
+      const schedule = () => {
+        if (releaseRequested) clearTimeout(releaseTimer);
+        if (!frame && !disposed) frame = requestAnimationFrame(update);
+      };
+      const onNavigate = event => {
+        if (routesComplete && event.target.closest('a[href^="#"], #scrollToTop')) releaseSpace();
+      };
+      const onResize = () => {
+        if (disposed || mobileQuery.matches || reducedMotionQuery.matches) return;
+        measure();
+        update();
+      };
+      const resizeObserver = new ResizeObserver(() => {
+        if (graphic.offsetWidth !== measuredWidth || graphic.offsetHeight !== measuredHeight) onResize();
       });
-      if (progress >= 1) {
-        routesComplete = true;
-        svg.classList.add('module-routes-complete');
+      disposeDesktop = () => {
+        disposed = true;
+        cancelAnimationFrame(frame);
+        clearTimeout(releaseTimer);
+        window.removeEventListener('scroll', schedule);
+        window.removeEventListener('resize', onResize);
+        document.removeEventListener('click', onNavigate, true);
+        resizeObserver.disconnect();
         graphic.classList.remove('is-pinned');
-        graphic.style.setProperty('--module-pin-offset', `${pinDistance}px`);
-      }
-    };
+        ['--module-pin-offset', '--module-sticky-top', '--module-fixed-left', '--module-fixed-width']
+          .forEach(name => graphic.style.removeProperty(name));
+        track.classList.remove('modules-scroll-active');
+        track.style.removeProperty('height');
+      };
 
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    const onResize = () => {
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', onResize);
+      // Compact the track before navigation calculates its destination.
+      document.addEventListener('click', onNavigate, true);
+      resizeObserver.observe(graphic);
+      document.fonts?.ready.then(() => { if (!disposed) onResize(); });
       measure();
-      if (routesComplete) {
-        graphic.classList.remove('is-pinned');
-        graphic.style.setProperty('--module-pin-offset', `${completionOffsetReleased ? 0 : pinDistance}px`);
-      }
-      schedule();
+      update();
     };
 
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', onResize);
-    section?.addEventListener('transitionend', schedule);
-    measure();
-    update();
+    mobileQuery.addEventListener('change', configureMotion);
+    reducedMotionQuery.addEventListener('change', configureMotion);
+    configureMotion();
   } catch {
     // The original image remains visible if the SVG cannot be loaded inline.
   }

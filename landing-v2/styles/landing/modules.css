@@ -15,11 +15,11 @@
 
 .modules-scroll-track {
   position: relative;
-  padding-bottom: clamp(260px, 38vh, 380px);
+  padding-bottom: 0;
 }
 
-.modules-section.modules-completion-released .modules-scroll-track {
-  transition: height 320ms cubic-bezier(0.22, 1, 0.36, 1), padding-bottom 320ms cubic-bezier(0.22, 1, 0.36, 1);
+.modules-scroll-track.modules-scroll-active {
+  padding-bottom: clamp(260px, 38vh, 380px);
 }
 
 .modules-graphic {
@@ -30,10 +30,6 @@
   margin: 0;
   overflow: hidden;
   transform: translate(-50%, var(--module-pin-offset, 0px));
-}
-
-.modules-section.modules-completion-released .modules-graphic {
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .modules-graphic.is-pinned {
@@ -52,12 +48,12 @@
 }
 
 .modules-graphic > svg.module-scroll-controlled {
-  transform: scale(var(--module-entry-scale, .88));
+  transform: scale(var(--module-entry-scale, 1));
   transform-origin: center center;
 }
 
 @media (max-width: 768px) {
-  .modules-scroll-track {
+  .modules-scroll-track.modules-scroll-active {
     padding-bottom: 0;
   }
 
@@ -80,13 +76,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modules-scroll-track {
+  .modules-scroll-track.modules-scroll-active {
     padding-bottom: 0;
-  }
-
-  .modules-section.modules-completion-released .modules-scroll-track,
-  .modules-section.modules-completion-released .modules-graphic {
-    transition: none;
   }
 
   .modules-graphic {

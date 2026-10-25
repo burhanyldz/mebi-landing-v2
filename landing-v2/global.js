@@ -26,7 +26,7 @@ const sharedModules = [
 
 const landingModules = [
   './scripts/landing/animations.js',
-  './scripts/landing/modules-motion.js?v=20261024-module-scroll-return-v3',
+  './scripts/landing/modules-motion.js?v=20261025-module-scroll-stable-v4',
   './scripts/landing/presence-counter.js?v=20261023-presence-v34',
   './scripts/landing/navigation.js',
   './scripts/landing/sections.js',
