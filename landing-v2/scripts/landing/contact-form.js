@@ -9,8 +9,10 @@ function alertSuccess(message = "Mesajınız başarıyla gönderildi!") {
   // Create alert element
   const alert = document.createElement('div');
   alert.className = 'contact-success-alert';
+  alert.setAttribute('role', 'status');
+  alert.setAttribute('aria-live', 'polite');
   alert.innerHTML = `
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <circle cx="12" cy="12" r="12" fill="#ffffff"/>
       <path d="M7 13l3 3 7-7" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -62,19 +64,25 @@ onReady(() => {
   function validateField(input, validationFn, errorMsg) {
     const formGroup = input.closest('.form-group');
     let errorElement = formGroup.querySelector('.error-message');
+    const errorId = `${input.id}-error`;
     
     if (!errorElement) {
       errorElement = document.createElement('div');
       errorElement.className = 'error-message';
+      errorElement.id = errorId;
       formGroup.appendChild(errorElement);
     }
 
     if (!validationFn(input.value.trim())) {
       formGroup.classList.add('error');
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', errorId);
       errorElement.textContent = errorMsg;
       return false;
     } else {
       formGroup.classList.remove('error');
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
       errorElement.textContent = '';
       return true;
     }
@@ -84,6 +92,8 @@ onReady(() => {
   function clearFieldError(input) {
     const formGroup = input.closest('.form-group');
     formGroup.classList.remove('error');
+    input.removeAttribute('aria-invalid');
+    input.removeAttribute('aria-describedby');
     const errorElement = formGroup.querySelector('.error-message');
     if (errorElement) {
       errorElement.textContent = '';
@@ -173,24 +183,25 @@ onReady(() => {
   }
 
   // Form submit handler
+  const submitBtnText = submitBtn?.querySelector('.btn-text') || submitBtn;
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
     if (validateForm()) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Gönderiliyor...';
+      if (submitBtnText) submitBtnText.textContent = 'Gönderiliyor...';
 
       // TODO: Buraya gerçek API entegrasyonunu ekleyin.
       // Örnek: fetch('/api/contact', { method: 'POST', body: JSON.stringify({...}) })
       //   .then(res => res.json())
       //   .then(() => { alertSuccess(); clearForm(); })
       //   .catch(() => { /* hata mesajı */ })
-      //   .finally(() => { submitBtn.disabled = false; submitBtn.textContent = 'Gönder'; });
+      //   .finally(() => { submitBtn.disabled = false; if (submitBtnText) submitBtnText.textContent = 'Gönder'; });
 
       // Geçici: Formun gönderildiğini simüle et
       alertSuccess('Mesajınız başarıyla gönderildi!');
       clearForm();
-      submitBtn.textContent = 'Gönder';
+      if (submitBtnText) submitBtnText.textContent = 'Gönder';
     }
   });
 

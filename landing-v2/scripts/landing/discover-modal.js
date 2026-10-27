@@ -100,8 +100,11 @@ onReady(() => {
   // Preserve the direct-link behavior for opening the material category.
   const redirectTo = new URLSearchParams(window.location.search).get('redirectTo');
   if (redirectTo === 'kurumsalmateryaller') {
-    discoverNavItems.forEach(item => item.classList.remove('active'));
-    document.querySelector('.discover-nav-item[data-category="kurumsal"]')?.classList.add('active');
+    discoverNavItems.forEach(item => {
+      const isKurumsal = item.dataset.category === 'kurumsal';
+      item.classList.toggle('active', isKurumsal);
+      item.setAttribute('aria-pressed', String(isKurumsal));
+    });
     discoverVideoGrids.forEach(grid => {
       grid.style.display = grid.dataset.category === 'kurumsal' ? 'grid' : 'none';
     });
@@ -158,11 +161,12 @@ onReady(() => {
     navItem.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
       
-      // Remove active class from all nav items
-      discoverNavItems.forEach(item => item.classList.remove('active'));
-      
-      // Add active class to clicked item
-      this.classList.add('active');
+      // Update active class and aria-pressed on all nav items
+      discoverNavItems.forEach(item => {
+        const isActive = item === this;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
       
       // Hide all video grids
       // When switching tabs, stop any playing video
@@ -177,8 +181,19 @@ onReady(() => {
         matchingGrid.style.display = 'grid';
       }
     });
-  
-  // end discoverNavItems.forEach
+  });
+
+  // Make video thumbnails keyboard focusable and accessible
+  document.querySelectorAll('.discover-video-grid .video-card').forEach(card => {
+    const thumb = card.querySelector('.video-thumbnail');
+    const title = card.querySelector('.video-info h3')?.textContent?.trim();
+    if (!thumb) return;
+    thumb.setAttribute('role', 'button');
+    thumb.setAttribute('tabindex', '0');
+    if (title) {
+      thumb.setAttribute('aria-label', `${title} videosunu oynat`);
+    }
+  });
 
   function handleVideoCardClick(card, e) {
     if (!card) return;
@@ -251,7 +266,7 @@ onReady(() => {
       const overlay = document.createElement('div');
       overlay.className = 'video-play-overlay';
       overlay.style.pointerEvents = 'none';
-      overlay.innerHTML = '<svg width="64" height="64" viewBox="0 0 64 64" fill="white">\n                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>\n                <path d="M26 20L44 32L26 44V20Z" fill="white"/>\n              </svg>';
+      overlay.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>';
 
       video.addEventListener('play', () => {
         try { overlay.style.opacity = '0'; } catch (e) {}
@@ -290,7 +305,9 @@ onReady(() => {
         src = src + sep + 'enablejsapi=1&origin=' + encodeURIComponent(window.location.origin);
       }
       const iframe = document.createElement('iframe');
+      const videoTitle = card.querySelector('.video-info h3')?.textContent?.trim() || 'Tanıtım Videosu';
       iframe.setAttribute('src', src);
+      iframe.setAttribute('title', videoTitle);
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       iframe.className = 'video-player-iframe';
@@ -298,7 +315,7 @@ onReady(() => {
       const overlayEl = document.createElement('div');
       overlayEl.className = 'video-play-overlay';
       overlayEl.style.pointerEvents = 'none';
-      overlayEl.innerHTML = '<svg width="64" height="64" viewBox="0 0 64 64" fill="white">\n                <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)"/>\n                <path d="M26 20L44 32L26 44V20Z" fill="white"/>\n              </svg>';
+      overlayEl.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>';
       thumb.appendChild(iframe);
       thumb.appendChild(overlayEl);
       // mark iframe as playing state (we clicked to start) and hide overlay immediately
@@ -315,7 +332,7 @@ onReady(() => {
     card.classList.add('playing');
   }
 
-  // Attach click listeners to video thumbnails only (single click)
+  // Attach click and keyboard listeners to video thumbnails
   document.body.addEventListener('click', function (e) {
     // Don't interfere with native video controls or iframe content
     if (e.target.tagName === 'VIDEO' || e.target.tagName === 'IFRAME') {
@@ -336,6 +353,30 @@ onReady(() => {
     }
   });
 
-  // Preview buttons removed; material downloads use the <a> links (open in new tab)
+  document.body.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'VIDEO' || e.target.tagName === 'IFRAME') return;
+    const thumbnail = e.target.closest && e.target.closest('.video-thumbnail');
+    if (!thumbnail) return;
+    const card = thumbnail.closest('.video-card');
+    if (!card || !card.closest('.discover-video-grid')) return;
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleVideoCardClick(card, e);
+    } else if (e.key === ' ') {
+      e.preventDefault();
+    }
+  });
+
+  document.body.addEventListener('keyup', function (e) {
+    if (e.key !== ' ') return;
+    if (e.target.tagName === 'VIDEO' || e.target.tagName === 'IFRAME') return;
+    const thumbnail = e.target.closest && e.target.closest('.video-thumbnail');
+    if (!thumbnail) return;
+    const card = thumbnail.closest('.video-card');
+    if (!card || !card.closest('.discover-video-grid')) return;
+
+    e.preventDefault();
+    handleVideoCardClick(card, e);
   });
 });

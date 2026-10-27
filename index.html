@@ -11,21 +11,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="landing-v2/landing.css?v=20261025-modules-space-stable-v2">
+  <link rel="stylesheet" href="landing-v2/styles/shared/base.css">
+  <link rel="stylesheet" href="landing-v2/styles/shared/buttons.css">
+  <link rel="stylesheet" href="landing-v2/styles/shared/header.css">
+  <link rel="stylesheet" href="landing-v2/styles/shared/footer.css">
+  <link rel="stylesheet" href="landing-v2/styles/shared/login-modal.css">
+  <link rel="stylesheet" href="landing-v2/styles/shared/scroll-to-top.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/hero.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/presence-counter.css?v=20261023-presence-v34">
+  <link rel="stylesheet" href="landing-v2/styles/landing/about.css?v=20261024-no-card-hover">
+  <link rel="stylesheet" href="landing-v2/styles/landing/resources.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/statistics.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/features.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/modules.css?v=20261025-modules-space-stable-v2">
+  <link rel="stylesheet" href="landing-v2/styles/landing/app-stores.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/global-access.css?v=20261024-overlap-v3">
+  <link rel="stylesheet" href="landing-v2/styles/landing/ai-assistant.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/feedback.css?v=20261024-testimonials-marquee-v1">
+  <link rel="stylesheet" href="landing-v2/styles/landing/faq.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/contact.css">
+  <link rel="stylesheet" href="landing-v2/styles/landing/discover-modal.css">
   <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
   <script src="landing-v2/global.js?v=20261025-module-scroll-stable-v4" defer></script>
 </head>
 
 <body oncontextmenu="return false;">
+  <a href="#main-content" class="skip-link">Ana içeriğe atla</a>
   <header id="section-header" class="site-header-wrapper">
     <div class="header-inner">
       <div class="main-nav">
         <!-- Logo -->
         <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"
-          aria-label="Ana Sayfa">
+          aria-label="MEBİ Ana Sayfa">
           <div class="logo-img-wrap">
-            <img src="landing-v2/images/mebi-logo.svg" alt="MEBİ Logo" class="logo-color">
-            <img src="landing-v2/images/mebi-logo-white.svg" alt="MEBİ Logo" class="logo-white">
+            <img src="landing-v2/images/mebi-logo.svg" alt="MEBİ Logo" class="logo-color" width="76" height="44">
+            <img src="landing-v2/images/mebi-logo-white.svg" alt="" aria-hidden="true" class="logo-white" width="76" height="44">
           </div>
           <div class="logo-text">
             <span class="logo-title">Millî Eğitim Bakanlığı</span>
@@ -44,7 +64,7 @@
 
         <!-- Right actions -->
         <div class="nav-right">
-          <a href="#" class="btn btn-primary btn-sm nav-login-button">
+          <a href="#" class="btn btn-primary btn-sm nav-login-button" aria-haspopup="dialog" aria-controls="loginModal">
             <span class="btn-cursor-glow" aria-hidden="true"></span>
             <span class="btn-text">Giriş Yap</span>
           </a>
@@ -52,21 +72,26 @@
       </div>
     </div>
   </header>
+  <main id="main-content">
   <section id="hero" class="hero-section">
-    <!-- hero image placed as an <img> so its intrinsic aspect ratio sets the section height -->
-    <img src="landing-v2/images/hero-final.png" alt="Hero background" class="hero-bg" fetchpriority="high">
-    <img src="landing-v2/images/hero-section-mobile.webp" alt="Hero background mobile" class="hero-bg-mobile"
-      fetchpriority="high">
+    <!-- hero image placed inside <picture> so only the matching viewport source downloads and intrinsic aspect ratio sets the section height -->
+    <picture class="hero-picture">
+      <source media="(max-width: 640px)" srcset="landing-v2/images/hero-section-mobile.webp" type="image/webp"
+        width="750" height="1246">
+      <source srcset="landing-v2/images/hero-final.webp" type="image/webp" width="2880" height="1520">
+      <img src="landing-v2/images/hero-final.png" alt="" class="hero-bg" width="2880" height="1520"
+        fetchpriority="high" decoding="async">
+    </picture>
     <div class="hero-overlay">
       <div class="container">
         <div class="hero-content">
           <h1 class="sr-only">MEBİ – Millî Eğitim Bakanlığı Bireysel Öğrenme Platformu</h1>
           <div class="hero-buttons">
-            <a href="#" class="btn btn-secondary btn-lg btn-hero-primary">
+            <a href="#" class="btn btn-secondary btn-lg btn-hero-primary" aria-haspopup="dialog" aria-controls="loginModal">
               <span class="btn-cursor-glow" aria-hidden="true"></span>
               <span class="btn-text">Giriş Yap</span>
             </a>
-            <a href="#about" class="btn btn-lg btn-hero-secondary">
+            <a href="#about" class="btn btn-lg btn-hero-secondary" aria-haspopup="dialog" aria-controls="discoverModal">
               <span class="btn-text">Keşfet</span>
             </a>
           </div>
@@ -175,9 +200,9 @@
         <div class="resource-card">
           <!--merged image-->
           <div class="resource-image-stack">
-            <img src="landing-v2/images/cikmis-sorular-1.webp" alt="YKS Çıkmış Sorular" class="left" loading="lazy">
-            <img src="landing-v2/images/cikmis-sorular-2.webp" alt="YKS Çıkmış Sorular" class="right" loading="lazy">
-            <img src="landing-v2/images/cikmis-sorular-3.webp" alt="YKS Çıkmış Sorular" class="top" loading="lazy">
+            <img src="landing-v2/images/cikmis-sorular-1.webp" alt="YKS Çıkmış Sorular" class="left" width="727" height="1023" loading="lazy">
+            <img src="landing-v2/images/cikmis-sorular-2.webp" alt="" aria-hidden="true" class="right" width="1276" height="1799" loading="lazy">
+            <img src="landing-v2/images/cikmis-sorular-3.webp" alt="" aria-hidden="true" class="top" width="1276" height="1799" loading="lazy">
           </div>
           <div class="resource-info">
             <h3>YKS Çıkmış Sorular</h3>
@@ -187,9 +212,9 @@
         <div class="resource-card">
           <!--merged image-->
           <div class="resource-image-stack">
-            <img src="landing-v2/images/konu-ozeti-1.webp" alt="Konu Özeti Kitapları" class="left" loading="lazy">
-            <img src="landing-v2/images/konu-ozeti-2.webp" alt="Konu Özeti Kitapları" class="right" loading="lazy">
-            <img src="landing-v2/images/konu-ozeti-3.webp" alt="Konu Özeti Kitapları" class="top" loading="lazy">
+            <img src="landing-v2/images/konu-ozeti-1.webp" alt="Konu Özeti Kitapları" class="left" width="637" height="900" loading="lazy">
+            <img src="landing-v2/images/konu-ozeti-2.webp" alt="" aria-hidden="true" class="right" width="637" height="900" loading="lazy">
+            <img src="landing-v2/images/konu-ozeti-3.webp" alt="" aria-hidden="true" class="top" width="1225" height="1719" loading="lazy">
           </div>
           <div class="resource-info">
             <h3>Konu Özeti Kitapları</h3>
@@ -199,9 +224,9 @@
         <div class="resource-card">
           <!--merged image-->
           <div class="resource-image-stack">
-            <img src="landing-v2/images/yks-lgs-1.webp" alt="YKS ve LGS Denemeleri" class="left" loading="lazy">
-            <img src="landing-v2/images/yks-lgs-2.webp" alt="YKS ve LGS Denemeleri" class="right" loading="lazy">
-            <img src="landing-v2/images/yks-lgs-3.webp" alt="YKS ve LGS Denemeleri" class="top" loading="lazy">
+            <img src="landing-v2/images/yks-lgs-1.webp" alt="YKS ve LGS Denemeleri" class="left" width="1141" height="1594" loading="lazy">
+            <img src="landing-v2/images/yks-lgs-2.webp" alt="" aria-hidden="true" class="right" width="1141" height="1594" loading="lazy">
+            <img src="landing-v2/images/yks-lgs-3.webp" alt="" aria-hidden="true" class="top" width="1141" height="1594" loading="lazy">
           </div>
           <div class="resource-info">
             <h3>YKS ve LGS Denemeleri</h3>
@@ -211,11 +236,11 @@
         <div class="resource-card">
           <!--merged image-->
           <div class="resource-image-stack">
-            <img src="landing-v2/images/konu-pekistirme-1.webp" alt="Konu Pekiştirme Testleri" class="left"
+            <img src="landing-v2/images/konu-pekistirme-1.webp" alt="Konu Pekiştirme Testleri" class="left" width="1276" height="1800"
               loading="lazy">
-            <img src="landing-v2/images/konu-pekistirme-2.webp" alt="Konu Pekiştirme Testleri" class="right"
+            <img src="landing-v2/images/konu-pekistirme-2.webp" alt="" aria-hidden="true" class="right" width="1272" height="1800"
               loading="lazy">
-            <img src="landing-v2/images/konu-pekistirme-3.webp" alt="Konu Pekiştirme Testleri" class="top"
+            <img src="landing-v2/images/konu-pekistirme-3.webp" alt="" aria-hidden="true" class="top" width="1272" height="1800"
               loading="lazy">
           </div>
           <div class="resource-info">
@@ -267,24 +292,24 @@
           içeriklere kadar öğrenme sürecinin tüm adımlarını tek platformda sunar.</p>
       </div>
       <div class="features-content">
-        <div class="feature-nav">
-          <button class="feature-nav-item active" data-category="ders-kaynaklari">
-            <img src="landing-v2/images/book.svg" alt="" loading="lazy"> Ders Kaynakları
+        <div class="feature-nav" role="group" aria-label="Özellik kategorileri">
+          <button type="button" class="feature-nav-item active" data-category="ders-kaynaklari" aria-pressed="true">
+            <img src="landing-v2/images/book.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"> Ders Kaynakları
           </button>
-          <button class="feature-nav-item" data-category="etkilesimli-ogrenme">
-            <img src="landing-v2/images/interaction.svg" alt="" loading="lazy"> Etkileşimli Öğrenme
+          <button type="button" class="feature-nav-item" data-category="etkilesimli-ogrenme" aria-pressed="false">
+            <img src="landing-v2/images/interaction.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"> Etkileşimli Öğrenme
           </button>
-          <button class="feature-nav-item" data-category="soru-test">
-            <img src="landing-v2/images/test.svg" alt="" loading="lazy"> Soru ve Test Çözümleri
+          <button type="button" class="feature-nav-item" data-category="soru-test" aria-pressed="false">
+            <img src="landing-v2/images/test.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"> Soru ve Test Çözümleri
           </button>
-          <button class="feature-nav-item" data-category="kisisellestirilmis">
-            <img src="landing-v2/images/finger-print.svg" alt="" loading="lazy"> Kişiselleştirilmiş Öğrenme
+          <button type="button" class="feature-nav-item" data-category="kisisellestirilmis" aria-pressed="false">
+            <img src="landing-v2/images/finger-print.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"> Kişiselleştirilmiş Öğrenme
           </button>
-          <button class="feature-nav-item" data-category="planlama-raporlama">
-            <img src="landing-v2/images/planning.svg" alt="" loading="lazy"> Planlama ve Raporlama
+          <button type="button" class="feature-nav-item" data-category="planlama-raporlama" aria-pressed="false">
+            <img src="landing-v2/images/planning.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"> Planlama ve Raporlama
           </button>
-          <button class="feature-nav-item" data-category="rehberlik-destek">
-            <img src="landing-v2/images/support.svg" alt="" loading="lazy"> Rehberlik ve Destek
+          <button type="button" class="feature-nav-item" data-category="rehberlik-destek" aria-pressed="false">
+            <img src="landing-v2/images/support.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"> Rehberlik ve Destek
           </button>
         </div>
         <div class="feature-cards-grid scroll-animate-stagger">
@@ -338,7 +363,7 @@
               aria-hidden="true"></video>
             <div class="feature-card-content">
               <h4>Etkileşimli Video ve İçerikler</h4>
-              <p>Hızlı tekrar için sadeleştirilmiş, önemli noktaların öne çıkarıldığı özetler.</p>
+              <p>İzleyerek ve sorulara anında yanıt vererek aktif katılım sağlayan etkileşimli videolar.</p>
             </div>
           </div>
           <div class="feature-card" data-category="etkilesimli-ogrenme" style="display: none;">
@@ -523,11 +548,11 @@
           <div class="app-store-downloads" aria-label="MEBİ uygulamasını mağazadan indir">
             <a href="https://play.google.com/store/apps/details?id=tr.gov.eba.mebi&amp;hl=tr" target="_blank"
               rel="noopener noreferrer" class="store-button-footer" aria-label="MEBİ'yi Google Play'den indir">
-              <img src="landing-v2/images/google-play-download-label.webp" alt="Google Play'den indir" loading="lazy">
+              <img src="landing-v2/images/google-play-download-label.webp" alt="Google Play'den indir" width="244" height="80" loading="lazy">
             </a>
-            <a href="https://apps.apple.com/us/app/mebi/id6736946513" target="_blank" rel="noopener noreferrer"
+            <a href="https://apps.apple.com/tr/app/mebi/id6736946513" target="_blank" rel="noopener noreferrer"
               class="store-button-footer" aria-label="MEBİ'yi App Store'dan indir">
-              <img src="landing-v2/images/app-store-download-label.webp" alt="App Store'dan indir" loading="lazy">
+              <img src="landing-v2/images/app-store-download-label.webp" alt="App Store'dan indir" width="244" height="80" loading="lazy">
             </a>
             <a href="https://appgallery.huawei.com/app/C116045471" target="_blank" rel="noopener noreferrer"
               class="store-button-footer store-button-appgallery" aria-label="MEBİ'yi Huawei AppGallery'de aç">
@@ -558,15 +583,15 @@
     <div class="map-container">
       <img src="landing-v2/images/global-access-map.webp" alt="Dünya haritası – MEBİ'ye her yerden erişim"
         class="map-image" width="2718" height="800" loading="lazy" decoding="async">
-      <div class="location-dots">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
-        <img src="landing-v2/images/dot1.svg" alt="location dot" loading="lazy">
+      <div class="location-dots" aria-hidden="true">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
+        <img src="landing-v2/images/dot1.svg" alt="" width="12" height="12" loading="lazy">
       </div>
     </div>
   </section>
@@ -583,7 +608,8 @@
       </div>
     </div>
     <div class="visual-container">
-      <img src="landing-v2/images/ai-assistant.webp" alt="AI Assistant KANKA" class="ai-assistant-image" loading="lazy">
+      <img src="landing-v2/images/ai-assistant.webp" alt="Yapay zekâ destekli kişisel asistan KANKA ekran görünümü"
+        class="ai-assistant-image" loading="lazy">
     </div>
   </section>
   <section id="feedback" class="feedback-section scroll-animate">
@@ -744,32 +770,32 @@
       </div>
       <div class="faq-container">
         <nav class="faq-nav" aria-label="SSS kategorileri">
-          <button type="button" class="faq-nav-item active" data-category="ogrenciler">Öğrenciler</button>
-          <button type="button" class="faq-nav-item" data-category="mezunlar">Mezunlar</button>
-          <button type="button" class="faq-nav-item" data-category="ogretmenler">Öğretmenler ve Okul
+          <button type="button" class="faq-nav-item active" data-category="ogrenciler" aria-pressed="true">Öğrenciler</button>
+          <button type="button" class="faq-nav-item" data-category="mezunlar" aria-pressed="false">Mezunlar</button>
+          <button type="button" class="faq-nav-item" data-category="ogretmenler" aria-pressed="false">Öğretmenler ve Okul
             Yöneticileri</button>
-          <button type="button" class="faq-nav-item" data-category="veliler">Veliler</button>
+          <button type="button" class="faq-nav-item" data-category="veliler" aria-pressed="false">Veliler</button>
         </nav>
         <div class="faq-accordion" id="faqAccordionItems">
 
           <!-- Öğrenciler -->
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ kim tarafından hazırlanmıştır?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ, Millî Eğitim Bakanlığı Ortaöğretim Genel Müdürlüğü tarafından hazırlanmıştır.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ’ye nasıl giriş yapabilirim?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
-              <p>MEBİ’ye Eba şifreniz ile giriş yapabilirsiniz.</p>
+              <p>MEBİ’ye EBA veya e-Devlet şifreniz ile giriş yapabilirsiniz.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ hangi sınıf seviyelerine hitap ediyor?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ, ortaokul öğrencileri (5-6-7-8), lise öğrencileri (9-10-11-12) ve mezun öğrencilere hitap ediyor.
               </p>
@@ -777,23 +803,23 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ’deki içerikleri kullanmak ücretli midir?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ’yi kullanmak tamamen ücretsizdir.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ içeriklerine mobil uygulama üzerinden erişebilir
-                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
-              <p>Google Play Store ve App Store mağazalarından uygulamayı ücretsiz bir şekilde indirerek mobil
+              <p>Google Play, App Store ve Huawei AppGallery mağazalarından uygulamayı ücretsiz bir şekilde indirerek mobil
                 cihazlarınızdan erişim sağlayabilirsiniz.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ’deki videoları indirme veya çevrimdışı izleme seçeneği var
-                mı?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                mı?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ içerisinde yer alan videolar şu an için indirmeye kapalı. Videolardan sadece çevrimiçi olarak
@@ -802,7 +828,7 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Ders içerikleri güncel müfredata uygun mudur?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>YKS ve LGS paketleri öğrencilerin sınava gireceği yılda sorumlu olacağı müfredatı kapsamaktadır. Okul
                 dersleri modülünde yer alan içerikler ise Türkiye Yüzyılı Maarif Modeli’ne uygun olarak hazırlanmıştır.
@@ -811,14 +837,14 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Ders videolarının süresi ortalama ne kadardır?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Ders videolarının süresi değişiklik gösterse de ortalama 10-20 dakika aralığındadır.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Ders ile ilgili materyallere nereden ulaşabilirim?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ içerisinde yer alan dersler kendi içinde konulara ayrılmıştır. İlgili konuların içerisinde derse
                 ilişkin (hazırbulunuşluk soruları, konu videoları, değerlendirme testleri, etkinlikler, oyunlar,
@@ -827,7 +853,7 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Okul yazılılarına hazırlık için örnek sorular ve çözümleri var
-                mı?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                mı?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>Deneme/Tarama modülünde yer alan yazılıya hazırlanıyorum bölümünde örnek yazılı soruları ve cevapları
@@ -836,7 +862,7 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Belirli bir konuyu hızlıca bulmak için arama özelliği nasıl
-                kullanılır?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down"
+                kullanılır?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20"
                 class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Uygulama içerisinde herhangi bir dersin konusuna hızlıca ulaşmak için sağ alt köşede bulunan yapay zekâ
@@ -845,7 +871,7 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>LGS ve YKS dışında okul derslerim için de destek alabilir
-                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ LGS ve YKS hazırlık modüllerinin yanında okul derslerine çalışmak için de uygundur. Türkiye
@@ -855,14 +881,14 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>MEBİ içerisinde deneme sınavları var mı?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ üzerinden YKS ve LGS denemelerine dijital olarak erişebilir, pdf olarak indirebilirsiniz.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>LGS ve YKS hazırlık için deneme ve soru bankaları mevcut
-                mu?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                mu?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>LGS ve YKS hazırlık modülleriyle sınava çalışırken ihtiyaç duyabileceğiniz bütün içerikler (denemeler,
@@ -872,7 +898,7 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Rehberlik ve kariyer planlama ile ilgili içerikler bulunuyor
-                mu?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                mu?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ içerisinde yer alan rehberlik modülünde eğitsel, sosyal duygusal ve kariyer alanına yönelik
@@ -881,7 +907,7 @@
           </div>
           <div class="accordion-item" data-category="ogrenciler">
             <div class="accordion-question"><span>Sınav stratejileri ile ilgili videolar var mı?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Rehberlik modülü içerisinde sınav stratejilerine yönelik videolar bulunmaktadır.</p>
             </div>
@@ -890,14 +916,14 @@
           <!-- Mezunlar -->
           <div class="accordion-item" data-category="mezunlar" style="display: none;">
             <div class="accordion-question"><span>MEBİ platformuna mezunlar nasıl giriş yapabilir?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ platformuna mezun öğrenciler e-devlet şifresiyle giriş yapabilir.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="mezunlar" style="display: none;">
             <div class="accordion-question"><span>MEBİ platformu YKS'nin hangi alanlarına yönelik içerikler
-                sunuyor?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                sunuyor?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>TYT, AYT ve YDT alanından hazırlanan öğrencilere yönelik bütün dersler YKS hazırlık modülünün
@@ -906,7 +932,7 @@
           </div>
           <div class="accordion-item" data-category="mezunlar" style="display: none;">
             <div class="accordion-question"><span>Geçmiş yılların YKS sorularının çözümleri veya analizi mevcut
-                mu?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                mu?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>YKS çıkmış soru ve çözümleri, konu çalışma alanlarında yer alan “Çıkmış Soru” bölümlerinde ve “YKS
@@ -916,7 +942,7 @@
           </div>
           <div class="accordion-item" data-category="mezunlar" style="display: none;">
             <div class="accordion-question"><span>MEBİ içerisinde YKS deneme sınavları var mı?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Evet. Her sene denemeler yenilenmekte ve takvime bağlı olarak yapılmaktadır. MEBİ Türkiye geneli deneme
                 sınavlarına ve video çözümlerine deneme modülünden erişebilirsiniz.</p>
@@ -924,7 +950,7 @@
           </div>
           <div class="accordion-item" data-category="mezunlar" style="display: none;">
             <div class="accordion-question"><span>Konu eksiklerimi belirlemek için neler yapabilirim?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Platform üzerinden çözdüğünüz hazırbulunuşluk, değerlendirme ve öğrenme kalıcılığını değerlendirme
                 testlerinden sonra sistem size geri dönüş vermektedir. Bu geri dönüşlere göre konulara tekrar
@@ -933,24 +959,24 @@
           </div>
           <div class="accordion-item" data-category="mezunlar" style="display: none;">
             <div class="accordion-question"><span>Farklı meslek grupları ve üniversite bölümleri hakkında tanıtım
-                içerikleri var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down"
+                içerikleri var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20"
                 class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
-              <p>Rehberlik modülü içerinde ilgili videolar bulunmaktadır.</p>
+              <p>Rehberlik modülü içerisinde ilgili videolar bulunmaktadır.</p>
             </div>
           </div>
 
           <!-- Öğretmenler ve Okul Yöneticileri -->
           <div class="accordion-item" data-category="ogretmenler" style="display: none;">
             <div class="accordion-question"><span>MEBİ platformuna nasıl giriş yapabilirim?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBBİS veya e-Devlet şifrenizle giriş yapabilirsiniz.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="ogretmenler" style="display: none;">
             <div class="accordion-question"><span>MEBİ'deki içerikleri derslerimde ek materyal olarak kullanabilir
-                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ’de yer alan Okul Dersleri bölümündeki videolar bireysel öğrenme için uygun olup sınıf içi
@@ -960,7 +986,7 @@
           </div>
           <div class="accordion-item" data-category="ogretmenler" style="display: none;">
             <div class="accordion-question"><span>Öğrencilerime ödev olarak atayabileceğim hazır testler veya videolar
-                var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ Bireysel Öğrenme Platformu öğrencilere bireyselleştirilmiş öğrenme deneyimi sunan bir platformdur.
@@ -972,7 +998,7 @@
           <div class="accordion-item" data-category="ogretmenler" style="display: none;">
             <div class="accordion-question"><span>Okul idarecisi olarak, okulumdaki öğrencilerin MEBİ kullanım
                 istatistiklerine erişebilir miyim?</span><img src="landing-v2/images/chevron-down.svg"
-                alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Okul yöneticilerimiz, kurumunda öğrenim gören öğrencilerin MEBİ Bireysel Öğrenme Platformunda ilerleme
                 süreçlerini izleyebilir ve kullanım verilerini görebilir.</p>
@@ -981,7 +1007,7 @@
           <div class="accordion-item" data-category="ogretmenler" style="display: none;">
             <div class="accordion-question"><span>Platformun okul çapında yaygınlaştırılması ve tanıtımı için destek
                 materyalleri (afiş, sunum vb.) sağlanıyor mu?</span><img src="landing-v2/images/chevron-down.svg"
-                alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ Bireysel Öğrenme Platformunun tanıtım içerik ve materyallerine (afiş, broşür, sunum, kitapçık,
                 kartvizit vb.) platformun ana sayfasında yer alan KEŞFET bölümünden ulaşabilirsiniz.</p>
@@ -989,7 +1015,7 @@
           </div>
           <div class="accordion-item" data-category="ogretmenler" style="display: none;">
             <div class="accordion-question"><span>MEBİ Bireysel Öğrenme Platformuna kendi hazırladığım eğitim
-                materyalini yükleyebilir miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down"
+                materyalini yükleyebilir miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20"
                 class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>MEBİ Bireysel Öğrenme Platformuna dışarıdan materyal ve içerik yüklenmesine izin verilmemektedir.
@@ -1001,14 +1027,14 @@
           <!-- Veliler -->
           <div class="accordion-item" data-category="veliler" style="display: none;">
             <div class="accordion-question"><span>Veliler, MEBİ platformuna nasıl giriş yapabilirler?</span><img
-                src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon" loading="lazy"></div>
+                src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Velilerimiz, MEBİ Bireysel Öğrenme Platformuna e-Devlet bilgileri ile giriş yapabilmektedirler.</p>
             </div>
           </div>
           <div class="accordion-item" data-category="veliler" style="display: none;">
             <div class="accordion-question"><span>Veli olarak çocuğumun platformdaki ilerlemesini takip edebilir
-                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down" class="accordion-icon"
+                miyim?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20" class="accordion-icon"
                 loading="lazy"></div>
             <div class="accordion-answer">
               <p>Veliler, MEBİ platformuna girerek çocuklarının hangi derste hangi konuda ne kadar ilerlediklerini
@@ -1017,7 +1043,7 @@
           </div>
           <div class="accordion-item" data-category="veliler" style="display: none;">
             <div class="accordion-question"><span>Çocuğumun ders çalışma programını nasıl destekleyebilirim konusunda
-                velilere yönelik ipuçları var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="chevron down"
+                velilere yönelik ipuçları var mı?</span><img src="landing-v2/images/chevron-down.svg" alt="" aria-hidden="true" width="20" height="20"
                 class="accordion-icon" loading="lazy"></div>
             <div class="accordion-answer">
               <p>Veliler, çocuklarını MEBİ platformu üzerinden takip ederek sınava hazırlık ve okul derslerinin
@@ -1035,6 +1061,7 @@
           </button>
         </div>
       </div>
+    </div>
   </section>
   <section id="contact" class="contact-section scroll-animate">
     <div class="container">
@@ -1046,16 +1073,16 @@
       </div>
       <form class="contact-form">
         <div class="form-group">
-          <label for="email">E-posta<span class="required">*</span></label>
-          <input type="email" id="email" placeholder="mebi@meb.gov.tr" required>
+          <label for="email">E-posta<span class="required" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="mebi@meb.gov.tr" required>
         </div>
         <div class="form-group">
-          <label for="name">Ad Soyad<span class="required">*</span></label>
-          <input type="text" id="name" placeholder="Adınızı ve soyadınızı yazınız." required>
+          <label for="name">Ad Soyad<span class="required" aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Adınızı ve soyadınızı yazınız." required>
         </div>
         <div class="form-group">
-          <label for="message">Mesaj<span class="required">*</span></label>
-          <textarea id="message" rows="8" placeholder="Bize iletmek istediğiniz mesajınızı yazınız."
+          <label for="message">Mesaj<span class="required" aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" rows="8" placeholder="Bize iletmek istediğiniz mesajınızı yazınız."
             required></textarea>
         </div>
         <p class="required-notice">*Zorunlu alanlar</p>
@@ -1069,6 +1096,7 @@
       </form>
     </div>
   </section>
+  </main>
   <footer id="footer" class="site-footer">
     <div class="footer-container">
       <img src="landing-v2/images/footer-dot-pattern.webp" alt="" aria-hidden="true" class="footer-bg-vector"
@@ -1141,13 +1169,14 @@
             <h3 class="footer-heading">Mobil Uygulama</h3>
             <div class="footer-store-buttons">
               <a href="https://play.google.com/store/apps/details?id=tr.gov.eba.mebi&hl=tr" target="_blank"
-                class="store-button-footer">
-                <img src="landing-v2/images/google-play-download-label.webp" alt="Google Play icon" loading="lazy">
+                rel="noopener noreferrer" class="store-button-footer" aria-label="MEBİ'yi Google Play'den indir">
+                <img src="landing-v2/images/google-play-download-label.webp" alt="Google Play'den indir" width="244" height="80" loading="lazy">
               </a>
-              <a href="https://apps.apple.com/us/app/mebi/id6736946513" target="_blank" class="store-button-footer">
-                <img src="landing-v2/images/app-store-download-label.webp" alt="Apple Store icon" loading="lazy">
+              <a href="https://apps.apple.com/tr/app/mebi/id6736946513" target="_blank"
+                rel="noopener noreferrer" class="store-button-footer" aria-label="MEBİ'yi App Store'dan indir">
+                <img src="landing-v2/images/app-store-download-label.webp" alt="App Store'dan indir" width="244" height="80" loading="lazy">
               </a>
-              <a href="https://appgallery.huawei.com/app/C116045471" target="_blank" rel="noopener"
+              <a href="https://appgallery.huawei.com/app/C116045471" target="_blank" rel="noopener noreferrer"
                 class="store-button-footer store-button-appgallery" aria-label="MEBİ'yi Huawei AppGallery'de aç">
                 <span class="appgallery-badge" aria-hidden="true">
                   <span class="appgallery-icon"></span>
@@ -1168,11 +1197,13 @@
   </footer>
 
   <!-- Login Modal -->
-  <div id="loginModal" class="login-modal">
+  <div id="loginModal" class="login-modal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle"
+    aria-hidden="true">
     <div class="login-modal-overlay"></div>
     <div class="login-modal-content">
-      <button class="login-modal-close" aria-label="Modalı kapat">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button type="button" class="login-modal-close" aria-label="Giriş penceresini kapat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
           <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" />
         </svg>
@@ -1180,7 +1211,7 @@
 
       <div class="login-modal-header">
         <img src="landing-v2/images/mebi-logo.svg" alt="MEBİ Logo" class="login-modal-logo" loading="lazy">
-        <h2 class="login-modal-title">MİLLÎ EĞİTİM BAKANLIĞI</h2>
+        <h2 id="loginModalTitle" class="login-modal-title">MİLLÎ EĞİTİM BAKANLIĞI</h2>
         <p class="login-modal-subtitle">Bireysel Öğrenme Platformu</p>
       </div>
 
@@ -1213,27 +1244,29 @@
   </div>
 
   <!-- Discover Modal -->
+  <!-- Hugeicons core-free icons v4.3.0 (MIT); inline SVGs for modal actions. -->
   <div id="discoverModal" class="discover-modal" role="dialog" aria-modal="true" aria-labelledby="discoverModalTitle"
     aria-hidden="true">
     <div class="discover-modal-overlay"></div>
     <div class="discover-modal-content">
       <button class="discover-modal-close" type="button" aria-label="Keşfet penceresini kapat">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
       <div class="discover-modal-grabber" aria-hidden="true"></div>
 
       <div class="discover-modal-header">
-        <h2 id="discoverModalTitle">MEBİ'yi Keşfet</h2>
-        <p>MEBİ platformu hakkında tanıtım videolarını izleyerek daha fazla bilgi edinin.</p>
+        <h2 id="discoverModalTitle"><span class="text-gradient-emphasis">MEBİ</span>’yi Keşfedin</h2>
+        <p>Tanıtım videolarını izleyin, ders içeriklerini inceleyin ve kurumsal materyalleri indirin.</p>
       </div>
 
       <nav class="discover-nav" aria-label="Keşfet kategorileri">
-        <button class="discover-nav-item active" data-category="tanitim">Tanıtım Videoları</button>
-        <button class="discover-nav-item" data-category="neler-sunuyor">Mebi Neler Sunuyor?</button>
-        <button class="discover-nav-item" data-category="ders-tanitim">Ders Tanıtım Videoları</button>
-        <button class="discover-nav-item" data-category="kurumsal">Kurumsal Materyaller</button>
+        <button type="button" class="discover-nav-item active" data-category="tanitim" aria-pressed="true">Tanıtım Videoları</button>
+        <button type="button" class="discover-nav-item" data-category="neler-sunuyor" aria-pressed="false">MEBİ Neler Sunuyor?</button>
+        <button type="button" class="discover-nav-item" data-category="ders-tanitim" aria-pressed="false">Ders Tanıtım Videoları</button>
+        <button type="button" class="discover-nav-item" data-category="kurumsal" aria-pressed="false">Kurumsal Materyaller</button>
+        <button type="button" class="discover-nav-item" data-category="logo-indir" aria-pressed="false">MEBİ Logoları</button>
       </nav>
 
       <div class="discover-content">
@@ -1241,25 +1274,24 @@
         <div class="discover-video-grid" data-category="tanitim">
           <div class="video-card" data-video-url="https://www.youtube.com/embed/mbZrZ-LN3sg?autoplay=1">
             <div class="video-thumbnail">
-              <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-3.png" alt="Mebi Tanıtım Videosu">
+              <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-3.png" alt="MEBİ Tanıtım Videosu">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">9:35</span>
             </div>
             <div class="video-info">
-              <h3>Mebi Tanıtım Videosu</h3>
+              <h3>MEBİ Tanıtım Videosu</h3>
               <p>Millî Eğitim Bakanlığı Bireysel Öğrenme Platformu "MEBİ"</p>
               <div class="video-actions">
                 <a class="download-btn"
                   href="https://ogm-large-cdn.eba.gov.tr/mebi/content/video/mebi-tanitim-video.mp4" target="_blank"
                   rel="noopener" download>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   İndir
                 </a>
@@ -1270,25 +1302,24 @@
           <div class="video-card" data-video-url="https://www.youtube.com/embed/qkL6ErVTNOA?autoplay=1">
             <div class="video-thumbnail">
               <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-4.png"
-                alt="Mebi Öğrenci Tanıtımları">
+                alt="MEBİ Öğrenci Tanıtımları">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">11:42</span>
             </div>
             <div class="video-info">
-              <h3>Mebi Öğrenci Tanıtımları</h3>
+              <h3>MEBİ Öğrenci Tanıtımları</h3>
               <p>"MEBİ" Tanıtım Programı Öğrenci Deneyimleri</p>
               <div class="video-actions">
                 <a class="download-btn"
                   href="https://ogm-large-cdn.eba.gov.tr/mebi/content/video/mebi-ogrenci-tanitim.mp4" target="_blank"
                   rel="noopener" download>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   İndir
                 </a>
@@ -1303,9 +1334,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="MEBİ Nedir?">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:38</span>
@@ -1316,9 +1346,9 @@
               <div class="video-actions">
                 <a class="download-btn" href="https://ogm-large-cdn.eba.gov.tr/mebi/ders-tanitim/mebi-nedir.mp4"
                   target="_blank" rel="noopener" download>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   İndir
                 </a>
@@ -1331,9 +1361,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="MEBİ Neler İçermektedir?">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:54</span>
@@ -1349,9 +1378,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Bireysel Öğrenme Algoritması">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:45</span>
@@ -1367,9 +1395,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Tam Öğrenme Yaklaşımı">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:51</span>
@@ -1385,9 +1412,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Sanal Asistan KANKA">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:29</span>
@@ -1403,9 +1429,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Çalışma Planım">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:32</span>
@@ -1420,9 +1445,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Hedef Belirle">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:32</span>
@@ -1438,9 +1462,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Ayrıntılı Raporlama">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:48</span>
@@ -1456,9 +1479,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Yazılıya Hazırlanıyorum">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:30</span>
@@ -1473,9 +1495,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Rehberlik">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:44</span>
@@ -1491,9 +1512,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Çıkmış Sorular">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:32</span>
@@ -1508,9 +1528,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="YKS Hazırlık">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">01:22</span>
@@ -1525,9 +1544,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="TYT-AYT">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:59</span>
@@ -1542,9 +1560,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="YDT">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">01:10</span>
@@ -1560,9 +1577,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tanitim.jpg" alt="Adaptif Test Ekranı">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:33</span>
@@ -1580,9 +1596,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/matematik-video.png" alt="Matematik Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">01:27</span>
@@ -1597,9 +1612,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/fizik-video.png" alt="Fizik Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:57</span>
@@ -1614,9 +1628,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/kimya-video.png" alt="Kimya Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">01:00</span>
@@ -1631,9 +1644,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/biyoloji-video.png" alt="Biyoloji Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:56</span>
@@ -1648,9 +1660,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tde-video.png" alt="Türk Dili ve Edebiyatı Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:57</span>
@@ -1665,9 +1676,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/tarih-video.png" alt="Tarih Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:49</span>
@@ -1682,9 +1692,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/cografya-video.png" alt="Coğrafya Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:57</span>
@@ -1699,9 +1708,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/felsefe-video.png" alt="Felsefe Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">00:54</span>
@@ -1716,9 +1724,8 @@
             <div class="video-thumbnail">
               <img src="https://mebi.eba.gov.tr/content/img/ingilizce-video.png" alt="İngilizce Dersi">
               <div class="video-play-overlay">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
-                  <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.7)" />
-                  <path d="M26 20L44 32L26 44V20Z" fill="white" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" />
                 </svg>
               </div>
               <span class="video-duration">01:11</span>
@@ -1736,27 +1743,27 @@
             data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-dikey.png"
             data-download-url="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-dikey.pdf">
             <div class="material-thumbnail">
-              <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-1.png" alt="Mebi Dikey Afiş">
+              <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-1.png" alt="MEBİ Dikey Afiş">
             </div>
             <div class="material-info">
-              <h3>Mebi Dikey Afiş</h3>
+              <h3>MEBİ Dikey Afiş</h3>
               <p>Kurumsal tanıtım afişi (Dikey)</p>
               <div class="material-actions">
                 <a class="material-action download-btn"
                   href="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-dikey.pdf" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
                 <a class="material-action download-btn"
                   href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-dikey.png" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PNG İndir
                 </a>
@@ -1768,27 +1775,27 @@
             data-preview-url="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-yatay.png"
             data-download-url="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-yatay.pdf">
             <div class="material-thumbnail">
-              <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-2.png" alt="Mebi Yatay Afiş">
+              <img src="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/discover-2.png" alt="MEBİ Yatay Afiş">
             </div>
             <div class="material-info">
-              <h3>Mebi Yatay Afiş</h3>
+              <h3>MEBİ Yatay Afiş</h3>
               <p>Kurumsal tanıtım afişi (Yatay)</p>
               <div class="material-actions">
                 <a class="material-action download-btn"
                   href="https://ogm-large-cdn.eba.gov.tr/mebi/content/pdf/mebi-afis-yatay.pdf" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
                 <a class="material-action download-btn"
                   href="https://ogm-small-cdn.eba.gov.tr/mebi/content/img/mebi-afis-yatay.png" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PNG İndir
                 </a>
@@ -1807,9 +1814,9 @@
               <div class="material-actions">
                 <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebi-rool-up.pdf"
                   target="_blank" rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
@@ -1830,18 +1837,18 @@
                 <a class="material-action download-btn"
                   href="https://ogm-large-cdn.eba.gov.tr/mebi/content/mebi-sunum/mebi-sunum.pptx" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PPTX İndir
                 </a>
                 <a class="material-action download-btn"
                   href="https://ogm-large-cdn.eba.gov.tr/mebi/content/mebi-sunum/mebi-sunum.pdf" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
@@ -1861,9 +1868,9 @@
               <div class="material-actions">
                 <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebi-kartviziti.pdf"
                   target="_blank" rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
@@ -1883,9 +1890,9 @@
               <div class="material-actions">
                 <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebi11.pdf" target="_blank"
                   rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
@@ -1905,9 +1912,9 @@
               <div class="material-actions">
                 <a class="material-action download-btn" href="https://mebi.eba.gov.tr/files/mebiBrosur12.pdf"
                   target="_blank" rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 12L3 7h3V1h4v6h3l-5 5z" />
-                    <path d="M1 14h14v2H1z" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                   </svg>
                   PDF İndir
                 </a>
@@ -1915,13 +1922,100 @@
             </div>
           </div>
         </div>
+
+        <!-- MEBİ Kurumsal Logolar -->
+        <div class="discover-video-grid logo-download-grid" data-category="logo-indir" style="display: none;">
+          <article class="material-card logo-download-card">
+            <div class="material-thumbnail logo-thumbnail logo-thumbnail--color">
+              <img src="landing-v2/images/mebi-standart-logo.svg" alt="MEBİ Standart Logo">
+            </div>
+            <div class="material-info">
+              <h3>MEBİ Standart Logo</h3>
+              <p>Açık zemin kullanımları için birincil kurumsal logo</p>
+              <div class="material-actions">
+                <a class="material-action download-btn" href="landing-v2/images/mebi-standart-logo.svg"
+                  download="mebi-standart-logo.svg" aria-label="MEBİ Standart Logo SVG indir">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+                  SVG İndir
+                </a>
+                <a class="material-action download-btn" href="landing-v2/images/mebi-standart-logo.png"
+                  download="mebi-standart-logo.png" aria-label="MEBİ Standart Logo PNG indir">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+                  PNG İndir
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="material-card logo-download-card">
+            <div class="material-thumbnail logo-thumbnail logo-thumbnail--white">
+              <img src="landing-v2/images/mebi-koyu-zemin-logosu.svg" alt="MEBİ Koyu Zemin Logosu">
+            </div>
+            <div class="material-info">
+              <h3>MEBİ Koyu Zemin Logosu</h3>
+              <p>Koyu zemin kullanımları için turkuaz vurgulu kurumsal logo</p>
+              <div class="material-actions">
+                <a class="material-action download-btn" href="landing-v2/images/mebi-koyu-zemin-logosu.svg"
+                  download="mebi-koyu-zemin-logosu.svg" aria-label="MEBİ Koyu Zemin Logosu SVG indir">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+                  SVG İndir
+                </a>
+                <a class="material-action download-btn" href="landing-v2/images/mebi-koyu-zemin-logosu.png"
+                  download="mebi-koyu-zemin-logosu.png" aria-label="MEBİ Koyu Zemin Logosu PNG indir">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+                  PNG İndir
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="material-card logo-download-card">
+            <div class="material-thumbnail logo-thumbnail logo-thumbnail--white">
+              <img src="landing-v2/images/mebi-beyaz-logo.svg" alt="MEBİ Beyaz Logo">
+            </div>
+            <div class="material-info">
+              <h3>MEBİ Beyaz Logo</h3>
+              <p>Koyu ve görsel zeminler için tek renk kurumsal logo</p>
+              <div class="material-actions">
+                <a class="material-action download-btn" href="landing-v2/images/mebi-beyaz-logo.svg"
+                  download="mebi-beyaz-logo.svg" aria-label="MEBİ Beyaz Logo SVG indir">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+                  SVG İndir
+                </a>
+                <a class="material-action download-btn" href="landing-v2/images/mebi-beyaz-logo.png"
+                  download="mebi-beyaz-logo.png" aria-label="MEBİ Beyaz Logo PNG indir">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    <path d="M16 12.5C16 12.5 13.054 16.4999 12 16.4999C10.9459 16.4999 8 12.4999 8 12.4999M12 15.9999V7.49994" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+                  PNG İndir
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scroll to top button -->
-  <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <button type="button" id="scrollToTop" class="scroll-to-top" aria-label="Sayfanın başına dön">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" />
     </svg>

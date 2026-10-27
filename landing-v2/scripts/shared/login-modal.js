@@ -9,20 +9,31 @@ onReady(() => {
   const modalClose = document.querySelector('.login-modal-close');
   const modalOverlay = document.querySelector('.login-modal-overlay');
   const helpLink = loginModal.querySelector('.login-modal-help');
+  let lastTrigger = null;
   
   // Open modal
   function openModal(e) {
     if (e) e.preventDefault();
     if (loginModal.classList.contains('active')) return;
+    lastTrigger = e?.currentTarget instanceof HTMLElement ? e.currentTarget : document.activeElement;
     loginModal.classList.add('active');
+    loginModal.setAttribute('aria-hidden', 'false');
     lockScroll();
+    requestAnimationFrame(() => {
+      modalClose?.focus();
+    });
   }
 
   // Close modal function
-  function closeModal() {
+  function closeModal({ restoreFocus = true } = {}) {
     if (!loginModal.classList.contains('active')) return;
     loginModal.classList.remove('active');
+    loginModal.setAttribute('aria-hidden', 'true');
     unlockScroll();
+    if (restoreFocus && lastTrigger instanceof HTMLElement) {
+      lastTrigger.focus();
+    }
+    lastTrigger = null;
   }
 
   loginButtons.forEach(button => {
@@ -31,12 +42,12 @@ onReady(() => {
   
   // Close on X button click
   if (modalClose) {
-    modalClose.addEventListener('click', closeModal);
+    modalClose.addEventListener('click', () => closeModal());
   }
   
   // Close on overlay click
   if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', () => closeModal());
     modalOverlay.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
     modalOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
   }
@@ -45,7 +56,7 @@ onReady(() => {
   if (helpLink) {
     helpLink.addEventListener('click', function(e) {
       e.preventDefault();
-      closeModal();
+      closeModal({ restoreFocus: false });
 
       const contactSection = document.getElementById('contact');
       if (contactSection) {
@@ -70,8 +81,28 @@ onReady(() => {
   }
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && loginModal.classList.contains('active')) {
+    if (!loginModal.classList.contains('active')) return;
+
+    if (event.key === 'Escape') {
       closeModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusableElements = [...loginModal.querySelectorAll(
+      'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+    )].filter(element => element.offsetParent !== null);
+    if (!focusableElements.length) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
     }
   });
 });

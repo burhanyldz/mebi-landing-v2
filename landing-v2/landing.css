@@ -1,5 +1,10 @@
 /* Landing page style entry point */
-@import url('./global.css');
+@import url('./styles/shared/base.css');
+@import url('./styles/shared/buttons.css');
+@import url('./styles/shared/header.css');
+@import url('./styles/shared/footer.css');
+@import url('./styles/shared/login-modal.css');
+@import url('./styles/shared/scroll-to-top.css');
 
 @import url('./styles/landing/hero.css');
 @import url('./styles/landing/presence-counter.css?v=20261023-presence-v34');

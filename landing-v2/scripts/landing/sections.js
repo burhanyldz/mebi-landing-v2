@@ -13,11 +13,12 @@ onReady(() => {
 
       const category = this.getAttribute('data-category');
       
-      // Remove active class from all nav items
-      featureNavItems.forEach(item => item.classList.remove('active'));
-      
-      // Add active class to clicked item
-      this.classList.add('active');
+      // Update active class and aria-pressed on all nav items
+      featureNavItems.forEach(item => {
+        const isActive = item === this;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
 
       featureSwitchVersion += 1;
       const currentSwitch = featureSwitchVersion;
@@ -114,11 +115,12 @@ onReady(() => {
     navItem.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
       
-      // Remove active class from all nav items
-      faqNavItems.forEach(item => item.classList.remove('active'));
-      
-      // Add active class to clicked item
-      this.classList.add('active');
+      // Update active class and aria-pressed on all nav items
+      faqNavItems.forEach(item => {
+        const isActive = item === this;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
 
       isFaqExpanded = false;
       renderFaqCategory(category);
@@ -153,9 +155,18 @@ onReady(() => {
 
       question.addEventListener('click', toggleAccordion);
 
-      // Keyboard support: Enter and Space
+      // Keyboard support: Enter on keydown, Space on keyup
       question.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          toggleAccordion();
+        } else if (e.key === ' ') {
+          e.preventDefault();
+        }
+      });
+
+      question.addEventListener('keyup', (e) => {
+        if (e.key === ' ') {
           e.preventDefault();
           toggleAccordion();
         }
@@ -165,26 +176,55 @@ onReady(() => {
 
   renderFaqCategory(document.querySelector('.faq-nav-item.active')?.getAttribute('data-category') || 'ogrenciler');
 
-  // Resources section — Book stacks click to open side-by-side & mouseout to restore
+  // Resources section — Book stacks click/keyboard to open side-by-side & mouseout to restore
   const resourceCards = document.querySelectorAll('.resource-card');
+  const setStackOpenState = (targetCard, isOpen) => {
+    resourceCards.forEach(c => {
+      const s = c.querySelector('.resource-image-stack');
+      const open = c === targetCard && isOpen;
+      c.classList.toggle('is-open', open);
+      if (s) {
+        s.classList.toggle('is-open', open);
+        s.setAttribute('aria-expanded', String(open));
+      }
+    });
+  };
+
   resourceCards.forEach(card => {
     const stack = card.querySelector('.resource-image-stack');
     if (!stack) return;
 
-    // Click on stack to open side-by-side / toggle
-    stack.addEventListener('click', (e) => {
+    const title = card.querySelector('.resource-info h3')?.textContent?.trim();
+    stack.setAttribute('role', 'button');
+    stack.setAttribute('tabindex', '0');
+    stack.setAttribute('aria-expanded', 'false');
+    if (title) {
+      stack.setAttribute('aria-label', `${title} görsellerini aç/kapat`);
+    }
+
+    const toggleStack = (e) => {
       e.stopPropagation();
       const willOpen = !card.classList.contains('is-open');
+      setStackOpenState(card, willOpen);
+    };
 
-      // Close other cards first for clean UX
-      resourceCards.forEach(c => {
-        c.classList.remove('is-open');
-        c.querySelector('.resource-image-stack')?.classList.remove('is-open');
-      });
+    // Click on stack to open side-by-side / toggle
+    stack.addEventListener('click', toggleStack);
 
-      if (willOpen) {
-        card.classList.add('is-open');
-        stack.classList.add('is-open');
+    // Keyboard support: Enter on keydown, Space on keyup
+    stack.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        toggleStack(e);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+      }
+    });
+
+    stack.addEventListener('keyup', (e) => {
+      if (e.key === ' ') {
+        e.preventDefault();
+        toggleStack(e);
       }
     });
 
@@ -192,16 +232,14 @@ onReady(() => {
     card.addEventListener('mouseleave', () => {
       card.classList.remove('is-open');
       stack.classList.remove('is-open');
+      stack.setAttribute('aria-expanded', 'false');
     });
   });
 
   // Tap/click outside to close any open card (touch/fallback)
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.resource-card')) {
-      resourceCards.forEach(card => {
-        card.classList.remove('is-open');
-        card.querySelector('.resource-image-stack')?.classList.remove('is-open');
-      });
+      setStackOpenState(null, false);
     }
   });
 });

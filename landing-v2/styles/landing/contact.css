@@ -58,7 +58,7 @@
   padding: 20px 32px;
   font-family: var(--font-main);
   font-size: 16px;
-  color: var(--color-text-subtle);
+  color: var(--color-text-primary);
 }
 
 @media (max-width: 768px) {
@@ -130,6 +130,7 @@
   color: #ef4444;
   font-size: 14px;
   margin-top: 4px;
+  padding-left: 16px;
   display: none;
 }
 

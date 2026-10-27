@@ -144,3 +144,9 @@
 .location-dots img:nth-child(8) {
   animation-delay: 2.1s;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .location-dots img {
+    animation: none;
+  }
+}
