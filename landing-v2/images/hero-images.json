@@ -1,0 +1,56 @@
+{
+  "desktop": [
+    {
+      "index": 1,
+      "extension": "png",
+      "filename": "hero-final-1.png"
+    },
+    {
+      "index": 2,
+      "extension": "png",
+      "filename": "hero-final-2.png"
+    },
+    {
+      "index": 3,
+      "extension": "png",
+      "filename": "hero-final-3.png"
+    },
+    {
+      "index": 4,
+      "extension": "png",
+      "filename": "hero-final-4.png"
+    },
+    {
+      "index": 5,
+      "extension": "png",
+      "filename": "hero-final-5.png"
+    },
+    {
+      "index": 6,
+      "extension": "png",
+      "filename": "hero-final-6.png"
+    },
+    {
+      "index": 7,
+      "extension": "png",
+      "filename": "hero-final-7.png"
+    },
+    {
+      "index": 8,
+      "extension": "png",
+      "filename": "hero-final-8.png"
+    },
+    {
+      "index": 9,
+      "extension": "png",
+      "filename": "hero-final-9.png"
+    }
+  ],
+  "mobile": [
+    {
+      "index": 1,
+      "extension": "webp",
+      "filename": "hero-section-mobile.webp"
+    }
+  ]
+}
