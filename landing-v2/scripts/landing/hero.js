@@ -10,6 +10,13 @@ onReady(() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const sources = picture.querySelectorAll('source');
   const image = picture.querySelector('img');
+  const text = document.querySelector('.hero-text');
+  const textDescriptions = {
+    1: text?.alt || '',
+    2: 'YKS yolculuğunda her adımda yanında. MEBİ, ortaöğretim öğrencilerinin ve mezunlarının YKS’ye hazırlık sürecini ders anlatım videoları, çözümlü sorular ve bireysel çalışma planlarıyla destekleyen, ücretsiz bir bireysel öğrenme platformudur.',
+    3: 'Hayalindeki liseye ilk adım MEBİ ile. MEBİ, ortaokul öğrencilerinin okul derslerini desteklemek ve LGS’ye hazırlık süreçlerine katkı sağlamak amacıyla ders anlatım videoları, çözümlü sorular ve bireysel çalışma planları sunan ücretsiz bir öğrenme platformudur.'
+  };
+  const textPath = index => `landing-v2/images/hero-text-${index}.png`;
   const series = {
     desktop: { base: 'landing-v2/images/hero-final', index: 1, last: 1, urls: new Map([[1, 'landing-v2/images/hero-final-1.png']]), entries: [1] },
     mobile: { base: 'landing-v2/images/hero-section-mobile', index: 1, last: 1, urls: new Map(), entries: [1] }
@@ -17,10 +24,50 @@ onReady(() => {
   let paused = reducedMotion.matches;
   let timer;
   let version = 0;
-  let finishTransition = () => {};
+  let activeTransition;
+  let zoom;
+  let preparing = false;
+  const decoded = new Map();
+  const easeOut = getComputedStyle(picture).getPropertyValue('--ease-out').trim();
+  const holdDuration = 6000;
+  const fadeDuration = 1800;
   const stem = (state, index) => `${state.base}${index === 1 ? '' : `-${index}`}`;
   const path = (state, index) => state.urls.get(index) || `${stem(state, index)}.webp`;
   const current = () => mobile.matches ? series.mobile : series.desktop;
+  const running = () => !paused && !document.hidden;
+  const startZoom = () => {
+    zoom?.cancel();
+    zoom = undefined;
+    if (reducedMotion.matches || !picture.animate || current().entries.length < 2) return;
+    zoom = picture.animate([
+      { transform: 'scale(1)' },
+      { transform: 'scale(1.06)' }
+    ], { duration: holdDuration + fadeDuration, easing: 'linear', fill: 'both' });
+    if (!running()) zoom.pause();
+  };
+  const nextIndex = state => state.entries[(state.entries.indexOf(state.index) + 1) % state.entries.length];
+  const load = url => {
+    if (!decoded.has(url)) {
+      const candidate = new Image();
+      candidate.src = url;
+      decoded.set(url, candidate.decode().then(() => {
+        if (!candidate.naturalWidth) throw new Error('Empty hero image');
+        return candidate;
+      }).catch(error => {
+        decoded.delete(url);
+        throw error;
+      }));
+    }
+    return decoded.get(url);
+  };
+  const prepare = (state, index) => Promise.all([
+    load(path(state, index)),
+    ...(text ? [load(textPath(state === series.mobile ? 1 : index))] : [])
+  ]);
+  const warmNext = () => {
+    const state = current();
+    if (running() && state.entries.length > 1) prepare(state, nextIndex(state)).catch(() => {});
+  };
   const render = () => {
     sources[0].srcset = path(series.mobile, series.mobile.index);
     sources[1].srcset = path(series.desktop, series.desktop.index);
@@ -28,42 +75,72 @@ onReady(() => {
       source.type = source.srcset.endsWith('.png') ? 'image/png' : 'image/webp';
     });
     image.src = path(series.desktop, series.desktop.index);
+    if (text) {
+      const index = mobile.matches ? 1 : series.desktop.index;
+      text.src = textPath(index);
+      text.alt = textDescriptions[index] || textDescriptions[1];
+    }
   };
-  const transition = async (previousUrl, requestVersion) => {
-    finishTransition();
+  const transition = async previousUrl => {
     if (reducedMotion.matches || !picture.animate || !previousUrl) {
       render();
       return;
     }
-    const outgoing = document.createElement('img');
-    outgoing.className = 'hero-outgoing';
-    outgoing.src = previousUrl;
-    outgoing.alt = '';
+    // Keep one complete old frame above the new background while it decodes.
+    const outgoing = document.createElement('div');
+    outgoing.className = 'hero-outgoing-frame';
     outgoing.setAttribute('aria-hidden', 'true');
-    picture.after(outgoing);
-    let animations = [];
-    const cleanup = () => {
-      animations.forEach(animation => animation.cancel());
-      outgoing.remove();
-    };
-    finishTransition = cleanup;
-    render();
-    // Keep the old frame covering the picture until the browser decodes the new one.
-    try { await image.decode(); } catch { /* The candidate was already verified. */ }
-    if (requestVersion !== version) {
-      cleanup();
-      return;
+    const background = image.cloneNode();
+    background.className = 'hero-outgoing';
+    background.src = previousUrl;
+    background.alt = '';
+    const previousScale = new DOMMatrixReadOnly(getComputedStyle(picture).transform).a;
+    background.style.transform = `scale(${previousScale})`;
+    outgoing.append(background);
+    const outgoingText = text?.cloneNode();
+    if (outgoingText) {
+      outgoingText.alt = '';
+      outgoing.append(outgoingText);
+      text.style.opacity = '0';
     }
-    const timing = { duration: 1100, easing: 'ease-in-out', fill: 'both' };
-    animations = [
-      outgoing.animate([
+    picture.after(outgoing);
+    const session = {
+      animations: [],
+      cleanup() {
+        session.animations.forEach(animation => animation.cancel());
+        outgoing.remove();
+        text?.style.removeProperty('opacity');
+        if (activeTransition === session) activeTransition = undefined;
+      }
+    };
+    activeTransition = session;
+    render();
+    try { await Promise.all([image.decode(), text?.decode()]); } catch { /* Preloaded assets remain the fallback. */ }
+    if (activeTransition !== session) return;
+    startZoom();
+    const animate = (element, keyframes, options) => {
+      session.animations.push(element.animate(keyframes, {
+        easing: easeOut, fill: 'both', ...options
+      }));
+    };
+    // Continue the old camera movement through the dissolve; the new one starts gently.
+    animate(background, [
+      { opacity: 1, transform: `scale(${previousScale})` },
+      { opacity: 0, transform: `scale(${previousScale + 0.014})` }
+    ], { duration: fadeDuration, easing: 'linear' });
+    if (text) {
+      animate(outgoingText, [
         { opacity: 1 },
         { opacity: 0 }
-      ], timing)
-    ];
-    await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
-    cleanup();
-    if (finishTransition === cleanup) finishTransition = () => {};
+      ], { duration: 240 });
+      animate(text, [
+        { opacity: 0, transform: 'translateY(8px)', filter: 'blur(3px)' },
+        { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' }
+      ], { duration: 700, delay: 320 });
+    }
+    if (!running()) session.animations.forEach(animation => animation.pause());
+    await Promise.all(session.animations.map(animation => animation.finished.catch(() => {})));
+    if (activeTransition === session) session.cleanup();
   };
   const label = () => {
     playback.innerHTML = paused
@@ -73,54 +150,61 @@ onReady(() => {
   };
   const schedule = () => {
     clearTimeout(timer);
-    if (!paused && !document.hidden) timer = setTimeout(advance, 6000);
+    if (running() && !activeTransition && !preparing && current().entries.length > 1) {
+      warmNext();
+      timer = setTimeout(advance, holdDuration);
+    }
   };
   const advance = async () => {
+    if (!running() || preparing || activeTransition) return;
     const state = current();
     const requestVersion = version;
-    const position = state.entries.indexOf(state.index);
-    const next = state.entries[(position + 1) % state.entries.length];
-    if (next === state.index) { schedule(); return; }
-    const candidate = new Image();
-    candidate.src = path(state, next);
+    const next = nextIndex(state);
+    if (next === state.index) return;
+    preparing = true;
     try {
-      await candidate.decode();
-      if (!candidate.naturalWidth) throw new Error('Empty image');
-    } catch {
-      // A removed or damaged catalog entry must not replace the visible image.
+      await prepare(state, next);
+      if (requestVersion !== version || !running()) return;
+      const previousUrl = image.currentSrc || image.src;
+      state.index = next;
+      await transition(previousUrl);
+    } catch { /* Retain the current pair if either asset fails to load. */ }
+    finally {
+      preparing = false;
       schedule();
-      return;
     }
-    if (requestVersion !== version) return;
-    const previousIndex = state.index;
-    const previousUrl = image.currentSrc || image.src;
-    state.index = next;
-    if (state.index !== previousIndex) await transition(previousUrl, requestVersion);
-    if (requestVersion !== version) return;
-    playback.hidden = state.last < 2 && !reducedMotion.matches;
+  };
+  const syncPlayback = () => {
+    clearTimeout(timer);
+    if (zoom && zoom.playState !== 'finished') {
+      if (running()) zoom.play();
+      else zoom.pause();
+    }
+    activeTransition?.animations.forEach(animation => {
+      if (running()) animation.play();
+      else animation.pause();
+    });
+    label();
     schedule();
   };
   playback.addEventListener('click', () => {
     paused = !paused;
-    version += 1;
-    finishTransition();
-    label();
-    schedule();
+    syncPlayback();
   });
   const restart = () => {
     version += 1;
-    finishTransition();
-    playback.hidden = current().last < 2 && !reducedMotion.matches;
-    schedule();
+    activeTransition?.cleanup();
+    render();
+    startZoom();
+    playback.hidden = current().entries.length < 2 && !reducedMotion.matches;
+    syncPlayback();
   };
   mobile.addEventListener('change', restart);
-  document.addEventListener('visibilitychange', restart);
+  document.addEventListener('visibilitychange', syncPlayback);
   reducedMotion.addEventListener('change', () => {
     paused = reducedMotion.matches;
-    label();
     restart();
   });
-  // Reduced-motion visitors can explicitly opt in without automatic rotation.
   if (reducedMotion.matches) playback.hidden = false;
   const refreshCatalog = async () => {
     try {
@@ -145,14 +229,23 @@ onReady(() => {
           }
         }
         if (!urls.size) continue;
+        if (!urls.has(state.index)) {
+          // Retain the visible pair until the next validated transition.
+          urls.set(state.index, path(state, state.index));
+        }
         state.urls = urls;
         state.entries = [...urls.keys()].sort((a, b) => a - b);
         state.last = state.entries.length;
       }
-      playback.hidden = current().last < 2 && !reducedMotion.matches;
+      playback.hidden = current().entries.length < 2 && !reducedMotion.matches;
+      warmNext();
     } catch { /* The original cover stays usable if the catalog is unavailable. */ }
   };
   label();
-  refreshCatalog().then(render).finally(schedule);
+  refreshCatalog().then(async () => {
+    render();
+    try { await image.decode(); } catch { /* Keep the original cover available. */ }
+    startZoom();
+  }).finally(schedule);
   setInterval(refreshCatalog, 60000);
 });

@@ -20,6 +20,13 @@
   transform: none;
 }
 
+.hero-outgoing-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
 .hero-outgoing {
   position: absolute;
   inset: 0;
@@ -30,7 +37,7 @@
   z-index: 1;
 }
 
-/* Independent of the rotating picture and its outgoing fade layer. */
+/* Each text layer rotates with its matching background. */
 .hero-text {
   position: absolute;
   inset: 0;
