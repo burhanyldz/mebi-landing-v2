@@ -128,9 +128,7 @@
   }
 
   .hero-playback {
-    top: calc(100vw * 1520 / 2880 - 48px);
-    right: 4px;
-    bottom: auto;
+    display: none;
   }
 }
 
