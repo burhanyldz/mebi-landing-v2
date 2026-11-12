@@ -21,7 +21,7 @@ const sharedModules = [
   './scripts/shared/scroll-lock.js',
   './scripts/shared/header.js',
   './scripts/shared/scroll-to-top.js',
-  './scripts/shared/login-modal.js?v=20261112-app-gate-v1'
+  './scripts/shared/login-modal.js?v=20261112-app-gate-v3'
 ];
 
 const landingModules = [
