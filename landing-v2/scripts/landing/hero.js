@@ -6,16 +6,18 @@ onReady(() => {
   const playback = document.querySelector('.hero-playback');
   if (!picture || !playback) return;
 
+  const mobile = window.matchMedia('(max-width: 640px)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const sources = picture.querySelectorAll('source');
   const image = picture.querySelector('img');
   const text = document.querySelector('.hero-text');
+  const mobileTextSource = document.querySelector('.hero-text-picture source');
   const textDescriptions = {
     1: text?.alt || '',
     2: 'YKS yolculuğunda her adımda yanında. MEBİ, ortaöğretim öğrencilerinin ve mezunlarının YKS’ye hazırlık sürecini ders anlatım videoları, çözümlü sorular ve bireysel çalışma planlarıyla destekleyen, ücretsiz bir bireysel öğrenme platformudur.',
     3: 'Hayalindeki liseye ilk adım MEBİ ile. MEBİ, ortaokul öğrencilerinin okul derslerini desteklemek ve LGS’ye hazırlık süreçlerine katkı sağlamak amacıyla ders anlatım videoları, çözümlü sorular ve bireysel çalışma planları sunan ücretsiz bir öğrenme platformudur.'
   };
-  const textPath = index => `landing-v2/images/hero-text-${index}.png`;
+  const textPath = index => `landing-v2/images/${mobile.matches ? 'mobil-' : ''}hero-text-${index}.png`;
   const series = {
     desktop: { base: 'landing-v2/images/hero-final', index: 1, last: 1, urls: new Map([[1, 'landing-v2/images/hero-final-1.png']]), entries: [1] }
   };
@@ -67,6 +69,9 @@ onReady(() => {
     if (running() && state.entries.length > 1) prepare(state, nextIndex(state)).catch(() => {});
   };
   const render = () => {
+    const focus = [1, 3, 4].includes(current().index) ? '78%' : '70%';
+    picture.style.setProperty('--hero-focus', focus);
+    image.style.setProperty('--hero-focus', focus);
     sources.forEach(source => { source.srcset = path(current(), current().index); });
     sources.forEach(source => {
       source.type = source.srcset.endsWith('.png') ? 'image/png' : 'image/webp';
@@ -74,6 +79,8 @@ onReady(() => {
     image.src = path(series.desktop, series.desktop.index);
     if (text) {
       const index = current().index;
+      text.style.setProperty('--hero-text-lift', [1, 3].includes(index) ? '28px' : '0px');
+      if (mobileTextSource) mobileTextSource.srcset = `landing-v2/images/mobil-hero-text-${index}.png`;
       text.src = textPath(index);
       text.alt = textDescriptions[index] || textDescriptions[1];
     }
@@ -196,6 +203,7 @@ onReady(() => {
     playback.hidden = current().entries.length < 2 && !reducedMotion.matches;
     syncPlayback();
   };
+  mobile.addEventListener('change', restart);
   document.addEventListener('visibilitychange', syncPlayback);
   reducedMotion.addEventListener('change', () => {
     paused = reducedMotion.matches;
@@ -237,6 +245,7 @@ onReady(() => {
       warmNext();
     } catch { /* The original cover stays usable if the catalog is unavailable. */ }
   };
+  render();
   label();
   refreshCatalog().then(async () => {
     render();

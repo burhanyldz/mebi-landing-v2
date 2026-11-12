@@ -242,3 +242,192 @@
     height: 18px;
   }
 }
+
+/* Mobile and tablet app entry. */
+.login-app-panel[hidden],
+.login-web-panel[hidden] { display: none; }
+
+.login-modal.is-app-gate {
+  padding: 0;
+  height: 100dvh;
+  align-items: stretch;
+  background: #0636ad;
+}
+
+.is-app-gate .login-modal-overlay { display: none; }
+
+.is-app-gate .login-modal-content {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  min-height: 100%;
+  padding: max(60px, calc(env(safe-area-inset-top) + 48px)) 28px max(36px, env(safe-area-inset-bottom));
+  border-radius: 0;
+  background: #0636ad;
+  box-shadow: none;
+  animation: none;
+}
+
+.is-app-gate .login-modal-close {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  z-index: 3;
+}
+
+.is-app-gate .login-modal-close:hover { background: #ffffff18; }
+
+.login-app-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto auto;
+  text-align: center;
+  color: #fff;
+}
+
+.login-app-brand {
+  position: relative;
+  top: -24px;
+  margin-bottom: 28px;
+}
+
+.login-app-logo {
+  display: block;
+  width: 110px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 16px;
+}
+
+.login-app-ministry {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.login-app-platform {
+  margin: 2px 0 0;
+  color: #d9e5ff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.login-app-intro p {
+  max-width: 310px;
+  margin: 0 auto;
+  color: #d9e5ff;
+  font-size: 15px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.login-app-stores {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.login-app-stores .store-button-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 62px;
+  padding: 9px 18px;
+  background: #fff;
+  border: 1px solid #e3e9f8;
+  border-radius: 12px;
+  box-shadow: none;
+  color: #244078;
+  transition: background-color 160ms ease-out, transform 160ms ease-out;
+  touch-action: manipulation;
+}
+
+.login-app-stores .store-button-footer:hover { background: #edf3ff; }
+.login-app-stores .store-button-footer:active { transform: scale(0.985); }
+
+.login-app-stores .store-button-footer img {
+  display: block;
+  flex: 0 0 134px;
+  width: 134px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.login-app-stores .appgallery-badge {
+  justify-content: flex-start;
+  width: 134px;
+  height: 44px;
+  padding: 4px 6px;
+  background: transparent;
+}
+
+.login-store-arrow { flex-shrink: 0; margin-left: 12px; }
+
+.login-app-web {
+  width: 100%;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid #ffffff30;
+}
+
+.login-app-web p {
+  margin: 0 0 4px;
+  color: #d9e5ff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.login-web-continue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font: 500 16px/1.5 var(--font-main, sans-serif);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.login-web-continue:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.is-app-gate :is(a, button):focus-visible { outline: 3px solid #70eff0; outline-offset: 4px; }
+
+@media (max-height: 740px) {
+  .is-app-gate .login-modal-content { padding-top: max(60px, calc(env(safe-area-inset-top) + 48px)); padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  .login-app-logo { width: 83px; height: 48px; margin-bottom: 12px; }
+  .login-app-brand { margin-bottom: 24px; }
+  .login-app-stores { margin-top: 24px; gap: 8px; }
+  .login-app-stores .store-button-footer { height: 54px; padding: 5px 16px; }
+  .login-app-web { margin-top: 44px; padding-top: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-app-stores .store-button-footer { transition: none; }
+}
+
+@media (max-height: 650px) {
+  .is-app-gate .login-modal-content { padding-top: max(56px, calc(env(safe-area-inset-top) + 44px)); padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+  .login-app-logo { width: 69px; height: 40px; margin-bottom: 8px; }
+  .login-app-ministry { font-size: 13px; }
+  .login-app-platform { font-size: 12px; }
+  .login-app-brand { margin-bottom: 16px; }
+  .login-app-intro p { font-size: 14px; line-height: 1.4; }
+  .login-app-stores { margin-top: 20px; }
+  .login-app-stores .store-button-footer { height: 48px; padding-top: 2px; padding-bottom: 2px; }
+  .login-app-web { margin-top: 36px; padding-top: 12px; }
+  .login-app-web p { display: none; }
+}

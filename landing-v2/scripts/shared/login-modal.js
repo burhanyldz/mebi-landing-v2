@@ -9,13 +9,34 @@ onReady(() => {
   const modalClose = document.querySelector('.login-modal-close');
   const modalOverlay = document.querySelector('.login-modal-overlay');
   const helpLink = loginModal.querySelector('.login-modal-help');
+  const appPanel = loginModal.querySelector('.login-app-panel');
+  const webPanel = loginModal.querySelector('.login-web-panel');
+  const webContinue = loginModal.querySelector('.login-web-continue');
+  const tabletTouch = window.matchMedia('(pointer: coarse) and (max-width: 1366px)');
+  const isMobile = () => /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) || tabletTouch.matches;
   let lastTrigger = null;
+
+  function showPanel(app) {
+    if (!appPanel || !webPanel) return;
+    appPanel.hidden = !app;
+    webPanel.hidden = app;
+    loginModal.classList.toggle('is-app-gate', app);
+    loginModal.setAttribute('aria-labelledby', app ? 'loginAppTitle' : 'loginModalTitle');
+    loginModal.scrollTop = 0;
+  }
+
+  webContinue?.addEventListener('click', () => {
+    showPanel(false);
+    webPanel.querySelector('.login-option-btn')?.focus();
+  });
   
   // Open modal
   function openModal(e) {
     if (e) e.preventDefault();
     if (loginModal.classList.contains('active')) return;
     lastTrigger = e?.currentTarget instanceof HTMLElement ? e.currentTarget : document.activeElement;
+    showPanel(isMobile());
     loginModal.classList.add('active');
     loginModal.setAttribute('aria-hidden', 'false');
     lockScroll();

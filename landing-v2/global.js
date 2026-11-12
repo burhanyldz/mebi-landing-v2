@@ -21,11 +21,11 @@ const sharedModules = [
   './scripts/shared/scroll-lock.js',
   './scripts/shared/header.js',
   './scripts/shared/scroll-to-top.js',
-  './scripts/shared/login-modal.js'
+  './scripts/shared/login-modal.js?v=20261112-app-gate-v1'
 ];
 
 const landingModules = [
-  './scripts/landing/hero.js?v=20261112-shared-hero-v14',
+  './scripts/landing/hero.js?v=20261112-mobile-text-lift-v29',
   './scripts/landing/animations.js',
   './scripts/landing/modules-motion.js?v=20261025-module-scroll-stable-v4',
   './scripts/landing/presence-counter.js?v=20261023-presence-v34',

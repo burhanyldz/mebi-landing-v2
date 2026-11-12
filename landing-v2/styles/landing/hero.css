@@ -37,6 +37,10 @@
   z-index: 1;
 }
 
+.hero-text-picture {
+  display: contents;
+}
+
 /* Each text layer rotates with its matching background. */
 .hero-text {
   position: absolute;
@@ -92,7 +96,7 @@
 @media (max-width: 640px) {
   .hero-section {
     background: #080b2f;
-    padding-top: calc(100vw * 1520 / 2880);
+    padding-top: calc(min(68vw, 300px) * 566 / 375 + 88px);
   }
 
   .hero-picture {
@@ -105,12 +109,22 @@
   .hero-bg,
   .hero-outgoing {
     object-fit: cover;
+    object-position: var(--hero-focus, 70%) center;
+    transform-origin: var(--hero-focus, 70%) center;
+  }
+
+  .hero-picture {
+    transform-origin: var(--hero-focus, 70%) center;
   }
 
   .hero-text {
-    top: clamp(48px, 9vw, 64px);
+    top: auto;
+    right: auto;
+    bottom: calc(112px + var(--hero-text-lift, 0px));
+    left: clamp(16px, 4vw, 24px);
+    width: min(68%, 300px);
     height: auto;
-    aspect-ratio: 2880 / 1520;
+    aspect-ratio: auto;
   }
 
   .hero-section .hero-overlay {
@@ -119,7 +133,7 @@
 
   .hero-section .hero-overlay .container {
     padding-top: 16px;
-    padding-bottom: 20px;
+    padding-bottom: 52px;
   }
 
   .hero-section .hero-buttons {

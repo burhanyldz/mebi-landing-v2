@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="landing-v2/styles/shared/buttons.css">
   <link rel="stylesheet" href="landing-v2/styles/shared/header.css">
   <link rel="stylesheet" href="landing-v2/styles/shared/footer.css">
-  <link rel="stylesheet" href="landing-v2/styles/shared/login-modal.css">
+  <link rel="stylesheet" href="landing-v2/styles/shared/login-modal.css?v=20261112-app-gate-v7">
   <link rel="stylesheet" href="landing-v2/styles/shared/scroll-to-top.css">
-  <link rel="stylesheet" href="landing-v2/styles/landing/hero.css?v=20261112-mobile-no-playback-v20">
+  <link rel="stylesheet" href="landing-v2/styles/landing/hero.css?v=20261112-app-gate-v30">
   <link rel="stylesheet" href="landing-v2/styles/landing/presence-counter.css?v=20261023-presence-v34">
   <link rel="stylesheet" href="landing-v2/styles/landing/about.css?v=20261024-no-card-hover">
   <link rel="stylesheet" href="landing-v2/styles/landing/resources.css">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="landing-v2/styles/landing/contact.css">
   <link rel="stylesheet" href="landing-v2/styles/landing/discover-modal.css">
   <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
-  <script src="landing-v2/global.js?v=20261112-shared-hero-v14" defer></script>
+  <script src="landing-v2/global.js?v=20261112-app-gate-v31" defer></script>
 </head>
 
 <body oncontextmenu="return false;">
@@ -80,9 +80,12 @@
       <img src="landing-v2/images/hero-final-1.png" alt="" class="hero-bg" width="2880" height="1520"
         fetchpriority="high" decoding="async">
     </picture>
-    <img src="landing-v2/images/hero-text-1.png" class="hero-text" width="2880" height="1520"
-      alt="Planla, çalış, başar. Okul dersleri, YKS ve LGS için ücretsiz bireysel öğrenme platformu."
-      decoding="async" fetchpriority="high" draggable="false">
+    <picture class="hero-text-picture">
+      <source media="(max-width: 640px)" srcset="landing-v2/images/mobil-hero-text-1.png" type="image/png">
+      <img src="landing-v2/images/hero-text-1.png" class="hero-text" width="2880" height="1520"
+        alt="Planla, çalış, başar. Okul dersleri, YKS ve LGS için ücretsiz bireysel öğrenme platformu."
+        decoding="async" fetchpriority="high" draggable="false">
+    </picture>
     <button class="hero-playback" type="button" hidden aria-label="Kapak görsellerini duraklat"></button>
     <div class="hero-overlay">
       <div class="container">
@@ -1211,6 +1214,39 @@
         </svg>
       </button>
 
+      <section class="login-app-panel" hidden aria-labelledby="loginAppTitle">
+        <div class="login-app-brand">
+          <img src="landing-v2/images/mebi-koyu-zemin-logosu.svg" alt="MEBİ" class="login-app-logo" width="110" height="64">
+          <p class="login-app-ministry">Millî Eğitim Bakanlığı</p>
+          <p class="login-app-platform">Bireysel Öğrenme Platformu</p>
+        </div>
+        <div class="login-app-intro">
+          <h2 id="loginAppTitle" class="sr-only">MEBİ mobil uygulaması</h2>
+          <p>Telefon ve tabletinde daha iyi bir MEBİ deneyimi için mobil uygulamayı ücretsiz indir.</p>
+        </div>
+        <div class="login-app-stores" aria-label="MEBİ uygulama mağazaları">
+          <a href="https://apps.apple.com/tr/app/mebi/id6736946513" class="store-button-footer" data-app-store="apple" aria-label="MEBİ’yi App Store’da aç">
+            <img src="landing-v2/images/app-store-download-label.webp" alt="App Store'dan indir" width="244" height="80">
+            <svg class="login-store-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=tr.gov.eba.mebi&amp;hl=tr" class="store-button-footer" data-app-store="google" aria-label="MEBİ’yi Google Play’de aç">
+            <img src="landing-v2/images/google-play-download-label.webp" alt="Google Play'den indir" width="244" height="80">
+            <svg class="login-store-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://appgallery.huawei.com/app/C116045471" class="store-button-footer store-button-appgallery" data-app-store="huawei" aria-label="MEBİ’yi Huawei AppGallery’de aç">
+            <span class="appgallery-badge" aria-hidden="true">
+              <span class="appgallery-icon"></span>
+              <span class="appgallery-copy"><strong>AppGallery</strong><small>ile KEŞFEDİN</small></span>
+            </span>
+            <svg class="login-store-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="login-app-web">
+          <p>Tarayıcıdan kullanmak ister misin?</p>
+          <button type="button" class="login-web-continue">Web’den devam et <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+      <div class="login-web-panel">
       <div class="login-modal-header">
         <img src="landing-v2/images/mebi-logo.svg" alt="MEBİ Logo" class="login-modal-logo" loading="lazy">
         <h2 id="loginModalTitle" class="login-modal-title">MİLLÎ EĞİTİM BAKANLIĞI</h2>
@@ -1241,6 +1277,7 @@
 
       <div class="login-modal-footer">
         <a href="#contact" class="login-modal-help">Yardıma mı ihtiyacınız var?</a>
+      </div>
       </div>
     </div>
   </div>
