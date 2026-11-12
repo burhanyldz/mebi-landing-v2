@@ -6,7 +6,6 @@ onReady(() => {
   const playback = document.querySelector('.hero-playback');
   if (!picture || !playback) return;
 
-  const mobile = window.matchMedia('(max-width: 640px)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const sources = picture.querySelectorAll('source');
   const image = picture.querySelector('img');
@@ -18,8 +17,7 @@ onReady(() => {
   };
   const textPath = index => `landing-v2/images/hero-text-${index}.png`;
   const series = {
-    desktop: { base: 'landing-v2/images/hero-final', index: 1, last: 1, urls: new Map([[1, 'landing-v2/images/hero-final-1.png']]), entries: [1] },
-    mobile: { base: 'landing-v2/images/hero-section-mobile', index: 1, last: 1, urls: new Map(), entries: [1] }
+    desktop: { base: 'landing-v2/images/hero-final', index: 1, last: 1, urls: new Map([[1, 'landing-v2/images/hero-final-1.png']]), entries: [1] }
   };
   let paused = reducedMotion.matches;
   let timer;
@@ -33,7 +31,7 @@ onReady(() => {
   const fadeDuration = 1800;
   const stem = (state, index) => `${state.base}${index === 1 ? '' : `-${index}`}`;
   const path = (state, index) => state.urls.get(index) || `${stem(state, index)}.webp`;
-  const current = () => mobile.matches ? series.mobile : series.desktop;
+  const current = () => series.desktop;
   const running = () => !paused && !document.hidden;
   const startZoom = () => {
     zoom?.cancel();
@@ -62,21 +60,20 @@ onReady(() => {
   };
   const prepare = (state, index) => Promise.all([
     load(path(state, index)),
-    ...(text ? [load(textPath(state === series.mobile ? 1 : index))] : [])
+    ...(text ? [load(textPath(index))] : [])
   ]);
   const warmNext = () => {
     const state = current();
     if (running() && state.entries.length > 1) prepare(state, nextIndex(state)).catch(() => {});
   };
   const render = () => {
-    sources[0].srcset = path(series.mobile, series.mobile.index);
-    sources[1].srcset = path(series.desktop, series.desktop.index);
+    sources.forEach(source => { source.srcset = path(current(), current().index); });
     sources.forEach(source => {
       source.type = source.srcset.endsWith('.png') ? 'image/png' : 'image/webp';
     });
     image.src = path(series.desktop, series.desktop.index);
     if (text) {
-      const index = mobile.matches ? 1 : series.desktop.index;
+      const index = current().index;
       text.src = textPath(index);
       text.alt = textDescriptions[index] || textDescriptions[1];
     }
@@ -199,7 +196,6 @@ onReady(() => {
     playback.hidden = current().entries.length < 2 && !reducedMotion.matches;
     syncPlayback();
   };
-  mobile.addEventListener('change', restart);
   document.addEventListener('visibilitychange', syncPlayback);
   reducedMotion.addEventListener('change', () => {
     paused = reducedMotion.matches;
@@ -211,7 +207,7 @@ onReady(() => {
       const response = await fetch('landing-v2/images/hero-images.json', { cache: 'no-store' });
       if (!response.ok) return;
       const catalog = await response.json();
-      for (const key of ['desktop', 'mobile']) {
+      for (const key of ['desktop']) {
         const state = series[key];
         const entries = catalog[key];
         if (!Array.isArray(entries)) continue;

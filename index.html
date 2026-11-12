@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="landing-v2/styles/shared/footer.css">
   <link rel="stylesheet" href="landing-v2/styles/shared/login-modal.css">
   <link rel="stylesheet" href="landing-v2/styles/shared/scroll-to-top.css">
-  <link rel="stylesheet" href="landing-v2/styles/landing/hero.css?v=20261111-soft-zoom-v13">
+  <link rel="stylesheet" href="landing-v2/styles/landing/hero.css?v=20261112-mobile-text-v19">
   <link rel="stylesheet" href="landing-v2/styles/landing/presence-counter.css?v=20261023-presence-v34">
   <link rel="stylesheet" href="landing-v2/styles/landing/about.css?v=20261024-no-card-hover">
   <link rel="stylesheet" href="landing-v2/styles/landing/resources.css">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="landing-v2/styles/landing/contact.css">
   <link rel="stylesheet" href="landing-v2/styles/landing/discover-modal.css">
   <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
-  <script src="landing-v2/global.js?v=20261111-soft-zoom-v13" defer></script>
+  <script src="landing-v2/global.js?v=20261112-shared-hero-v14" defer></script>
 </head>
 
 <body oncontextmenu="return false;">
@@ -74,10 +74,8 @@
   </header>
   <main id="main-content">
   <section id="hero" class="hero-section">
-    <!-- hero image placed inside <picture> so only the matching viewport source downloads and intrinsic aspect ratio sets the section height -->
+    <!-- All viewports share the current hero sequence and composition. -->
     <picture class="hero-picture">
-      <source media="(max-width: 640px)" srcset="landing-v2/images/hero-section-mobile.webp" type="image/webp"
-        width="750" height="1246">
       <source srcset="landing-v2/images/hero-final-1.png" type="image/png" width="2880" height="1520">
       <img src="landing-v2/images/hero-final-1.png" alt="" class="hero-bg" width="2880" height="1520"
         fetchpriority="high" decoding="async">

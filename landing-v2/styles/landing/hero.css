@@ -88,50 +88,49 @@
   object-position: center;
   transform: none;
 }
-.hero-bg-mobile {
-  display: none;
-}
-
+/* Extend the background behind the mobile actions; keep the text composition above. */
 @media (max-width: 640px) {
-  .hero-picture {
-    aspect-ratio: 750 / 1246;
-  }
-  .hero-bg-mobile {
-    display: block;
-    width: 100vw;
-    max-width: 100vw;
-    height: auto;
+  .hero-section {
+    background: #080b2f;
+    padding-top: calc(100vw * 1520 / 2880);
   }
 
-  .hero-section {
-    height: auto; /* height matches mobile background image height */
+  .hero-picture {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .hero-bg,
+  .hero-outgoing {
+    object-fit: cover;
+  }
+
+  .hero-text {
+    top: clamp(48px, 9vw, 64px);
+    height: auto;
+    aspect-ratio: 2880 / 1520;
+  }
+
+  .hero-section .hero-overlay {
     position: relative;
   }
 
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end; /* align buttons to bottom */
-    justify-content: center;
+  .hero-section .hero-overlay .container {
+    padding-top: 16px;
+    padding-bottom: 20px;
   }
 
-  .hero-overlay .container {
-    padding-bottom: 50px !important; /* 50px from bottom edge */
-    align-items: center;
-    justify-content: center;
+  .hero-section .hero-buttons {
+    bottom: 0;
+    margin-top: 0;
   }
-}
 
-@media (max-width: 480px) {
-  .hero-overlay .container {
-    padding-bottom: 50px !important; /* maintain 50px bottom spacing */
-  }
-}
-
-@media (max-width: 420px) {
-  .hero-overlay .container {
-    padding-bottom: 50px !important; /* maintain 50px bottom spacing */
+  .hero-playback {
+    top: calc(100vw * 1520 / 2880 - 48px);
+    right: 4px;
+    bottom: auto;
   }
 }
 
@@ -148,26 +147,8 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 60px;
-  /* distance from image bottom */
-}
-
-@media (max-width: 1024px) {
-  .hero-overlay .container {
-    padding-bottom: 50px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-overlay .container {
-    padding-bottom: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-overlay .container {
-    padding-bottom: 30px;
-  }
+  /* Lower the actions as the artwork becomes shorter on narrower screens. */
+  padding-bottom: clamp(16px, calc(12vw - 73px), 100px);
 }
 
 .hero-content {
@@ -185,13 +166,13 @@
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: clamp(10px, 1.2vw, 16px);
   justify-content: center;
   /* center buttons horizontally within the hero-content container */
   margin-top: 4px;
   /* lift buttons away from the bottom edge */
   position: relative;
-  bottom: 40px;
+  bottom: 0;
   z-index: 10;
   /* above the image */
 }
@@ -201,9 +182,7 @@
     align-items: stretch;
     width: 100%;
     max-width: 320px;
-    margin-top: 12px;
-    gap: 12px;
-    bottom: 28px;
+    margin-top: 0;
   }
 }
 
@@ -216,7 +195,11 @@
 
 .btn-hero-primary,
 .btn-hero-secondary {
-  min-width: 160px;
+  min-width: clamp(112px, 11.2vw, 160px);
+  min-height: clamp(44px, 3.75vw, 54px);
+  padding: clamp(8px, 1vw, 14px) clamp(16px, 2.1vw, 30px);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 22px;
 }
 
 .hero-buttons .btn-hero-secondary {
@@ -267,21 +250,5 @@
 @media (max-width: 768px) {
   .hero-buttons .btn-icon-right {
     display: none;
-  }
-
-  .btn-hero-primary,
-  .btn-hero-secondary {
-    min-width: 0;
-    min-height: 50px;
-    padding: 12px 18px;
-    font-size: 16px;
-    line-height: 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  .btn-hero-primary,
-  .btn-hero-secondary {
-    padding: 12px 16px;
   }
 }
