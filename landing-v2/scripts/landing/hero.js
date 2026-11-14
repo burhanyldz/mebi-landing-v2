@@ -17,9 +17,7 @@ onReady(() => {
     2: 'YKS yolculuğunda her adımda yanında. MEBİ, ortaöğretim öğrencilerinin ve mezunlarının YKS’ye hazırlık sürecini ders anlatım videoları, çözümlü sorular ve bireysel çalışma planlarıyla destekleyen, ücretsiz bir bireysel öğrenme platformudur.',
     3: 'Hayalindeki liseye ilk adım MEBİ ile. MEBİ, ortaokul öğrencilerinin okul derslerini desteklemek ve LGS’ye hazırlık süreçlerine katkı sağlamak amacıyla ders anlatım videoları, çözümlü sorular ve bireysel çalışma planları sunan ücretsiz bir öğrenme platformudur.'
   };
-  textDescriptions[4] = textDescriptions[3];
-  const desktopTextIndex = index => index === 4 ? 3 : index;
-  const textPath = index => `landing-v2/images/${mobile.matches ? 'mobil-' : ''}hero-text-${mobile.matches ? index : desktopTextIndex(index)}.png`;
+  const textPath = index => `landing-v2/images/${mobile.matches ? 'mobil-' : ''}hero-text-${index}.png`;
   const series = {
     desktop: { base: 'landing-v2/images/hero-final', index: 1, last: 1, urls: new Map([[1, 'landing-v2/images/hero-final-1.png']]), entries: [1] }
   };
@@ -72,7 +70,7 @@ onReady(() => {
     if (running() && state.entries.length > 1) prepare(state, nextIndex(state)).catch(() => {});
   };
   const render = () => {
-    const focus = [1, 3, 4].includes(current().index) ? '78%' : '70%';
+    const focus = [1, 3].includes(current().index) ? '78%' : '70%';
     picture.style.setProperty('--hero-focus', focus);
     image.style.setProperty('--hero-focus', focus);
     sources.forEach(source => { source.srcset = path(current(), current().index); });
