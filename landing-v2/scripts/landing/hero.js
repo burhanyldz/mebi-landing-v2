@@ -17,7 +17,9 @@ onReady(() => {
     2: 'YKS yolculuğunda her adımda yanında. MEBİ, ortaöğretim öğrencilerinin ve mezunlarının YKS’ye hazırlık sürecini ders anlatım videoları, çözümlü sorular ve bireysel çalışma planlarıyla destekleyen, ücretsiz bir bireysel öğrenme platformudur.',
     3: 'Hayalindeki liseye ilk adım MEBİ ile. MEBİ, ortaokul öğrencilerinin okul derslerini desteklemek ve LGS’ye hazırlık süreçlerine katkı sağlamak amacıyla ders anlatım videoları, çözümlü sorular ve bireysel çalışma planları sunan ücretsiz bir öğrenme platformudur.'
   };
-  const textPath = index => `landing-v2/images/${mobile.matches ? 'mobil-' : ''}hero-text-${index}.png`;
+  textDescriptions[4] = textDescriptions[3];
+  const desktopTextIndex = index => index === 4 ? 3 : index;
+  const textPath = index => `landing-v2/images/${mobile.matches ? 'mobil-' : ''}hero-text-${mobile.matches ? index : desktopTextIndex(index)}.png`;
   const series = {
     desktop: { base: 'landing-v2/images/hero-final', index: 1, last: 1, urls: new Map([[1, 'landing-v2/images/hero-final-1.png']]), entries: [1] }
   };
@@ -31,6 +33,7 @@ onReady(() => {
   const easeOut = getComputedStyle(picture).getPropertyValue('--ease-out').trim();
   const holdDuration = 6000;
   const fadeDuration = 1800;
+  const zoomAmount = 0.02;
   const stem = (state, index) => `${state.base}${index === 1 ? '' : `-${index}`}`;
   const path = (state, index) => state.urls.get(index) || `${stem(state, index)}.webp`;
   const current = () => series.desktop;
@@ -41,7 +44,7 @@ onReady(() => {
     if (reducedMotion.matches || !picture.animate || current().entries.length < 2) return;
     zoom = picture.animate([
       { transform: 'scale(1)' },
-      { transform: 'scale(1.06)' }
+      { transform: `scale(${1 + zoomAmount})` }
     ], { duration: holdDuration + fadeDuration, easing: 'linear', fill: 'both' });
     if (!running()) zoom.pause();
   };
@@ -130,7 +133,7 @@ onReady(() => {
     // Continue the old camera movement through the dissolve; the new one starts gently.
     animate(background, [
       { opacity: 1, transform: `scale(${previousScale})` },
-      { opacity: 0, transform: `scale(${previousScale + 0.014})` }
+      { opacity: 0, transform: `scale(${previousScale + zoomAmount * fadeDuration / (holdDuration + fadeDuration)})` }
     ], { duration: fadeDuration, easing: 'linear' });
     if (text) {
       animate(outgoingText, [
