@@ -143,6 +143,12 @@
     aspect-ratio: auto;
   }
 
+  .hero-text.hero-text--top-left {
+    top: clamp(82px, 21vw, 96px);
+    bottom: auto;
+    width: min(62%, 256px);
+  }
+
   .hero-section .hero-overlay {
     position: relative;
   }

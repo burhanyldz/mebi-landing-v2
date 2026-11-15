@@ -25,7 +25,7 @@ const sharedModules = [
 ];
 
 const landingModules = [
-  './scripts/landing/hero.js?v=20261114-hero-v31',
+  './scripts/landing/hero.js?v=20261115-mobile-top-left-v1',
   './scripts/landing/animations.js',
   './scripts/landing/modules-motion.js?v=20261025-module-scroll-stable-v4',
   './scripts/landing/presence-counter.js?v=20261023-presence-v34',

@@ -80,7 +80,8 @@ onReady(() => {
     image.src = path(series.desktop, series.desktop.index);
     if (text) {
       const index = current().index;
-      text.style.setProperty('--hero-text-lift', [1, 3].includes(index) ? '28px' : '0px');
+      text.classList.toggle('hero-text--top-left', [1, 3].includes(index));
+      text.style.setProperty('--hero-text-lift', '0px');
       if (mobileTextSource) mobileTextSource.srcset = `landing-v2/images/mobil-hero-text-${index}.png`;
       text.src = textPath(index);
       text.alt = textDescriptions[index] || textDescriptions[1];
