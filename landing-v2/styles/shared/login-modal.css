@@ -250,7 +250,9 @@
 .login-modal.is-app-gate {
   padding: 0;
   height: 100dvh;
-  align-items: stretch;
+  align-items: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior: contain;
   background-color: #03114b;
 }
@@ -273,7 +275,7 @@
     radial-gradient(ellipse 75% 48% at 15% 100%, rgba(19, 64, 196, 0.52), transparent 70%),
     linear-gradient(175deg, #041559 0%, #052686 48%, #041b69 100%);
   box-shadow: none;
-  overflow-x: hidden;
+  overflow-x: clip;
   animation: none;
 }
 
@@ -338,9 +340,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
   width: 100%;
   max-width: 392px;
   margin: auto;
+  padding: 0;
+  overflow: visible;
   text-align: center;
   color: #fff;
 }
