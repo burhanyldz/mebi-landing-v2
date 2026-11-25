@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="landing-v2/styles/shared/header.css">
   <link rel="stylesheet" href="landing-v2/styles/shared/footer.css">
   <link rel="stylesheet" href="landing-v2/styles/shared/login-modal.css?v=20261115-scroll-fix-v1">
+  <link rel="stylesheet" href="landing-v2/styles/shared/login-dropdown.css?v=20261125-login-dropdown-v5">
   <link rel="stylesheet" href="landing-v2/styles/shared/scroll-to-top.css">
   <link rel="stylesheet" href="landing-v2/styles/landing/hero.css?v=20261115-mobile-top-left-v1">
-  <link rel="stylesheet" href="landing-v2/styles/landing/presence-counter.css?v=20261023-presence-v34">
   <link rel="stylesheet" href="landing-v2/styles/landing/about.css?v=20261024-no-card-hover">
   <link rel="stylesheet" href="landing-v2/styles/landing/resources.css?v=20261113-touch-scroll-v1">
   <link rel="stylesheet" href="landing-v2/styles/landing/statistics.css">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="landing-v2/styles/landing/contact.css">
   <link rel="stylesheet" href="landing-v2/styles/landing/discover-modal.css">
   <link rel="icon" type="image/x-icon" href="landing-v2/images/favicon.ico">
-  <script src="landing-v2/global.js?v=20261112-app-gate-v31" defer></script>
+  <script src="landing-v2/global.js?v=20261125-login-dropdown-v3" defer></script>
 </head>
 
 <body oncontextmenu="return false;">
@@ -64,10 +64,31 @@
 
         <!-- Right actions -->
         <div class="nav-right">
-          <a href="#" class="btn btn-primary btn-sm nav-login-button" aria-haspopup="dialog" aria-controls="loginModal">
+          <button id="navLoginTrigger" type="button" class="btn btn-primary btn-sm nav-login-button"
+            aria-haspopup="menu" aria-expanded="false" commandfor="navLoginMenu" command="toggle-popover">
             <span class="btn-cursor-glow" aria-hidden="true"></span>
             <span class="btn-text">Giriş Yap</span>
-          </a>
+          </button>
+          <div id="navLoginMenu" class="login-dropdown login-dropdown--nav" popover="auto">
+            <div focusgroup="menu nomemory" aria-labelledby="navLoginTrigger" class="login-dropdown-list">
+              <a href="#" class="login-dropdown-item">
+                <img src="landing-v2/images/user.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                <span>Öğrenci Girişi</span>
+              </a>
+              <a href="#" class="login-dropdown-item">
+                <img src="landing-v2/images/graduate.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                <span>Mezun Girişi</span>
+              </a>
+              <a href="#" class="login-dropdown-item">
+                <img src="landing-v2/images/support-gray.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                <span>Öğretmen Girişi</span>
+              </a>
+              <a href="#" class="login-dropdown-item">
+                <img src="landing-v2/images/people.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                <span>Veli Girişi</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -92,34 +113,37 @@
         <div class="hero-content">
           <h1 class="sr-only">MEBİ – Millî Eğitim Bakanlığı Bireysel Öğrenme Platformu</h1>
           <div class="hero-buttons">
-            <a href="#" class="btn btn-secondary btn-lg btn-hero-primary" aria-haspopup="dialog" aria-controls="loginModal">
+            <button id="heroLoginTrigger" type="button" class="btn btn-secondary btn-lg btn-hero-primary"
+              aria-haspopup="menu" aria-expanded="false" commandfor="heroLoginMenu" command="toggle-popover">
               <span class="btn-cursor-glow" aria-hidden="true"></span>
               <span class="btn-text">Giriş Yap</span>
-            </a>
+            </button>
+            <div id="heroLoginMenu" class="login-dropdown login-dropdown--hero" popover="auto">
+              <div focusgroup="menu nomemory" aria-labelledby="heroLoginTrigger" class="login-dropdown-list">
+                <a href="#" class="login-dropdown-item">
+                  <img src="landing-v2/images/user.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                  <span>Öğrenci Girişi</span>
+                </a>
+                <a href="#" class="login-dropdown-item">
+                  <img src="landing-v2/images/graduate.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                  <span>Mezun Girişi</span>
+                </a>
+                <a href="#" class="login-dropdown-item">
+                  <img src="landing-v2/images/support-gray.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                  <span>Öğretmen Girişi</span>
+                </a>
+                <a href="#" class="login-dropdown-item">
+                  <img src="landing-v2/images/people.svg" alt="" class="login-dropdown-icon" width="22" height="22">
+                  <span>Veli Girişi</span>
+                </a>
+              </div>
+            </div>
             <a href="#about" class="btn btn-lg btn-hero-secondary" aria-haspopup="dialog" aria-controls="discoverModal">
               <span class="btn-text">Keşfet</span>
             </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section id="active-users" class="presence-section" aria-labelledby="presence-title">
-    <div class="container">
-      <div class="section-header presence-header">
-        <div class="tag">MEBİ Topluluğu</div>
-        <h2 id="presence-title" class="section-title">Birlikte <span class="text-gradient-emphasis">öğreniyoruz</span>
-        </h2>
-        <p class="section-description presence-description">Dünya’nın dört bir yanından binlerce kişi, MEBİ’de aynı
-          öğrenme yolculuğunu paylaşıyor.</p>
-      </div>
-    </div>
-    <div class="presence-counter" role="group" aria-label="MEBİ’de şu anda aktif kişi sayısı">
-      <span class="presence-count" data-presence-count>—</span>
-      <span class="presence-status">kişi şu anda MEBİ’de</span>
-    </div>
-    <div class="presence-field-wrap" aria-hidden="true">
-      <canvas class="presence-field" data-presence-field></canvas>
     </div>
   </section>
   <section id="about" class="about-section scroll-animate">

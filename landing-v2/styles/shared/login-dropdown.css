@@ -1,0 +1,165 @@
+/* =====================================================
+   LOGIN DROPDOWN POPOVER
+   Anchored menu triggered by "Giriş Yap" buttons
+   ===================================================== */
+
+.login-dropdown[popover] {
+  padding: 10px;
+  width: min(296px, calc(100vw - 24px));
+  border-radius: 24px;
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  background: #ffffff;
+  color: var(--color-text-dark, #040308);
+  box-shadow:
+    0 14px 32px -14px rgba(29, 78, 216, 0.2),
+    0 4px 12px -6px rgba(37, 99, 235, 0.12);
+  overflow: visible;
+}
+
+@supports not selector(:popover-open) {
+  .login-dropdown[popover]:not(.\:popover-open) {
+    display: none;
+  }
+}
+
+.login-dropdown[popover]:is(:popover-open, .\:popover-open) {
+  display: block;
+}
+
+/* Native CSS Anchor Positioning with explicit anchor pairing */
+@supports (position-area: block-end) {
+  #navLoginTrigger {
+    anchor-name: --nav-login-trigger;
+  }
+
+  #heroLoginTrigger {
+    anchor-name: --hero-login-trigger;
+  }
+
+  .login-dropdown[popover] {
+    inset: auto;
+    margin: 0;
+    margin-block: 10px;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+
+  .login-dropdown--nav[popover] {
+    position-anchor: --nav-login-trigger;
+    position-area: block-end span-inline-start;
+  }
+
+  .login-dropdown--hero[popover] {
+    position-anchor: --hero-login-trigger;
+    position-area: block-end span-inline-end;
+  }
+}
+
+/* JS positioning fallback for browsers without CSS position-area */
+@supports not (position-area: block-end) {
+  .login-dropdown[popover] {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+  }
+}
+
+/* Clean fade-only motion so opening never shifts or jumps */
+@media (prefers-reduced-motion: no-preference) {
+  .login-dropdown[popover] {
+    opacity: 0;
+    transition: opacity, display, overlay;
+    transition-duration: 0.12s;
+    transition-timing-function: ease-out;
+    transition-behavior: allow-discrete;
+  }
+
+  .login-dropdown[popover]:is(:popover-open, .\:popover-open) {
+    opacity: 1;
+    transition-duration: 0.1s;
+  }
+
+  @supports selector(:popover-open) {
+    @starting-style {
+      .login-dropdown[popover]:popover-open {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+/* Menu list */
+.login-dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  --menu-icon-size: 22px;
+}
+
+/* Menu items */
+.login-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-family: var(--font-main, 'Rubik', sans-serif);
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #1f2937;
+  background: transparent;
+  transition:
+    background-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.login-dropdown-item:hover,
+.login-dropdown-item:focus-visible {
+  background: #f3f7ff;
+  color: var(--color-primary, #0033b3);
+  text-decoration: none;
+}
+
+.login-dropdown-item:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
+.login-dropdown-item:active {
+  background: #e9f0ff;
+}
+
+.login-dropdown-icon {
+  flex: none;
+  width: var(--menu-icon-size);
+  height: var(--menu-icon-size);
+  object-fit: contain;
+  opacity: 0.85;
+  transition:
+    filter 0.16s ease,
+    opacity 0.16s ease;
+}
+
+.login-dropdown-item:hover .login-dropdown-icon,
+.login-dropdown-item:focus-visible .login-dropdown-icon {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(89%) saturate(3800%) hue-rotate(222deg) brightness(86%) contrast(106%);
+}
+
+/* Keep dropdown triggers geometrically steady so the anchored menu never jitters on press/release */
+#navLoginTrigger,
+#navLoginTrigger:hover,
+#navLoginTrigger:active,
+#heroLoginTrigger,
+#heroLoginTrigger:hover,
+#heroLoginTrigger:active {
+  transform: none;
+}
+
+.nav-login-button[aria-expanded="true"],
+.btn-hero-primary[aria-expanded="true"] {
+  filter: brightness(1.04);
+}
